@@ -11,4 +11,5 @@ export const routing = defineRouting({
       th: "/about",
     },
   },
+  localeDetection: false,
 });
