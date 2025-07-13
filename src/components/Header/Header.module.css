@@ -1,0 +1,44 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3% 5%;
+  z-index: 10;
+}
+
+.navbar__brand {
+  width: 100px;
+  height: 100%;
+}
+
+.brand__logo {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar__nav__items {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav__item {
+}
+
+.dropdown__container {
+  border: 1px solid white;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  height: 2rem;
+  align-content: center;
+}
+
+.language__drop__down {
+}
+
+.signin__button {
+}

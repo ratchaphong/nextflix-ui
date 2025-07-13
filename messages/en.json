@@ -1,7 +1,22 @@
 {
   "HomePage": {
-    "title": "Welcome to Nextflix",
-    "about": "About us"
+    "title": "Unlimited Movies, TV Shows and More.",
+    "subtitle": "Watch anywhere and cancel anytime.",
+    "description": "Ready to watch? Enter your email to create or restart your membership.",
+    "emailLabel": "Email Address",
+    "getStarted": "Get Started",
+    "signIn": "Sign In",
+    "footer": {
+      "call": "Questions? Call 000-800-040-1843",
+      "faq": "FAQ",
+      "privacy": "Privacy",
+      "help": "Help Centre",
+      "jobs": "Jobs",
+      "account": "Account",
+      "watch": "Ways to Watch",
+      "media": "Media Centre",
+      "contact": "Contact Us"
+    }
   },
   "AboutPage": {
     "title": "About Us",
