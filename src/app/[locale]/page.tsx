@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import styles from "@/styles/home.module.css";
 import Header from "@/components/Header";
+import TrendingCarousel from "@/components/TrendingCarousel";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -44,41 +45,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* <footer className={styles.footer}>
-        <div className={styles.footer__row__1}>
-          <h4>{t("footer.call")}</h4>
-        </div>
-        <div className={styles.footer__row__2}>
-          <div>
-            <p>{t("footer.faq")}</p>
-            <p>{t("footer.privacy")}</p>
+      <TrendingCarousel />
+
+      <section className={styles.benefits__section}>
+        <h2 className={styles.benefits__title}>{t("benefitsTitle")}</h2>
+        <div className={styles.benefits__grid}>
+          <div className={styles.benefit__card}>
+            <img src="/tv-icon.png" alt="TV" />
+            <h3>{t("benefit1Title")}</h3>
+            <p>{t("benefit1Desc")}</p>
           </div>
-          <div>
-            <p>{t("footer.help")}</p>
-            <p>{t("footer.jobs")}</p>
+          <div className={styles.benefit__card}>
+            <img src="/download-icon.png" alt="Download" />
+            <h3>{t("benefit2Title")}</h3>
+            <p>{t("benefit2Desc")}</p>
           </div>
-          <div>
-            <p>{t("footer.account")}</p>
-            <p>{t("footer.watch")}</p>
+          <div className={styles.benefit__card}>
+            <img src="/device-icon.png" alt="Devices" />
+            <h3>{t("benefit3Title")}</h3>
+            <p>{t("benefit3Desc")}</p>
           </div>
-          <div>
-            <p>{t("footer.media")}</p>
-            <p>{t("footer.contact")}</p>
-          </div>
-        </div>
-        <div className={styles.footer__row__3}>
-          <div className={styles.dropdown__container}>
-            <i className="fas fa-globe"></i>
-            <select name="languages" className={styles.language__drop__down}>
-              <option value="en">English</option>
-              <option value="th">ไทย</option>
-            </select>
+          <div className={styles.benefit__card}>
+            <img src="/profile-icon.png" alt="Profile" />
+            <h3>{t("benefit4Title")}</h3>
+            <p>{t("benefit4Desc")}</p>
           </div>
         </div>
-        <div className={styles.footer__row__4}>
-          <p>Netflix</p>
+      </section>
+
+      <section className={styles.faq__section}>
+        <h2 className={styles.faq__title}>{t("faqTitle")}</h2>
+        <div className={styles.faq__list}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <details key={n} className={styles.faq__item}>
+              <summary>{t(`faq${n}Q`)}</summary>
+              <p>{t(`faq${n}A`)}</p>
+            </details>
+          ))}
         </div>
-      </footer> */}
+      </section>
     </main>
   );
 }

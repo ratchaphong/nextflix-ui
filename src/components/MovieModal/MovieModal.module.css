@@ -1,0 +1,68 @@
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal__content {
+  background: #111;
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  min-width: 320px; /* ✅ เพิ่มตรงนี้ */
+  max-height: 90vh; /* ✅ ป้องกันล้นจอ */
+  overflow-y: auto; /* ✅ scroll ถ้าเนื้อหาเยอะ */
+  width: 90%;
+  position: relative;
+  text-align: center;
+}
+
+.modal__image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.modal__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.modal__tags span {
+  background: #333;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.close__button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+.modal__button {
+  margin-top: 1rem;
+  background: red;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
