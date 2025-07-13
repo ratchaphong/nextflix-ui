@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import styles from "./MovieRow.module.css";
 import MovieCard from "../MovieCard";
 import { movies } from "../MovieCard/MovieCard.type";
 
 export default function MovieRow({
   title,
-  fetchUrl,
 }: {
   title: string;
   fetchUrl: string;

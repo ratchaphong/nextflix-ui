@@ -1,15 +1,15 @@
 "use client";
-
-import { useTranslations } from "next-intl";
 import styles from "./home/home.module.css";
 import Header from "@/components/Header";
 // import TrendingCarousel from "@/components/TrendingCarousel";
 import { Form, Formik } from "formik";
 import { validationSchema } from "./home/home.schema";
 import FormikTextInput from "@/components/form/FormikTextInput";
+import { initialValues } from "./home/home.utils";
+import { useHomeForm } from "./home/home.hooks";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
+  const { handleSubmit, t } = useHomeForm();
 
   return (
     <main>
@@ -29,11 +29,11 @@ export default function HomePage() {
           <p className={styles.hero__description}>{t("description")}</p>
 
           <Formik
-            initialValues={{ email: "" }}
+            initialValues={initialValues}
             validationSchema={validationSchema(t)}
             onSubmit={(values) => {
               console.log("Submitted:", values);
-              // TODO: handle email logic here (e.g. save, navigate, etc.)
+              handleSubmit(values);
             }}
           >
             {({ isSubmitting }) => (
