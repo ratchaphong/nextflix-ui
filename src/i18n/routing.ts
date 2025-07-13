@@ -14,6 +14,10 @@ export const routing = defineRouting({
       en: "/register",
       th: "/register",
     },
+    "selectProfile": {
+      en: "selectProfile",
+      th: "selectProfile"
+    }
   },
   localeDetection: false,
 });
