@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import styles from "@/styles/home.module.css";
 import Header from "@/components/Header";
-import TrendingCarousel from "@/components/TrendingCarousel";
+// import TrendingCarousel from "@/components/TrendingCarousel";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -51,22 +51,22 @@ export default function HomePage() {
         <h2 className={styles.benefits__title}>{t("benefitsTitle")}</h2>
         <div className={styles.benefits__grid}>
           <div className={styles.benefit__card}>
-            <img src="/tv-icon.png" alt="TV" />
+            {/* <img src="/tv-icon.png" alt="TV" /> */}
             <h3>{t("benefit1Title")}</h3>
             <p>{t("benefit1Desc")}</p>
           </div>
           <div className={styles.benefit__card}>
-            <img src="/download-icon.png" alt="Download" />
+            {/* <img src="/download-icon.png" alt="Download" /> */}
             <h3>{t("benefit2Title")}</h3>
             <p>{t("benefit2Desc")}</p>
           </div>
           <div className={styles.benefit__card}>
-            <img src="/device-icon.png" alt="Devices" />
+            {/* <img src="/device-icon.png" alt="Devices" /> */}
             <h3>{t("benefit3Title")}</h3>
             <p>{t("benefit3Desc")}</p>
           </div>
           <div className={styles.benefit__card}>
-            <img src="/profile-icon.png" alt="Profile" />
+            {/* <img src="/profile-icon.png" alt="Profile" /> */}
             <h3>{t("benefit4Title")}</h3>
             <p>{t("benefit4Desc")}</p>
           </div>
