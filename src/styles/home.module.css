@@ -98,32 +98,54 @@
 }
 
 .benefits__section {
-  padding: 4rem 1rem;
-  background-color: #000;
-  color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4rem 0rem;
   text-align: center;
 }
 
-.benefits__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+.benefits__section .benefits__title {
+  margin-bottom: 2rem;
 }
 
-.benefit__card {
+.benefits__section .benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefits__section .benefits__grid .benefit__card {
   background: #1a1a1a;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 0.8rem;
 }
+
+/* @media (max-width: 1024px) {
+  .benefits__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .benefits__grid {
+    grid-template-columns: 1fr;
+  }
+} */
 
 .faq__section {
-  padding: 4rem 1rem;
-  background-color: #000;
-  color: #fff;
+  width: 80%;
+  margin: 0 auto;
+  padding: 4rem 0rem;
 }
 
-.faq__item summary {
+.faq__section .faq__title {
+  margin-bottom: 1rem;
+}
+
+.faq__list {
+}
+
+.faq__list .faq__item summary {
   background-color: #333;
   padding: 1rem;
   font-size: 1.2rem;
@@ -132,10 +154,9 @@
   border-bottom: 1px solid #444;
 }
 
-.faq__item p {
+.faq__list .faq__item p {
   padding: 1rem;
   background: #222;
-  margin: 0;
 }
 
 /* @media (min-width: 768px) {

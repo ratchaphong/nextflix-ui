@@ -45,7 +45,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TrendingCarousel />
+      {/* <TrendingCarousel /> */}
 
       <section className={styles.benefits__section}>
         <h2 className={styles.benefits__title}>{t("benefitsTitle")}</h2>
