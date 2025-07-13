@@ -1,0 +1,16 @@
+.row {
+  margin-bottom: 30px;
+}
+
+.row h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.rowPosters {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
