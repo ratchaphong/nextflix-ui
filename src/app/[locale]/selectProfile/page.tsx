@@ -31,9 +31,7 @@ const SelectProfile = () => {
             </div>
           ))}
         </div>
-        <button className={style.manageButton}>
-          <p>จัดการโปรไฟล์</p>
-        </button>
+        <button className={style.manageButton}>จัดการโปรไฟล์</button>
       </div>
     </main>
   );
