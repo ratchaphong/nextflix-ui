@@ -1,9 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import styles from "@/styles/home.module.css";
+import styles from "./home/home.module.css";
 import Header from "@/components/Header";
 // import TrendingCarousel from "@/components/TrendingCarousel";
+import { Form, Formik } from "formik";
+import { validationSchema } from "./home/home.schema";
+import FormikTextInput from "@/components/form/FormikTextInput";
 
 export default function HomePage() {
   const t = useTranslations("HomePage");
@@ -20,28 +23,37 @@ export default function HomePage() {
           />
         </div>
         <div className={styles.hero__bg__overlay}></div>
-
         <div className={styles.hero__card}>
           <h1 className={styles.hero__title}>{t("title")}</h1>
           <p className={styles.hero__subtitle}>{t("subtitle")}</p>
           <p className={styles.hero__description}>{t("description")}</p>
 
-          <div className={styles.email__form__container}>
-            <div className={styles.form__container}>
-              <input
-                id="email"
-                type="email"
-                className={styles.email__input}
-                placeholder=" "
-              />
-              <label htmlFor="email" className={styles.email__label}>
-                {t("emailLabel")}
-              </label>
-            </div>
-            <button className={styles.primary__button}>
-              {t("getStarted")} <i className="fal fa-chevron-right"></i>
-            </button>
-          </div>
+          <Formik
+            initialValues={{ email: "" }}
+            validationSchema={validationSchema(t)}
+            onSubmit={(values) => {
+              console.log("Submitted:", values);
+              // TODO: handle email logic here (e.g. save, navigate, etc.)
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className={styles.email__form__container}>
+                <FormikTextInput
+                  id="email"
+                  name="email"
+                  type="email"
+                  label={t("emailLabel")}
+                />
+                <button
+                  type="submit"
+                  className={styles.primary__button}
+                  disabled={isSubmitting}
+                >
+                  {t("getStarted")} <i className="fal fa-chevron-right"></i>
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </section>
 

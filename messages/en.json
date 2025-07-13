@@ -36,7 +36,9 @@
       "watch": "Ways to Watch",
       "media": "Media Centre",
       "contact": "Contact Us"
-    }
+    },
+    "emailInvalid": "กรุณากรอกอีเมลให้ถูกต้อง",
+    "emailRequired": "กรุณากรอกอีเมล"
   },
   "AboutPage": {
     "title": "About Us",

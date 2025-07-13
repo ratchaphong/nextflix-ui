@@ -1,0 +1,51 @@
+.form__container {
+  position: relative;
+}
+
+.email__input {
+}
+
+.input__error {
+  border-color: var(--color-error) !important;
+}
+
+.input__error:focus,
+.input__error:hover {
+  border-color: var(--color-error-hover) !important;
+}
+
+.email__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5rem;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  color: rgb(153, 149, 149);
+  font-size: 1rem;
+}
+
+.email__input:focus + .email__label {
+  top: 0.5rem;
+  transform: translateY(-0.5rem);
+  font-size: 0.5rem;
+}
+
+.email__input:not(:placeholder-shown).email__input:not(:focus) + .email__label {
+  top: 0.5rem;
+  transform: translateY(-0.5rem);
+  font-size: 0.5rem;
+}
+
+.error__text {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  color: var(--color-error);
+  transition: color 0.3s ease;
+}
+
+.input__error:focus ~ .error__text,
+.input__error:hover ~ .error__text {
+  color: var(--color-error-hover);
+}

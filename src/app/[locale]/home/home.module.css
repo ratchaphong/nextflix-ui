@@ -1,15 +1,15 @@
-.hero__bg__image__container {
+.hero .hero__bg__image__container {
   width: 100%;
   height: 80vh;
 }
 
-.hero__bg__image {
+.hero .hero__bg__image__container .hero__bg__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.hero__bg__overlay {
+.hero .hero__bg__overlay {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -23,7 +23,7 @@
   );
 }
 
-.hero__card {
+.hero .hero__card {
   position: absolute;
   top: 20%;
   left: 50%; /* จัดกึ่งกลางแนวนอน */
@@ -34,18 +34,18 @@
   gap: 1rem;
 }
 
-.hero__title {
+.hero .hero__card .hero__title {
   font-weight: bold;
   font-size: 2rem;
 }
 
-.hero__subtitle,
-.hero__description {
+.hero .hero__card .hero__subtitle,
+.hero .hero__card .hero__description {
   font-size: 1rem;
 }
 
-.hero__description {
-  margin: 0 50px;
+.hero .hero__card .hero__description {
+  margin: 0 4rem;
 }
 
 .email__form__container {
@@ -56,42 +56,7 @@
   gap: 1rem;
 }
 
-.form__container {
-  position: relative;
-}
-
-.email__input {
-}
-
-.email__label {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0.5rem;
-  transition: all 0.2s ease;
-  pointer-events: none;
-  color: rgb(153, 149, 149);
-  font-size: 1rem;
-}
-
-.email__input:focus + .email__label {
-  top: 0.5rem;
-  transform: translateY(-0.5rem);
-  font-size: 0.5rem;
-}
-
-.email__input:not(:placeholder-shown).email__input:not(:focus) + .email__label {
-  top: 0.5rem;
-  transform: translateY(-0.5rem);
-  font-size: 0.5rem;
-}
-
-/* .email__input:focus-visible {
-  outline: none;
-} */
-
 .primary__button {
-  height: 40px;
   padding: 0.4rem 1rem;
   letter-spacing: 1px;
 }
@@ -118,18 +83,6 @@
   padding: 1.5rem;
   border-radius: 0.8rem;
 }
-
-/* @media (max-width: 1024px) {
-  .benefits__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .benefits__grid {
-    grid-template-columns: 1fr;
-  }
-} */
 
 .faq__section {
   width: 80%;
