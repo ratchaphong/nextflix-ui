@@ -22,11 +22,10 @@ export default function TokenChecker({ children }: Props) {
     if (token && tokenStorage.isTokenExpired()) {
       console.warn("⏳ Token expired. Logging out...");
       tokenStorage.clearToken();
-      router.replace("/"); // ⬅ redirect ไปหน้า guest เช่น login หรือหน้าแรก
+      router.replace("/");
     } else if (token) {
       console.info("✅ Token is valid:", token);
 
-      // ถ้า token มีอยู่ และกำลังเข้า guest-only page ⇒ redirect
       if (GUEST_ONLY_PATHS.includes(pathname)) {
         console.log("🔒 Redirecting logged-in user out of guest page...");
         router.replace("/selectProfile");
@@ -35,7 +34,6 @@ export default function TokenChecker({ children }: Props) {
     } else {
       console.info("ℹ️ No token found.");
 
-      // ถ้าไม่มี token แต่กำลังเข้า protected page ⇒ redirect
       if (PROTECTED_PATHS.includes(pathname)) {
         console.log(
           "🚫 Guest attempting to access protected page. Redirecting..."

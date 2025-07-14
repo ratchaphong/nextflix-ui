@@ -10,7 +10,10 @@ export default function Header() {
     handleLanguageChange,
     handleSignInClick,
     hideSignInButton,
+    shouldHideHeader,
   } = useHeader();
+
+  if (shouldHideHeader) return null;
 
   return (
     <header>

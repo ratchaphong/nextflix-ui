@@ -3,6 +3,8 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 
+const HIDDEN_PATHS = ["/selectProfile"];
+
 export function useHeader() {
   const t = useTranslations("HomePage");
   const router = useRouter();
@@ -19,6 +21,7 @@ export function useHeader() {
   };
 
   const hideSignInButton = pathname === "/login" || pathname === "/register";
+  const shouldHideHeader = HIDDEN_PATHS.includes(pathname);
 
   return {
     t,
@@ -26,5 +29,6 @@ export function useHeader() {
     handleLanguageChange,
     handleSignInClick,
     hideSignInButton,
+    shouldHideHeader,
   };
 }
