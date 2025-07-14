@@ -18,8 +18,8 @@ export const useAuthStore = create<AuthState>((set) => ({
       set({ accessToken });
       tokenStorage.setToken(accessToken);
 
-      const profile = await AuthService.getProfile();
-      set({ profile });
+      // const profile = await AuthService.getProfile();
+      // set({ profile });
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";

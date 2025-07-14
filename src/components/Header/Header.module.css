@@ -5,18 +5,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3% 5%;
+  padding: 0% 5%;
+  height: 10vh;
   z-index: 10;
 }
 
 .navbar__brand {
   width: 100px;
-  height: 100%;
 }
 
 .brand__logo {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .navbar__nav__items {

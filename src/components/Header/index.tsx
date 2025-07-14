@@ -4,7 +4,6 @@ import styles from "./Header.module.css";
 import { useHeader } from "./Header.hooks";
 import { Link } from "@/i18n/navigation";
 import { FaBars, FaBell, FaSearch } from "react-icons/fa";
-import { useState } from "react";
 import cx from "classnames";
 
 export default function Header() {
@@ -16,8 +15,9 @@ export default function Header() {
     isLoggedIn,
     handleLanguageChange,
     handleSignInClick,
+    menuOpen,
+    setMenuOpen,
   } = useHeader();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   if (shouldHideHeader) return null;
 
@@ -42,19 +42,27 @@ export default function Header() {
           <div className={styles.navbar__nav__items}>
             <ul className={styles.nav__item__logged}>
               <li>
-                <a href="#">หน้าแรก</a>
+                <Link href={"/selectProfile"}>{t("home")}</Link>
               </li>
               <li>
-                <a href="#">รายการทีวี</a>
+                <a href="#" aria-disabled>
+                  {t("tvShows")}
+                </a>
               </li>
               <li>
-                <a href="#">ภาพยนตร์</a>
+                <a href="#" aria-disabled>
+                  {t("movies")}
+                </a>
               </li>
               <li>
-                <a href="#">มาใหม่</a>
+                <a href="#" aria-disabled>
+                  {t("new")}
+                </a>
               </li>
               <li>
-                <a href="#">รายการของฉัน</a>
+                <a href="#" aria-disabled>
+                  {t("myList")}
+                </a>
               </li>
             </ul>
             <div className={styles.logged}>
@@ -75,19 +83,27 @@ export default function Header() {
             {menuOpen && (
               <ul className={styles.mobileMenu}>
                 <li>
-                  <a href="#">หน้าแรก</a>
+                  <Link href={"/selectProfile"}>{t("home")}</Link>
                 </li>
                 <li>
-                  <a href="#">รายการทีวี</a>
+                  <a href="#" aria-disabled>
+                    {t("tvShows")}
+                  </a>
                 </li>
                 <li>
-                  <a href="#">ภาพยนตร์</a>
+                  <a href="#" aria-disabled>
+                    {t("movies")}
+                  </a>
                 </li>
                 <li>
-                  <a href="#">มาใหม่</a>
+                  <a href="#" aria-disabled>
+                    {t("new")}
+                  </a>
                 </li>
                 <li>
-                  <a href="#">รายการของฉัน</a>
+                  <a href="#" aria-disabled>
+                    {t("myList")}
+                  </a>
                 </li>
               </ul>
             )}

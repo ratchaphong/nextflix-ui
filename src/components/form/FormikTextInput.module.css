@@ -22,12 +22,12 @@
   transition: all 0.2s ease;
   pointer-events: none;
   color: rgb(153, 149, 149);
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .email__input:focus + .email__label {
   top: 0.5rem;
-  transform: translateY(-0.5rem);
+  transform: translateY(-0.35rem);
   font-size: 0.5rem;
 }
 

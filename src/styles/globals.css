@@ -153,6 +153,10 @@ input::placeholder {
   color: var(--color-placeholder);
 }
 
+html[lang="en"] input::placeholder {
+  font-family: var(--font-en);
+}
+
 input:hover,
 input:focus {
   border-color: var(--color-text);
@@ -187,11 +191,31 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
-  left: 3px;
+  left: 4px;
   top: 0px;
   width: 5px;
   height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+a {
+  font-family: var(--font-thai);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-placeholder);
+}
+
+a[aria-disabled="true"] {
+  color: gray;
+  pointer-events: none;
+}
+
+html[lang="en"] a {
+  font-family: var(--font-en);
 }

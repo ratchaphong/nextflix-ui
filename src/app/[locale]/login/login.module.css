@@ -48,17 +48,9 @@
 }
 
 .forgotPassword {
-  color: #aaa;
   font-size: 0.9rem;
   text-align: center;
   text-decoration: underline;
-}
-
-.forgotPassword[aria-disabled="true"] {
-  color: gray;
-  cursor: not-allowed;
-  /* text-decoration: none; */
-  /* pointer-events: none; */
 }
 
 .options {

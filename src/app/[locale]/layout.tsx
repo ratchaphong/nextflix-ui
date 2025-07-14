@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import TokenChecker from "@/components/TokenChecker";
+import Footer from "@/components/Footer";
 
 export default async function LocaleLayout({
   children,
@@ -24,6 +25,7 @@ export default async function LocaleLayout({
           <TokenChecker>
             <Header />
             {children}
+            <Footer />
           </TokenChecker>
         </NextIntlClientProvider>
       </body>

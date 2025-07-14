@@ -57,8 +57,27 @@
     "emailRequired": "กรุณากรอกอีเมล",
     "passwordRequired": "กรุณากรอกรหัสผ่าน"
   },
-  "AboutPage": {
-    "title": "เกี่ยวกับเรา",
-    "description": "นี่คือหน้าข้อมูลเกี่ยวกับเราในภาษาไทย"
+  "Header": {
+    "home": "หน้าแรก",
+    "tvShows": "รายการทีวี",
+    "movies": "ภาพยนตร์",
+    "new": "มาใหม่",
+    "myList": "รายการของฉัน"
+  },
+  "Footer": {
+    "audioDescription": "คำอธิบายเสียง",
+    "investorRelations": "นักลงทุนสัมพันธ์",
+    "legalNotices": "ประกาศแจ้งทางกฎหมาย",
+    "helpCenter": "ศูนย์ช่วยเหลือ",
+    "jobs": "ตำแหน่งงาน",
+    "cookieSettings": "การตั้งค่าคุกกี้",
+    "giftCards": "บัตรของขวัญ",
+    "termsOfUse": "ข้อกำหนดการใช้งาน",
+    "corporateInfo": "ข้อมูลบริษัท",
+    "mediaCenter": "ศูนย์สื่อมวลชน",
+    "privacy": "ความเป็นส่วนตัว",
+    "contactUs": "ติดต่อเรา",
+    "serviceCode": "รหัสบริการ",
+    "copyright": "© 1997–2025 Netflix, Inc."
   }
 }

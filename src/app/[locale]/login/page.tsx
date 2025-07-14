@@ -6,6 +6,7 @@ import FormikTextInput from "@/components/form/FormikTextInput";
 import { useLoginPage } from "./login.hooks";
 import { initialValues } from "./login.utils";
 import { loginSchema } from "./login.schema";
+import { Link } from "@/i18n/navigation";
 
 export default function LoginPage() {
   const { t, handleSubmit, error } = useLoginPage();
@@ -47,14 +48,14 @@ export default function LoginPage() {
               <button className="secondary" type="button" disabled>
                 {t("loginWithCode")}
               </button>
-              <a
-                href="#"
+              <Link
+                href="/"
                 aria-disabled="true"
                 className={styles.forgotPassword}
                 onClick={(e) => e.preventDefault()}
               >
                 {t("forgotPassword")}
-              </a>
+              </Link>
               <div className={styles.options}>
                 <label className={styles.checkbox}>
                   <Field type="checkbox" name="rememberMe" />

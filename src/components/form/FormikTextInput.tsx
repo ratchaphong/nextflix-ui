@@ -5,7 +5,7 @@ import styles from "./FormikTextInput.module.css"; // หรือใช้ home
 import { HTMLInputTypeAttribute } from "react";
 import cx from "classnames";
 
-interface Props {
+interface FormikTextInputProps {
   id: string;
   name: string;
   label: string;
@@ -19,7 +19,7 @@ export default function FormikTextInput({
   label,
   type = "text",
   className,
-}: Props) {
+}: FormikTextInputProps) {
   const [, meta] = useField(name);
   const hasError = meta.touched && meta.error;
 

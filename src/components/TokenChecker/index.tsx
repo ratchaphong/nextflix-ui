@@ -16,7 +16,7 @@ export default function TokenChecker({
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const { getProfile } = useAuthStore();
+  const { getProfile, profile } = useAuthStore();
 
   useEffect(() => {
     const init = async () => {
@@ -38,10 +38,13 @@ export default function TokenChecker({
           return;
         }
 
-        try {
-          await getProfile(); // ✅ wait for profile to load
-        } catch (err) {
-          console.error("⚠️ Failed to get profile:", err);
+        // ✅ เรียก getProfile แค่ถ้ายังไม่มี profile
+        if (!profile) {
+          try {
+            await getProfile();
+          } catch (err) {
+            console.error("⚠️ Failed to get profile:", err);
+          }
         }
       } else {
         console.info("ℹ️ No token found.");
@@ -55,11 +58,11 @@ export default function TokenChecker({
         }
       }
 
-      setIsReady(true); // ✅ now it's safe to mark as ready
+      setIsReady(true);
     };
 
     init();
-  }, [pathname, router]);
+  }, [pathname, router, getProfile, profile]);
 
   if (!isReady) return null;
 

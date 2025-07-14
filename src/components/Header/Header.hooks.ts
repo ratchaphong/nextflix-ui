@@ -3,15 +3,17 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useAuthStore } from "@/stores/auth.store";
+import { useState } from "react";
 
 const HIDDEN_PATHS = ["/selectProfile"];
 
 export function useHeader() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("Header");
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
   const { profile } = useAuthStore();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLocale = e.target.value;
@@ -34,5 +36,7 @@ export function useHeader() {
     isLoggedIn,
     handleLanguageChange,
     handleSignInClick,
+    menuOpen,
+    setMenuOpen,
   };
 }
