@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
+import TokenChecker from "@/components/TokenChecker";
 
 export default async function LocaleLayout({
   children,
@@ -11,7 +12,6 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -21,8 +21,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider>
-          <Header />
-          {children}
+          <TokenChecker>
+            <Header />
+            {children}
+          </TokenChecker>
         </NextIntlClientProvider>
       </body>
     </html>
