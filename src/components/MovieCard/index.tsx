@@ -34,7 +34,6 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
           className={styles.videoPreview}
           allow="autoplay; encrypted-media"
           allowFullScreen
-          frameBorder="0"
         />
       ) : (
         <video

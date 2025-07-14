@@ -1,5 +1,7 @@
 "use client";
 import MovieRow from "@/components/MovieRow";
+
+import Footer from "@/components/footer/footer";
 const DashBoard = () => {
   const categories = [
     { title: "มาแรงตอนนี้", fetchUrl: "/api/trending" },
@@ -14,6 +16,7 @@ const DashBoard = () => {
           <MovieRow key={cat.title} title={cat.title} fetchUrl={cat.fetchUrl} />
         ))}
       </main>
+      <Footer />
     </div>
   );
 };
