@@ -35,6 +35,12 @@
   text-align: center;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .input {
   padding: 0.8rem;
   background: #333;
