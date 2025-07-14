@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
-// import { useAuthStore } from "@/stores/auth.store";
+import { useAuthStore } from "@/stores/auth.store";
 
 const HIDDEN_PATHS = ["/selectProfile"];
 
@@ -11,7 +11,7 @@ export function useHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-  // const { profile } = useAuthStore();
+  const { profile } = useAuthStore();
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLocale = e.target.value;
@@ -24,13 +24,15 @@ export function useHeader() {
 
   const hideSignInButton = pathname === "/login" || pathname === "/register";
   const shouldHideHeader = HIDDEN_PATHS.includes(pathname);
+  const isLoggedIn = !!profile;
 
   return {
     t,
     locale,
-    handleLanguageChange,
-    handleSignInClick,
     hideSignInButton,
     shouldHideHeader,
+    isLoggedIn,
+    handleLanguageChange,
+    handleSignInClick,
   };
 }

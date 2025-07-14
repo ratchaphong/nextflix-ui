@@ -1,6 +1,5 @@
 "use client";
 import MovieRow from "@/components/MovieRow";
-import Navbar from "./component/navbar/navbar";
 const DashBoard = () => {
   const categories = [
     { title: "มาแรงตอนนี้", fetchUrl: "/api/trending" },
@@ -10,7 +9,6 @@ const DashBoard = () => {
   ];
   return (
     <div>
-      <Navbar />
       <main style={{ backgroundColor: "#111", color: "#fff", padding: "20px" }}>
         {categories.map((cat) => (
           <MovieRow key={cat.title} title={cat.title} fetchUrl={cat.fetchUrl} />
