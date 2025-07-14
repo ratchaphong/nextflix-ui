@@ -25,12 +25,17 @@
   :root {
     --color-bg: #000000;
     --color-text: #ffffff;
-    --color-button-bg: #dc030f;
-    --color-button-bg-hover: #a5010b;
-    --color-input-bg: rgba(255, 255, 255, 0.1);
-    --color-input-border: rgba(255, 255, 255, 0.4);
-    --color-input-hover-bg: rgba(255, 255, 255, 0.15);
-    --color-placeholder: rgba(255, 255, 255, 0.8);
+    --color-button-bg: #e50914;
+    --color-button-bg-hover: #b20710;
+
+    --color-input-bg: rgba(255, 255, 255, 0.05);
+    --color-input-hover-bg: rgba(255, 255, 255, 0.08);
+    --color-input-border: rgba(255, 255, 255, 0.25);
+
+    --color-placeholder: rgba(255, 255, 255, 0.6);
+
+    --color-error: #ff4c4c;
+    --color-error-hover: #cc0000;
   }
 }
 
@@ -195,7 +200,7 @@ input[type="checkbox"]:checked::after {
   top: 0px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid var(--color-text);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }

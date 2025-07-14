@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useAuthStore } from "@/stores/auth.store";
+import LoadingScreen from "../LoadingScreen";
 
 const GUEST_ONLY_PATHS = ["/", "/login", "/register"];
 const PROTECTED_PATHS = ["/select-profile", "/dashboard"];
@@ -64,7 +65,7 @@ export default function TokenChecker({
     init();
   }, [pathname, router, getProfile, profile]);
 
-  if (!isReady) return null;
+  if (!isReady) return <LoadingScreen />;
 
   return <>{children}</>;
 }
