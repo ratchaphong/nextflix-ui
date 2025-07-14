@@ -1,15 +1,15 @@
 "use client";
-import MovieRow from "@/components/MovieRow";
 
-const DashBoard = () => {
-  const categories = [
-    { title: "มาแรงตอนนี้", fetchUrl: "/api/trending" },
-    { title: "Netflix Originals", fetchUrl: "/api/originals" },
-    { title: "แอ็คชัน", fetchUrl: "/api/action" },
-    { title: "คอมเมดี้", fetchUrl: "/api/comedy" },
-  ];
+import MovieRow from "@/components/MovieRow";
+import { useDashBoard } from "./dashboard.hooks";
+
+const DashboardPage = () => {
+  const { categories } = useDashBoard();
+
   return (
-    <main style={{ backgroundColor: "#111", color: "#fff", padding: "20px" }}>
+    <main
+    // style={{ backgroundColor: "#111", color: "#fff", padding: "20px" }}
+    >
       {categories.map((cat) => (
         <MovieRow key={cat.title} title={cat.title} fetchUrl={cat.fetchUrl} />
       ))}
@@ -17,4 +17,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default DashboardPage;
