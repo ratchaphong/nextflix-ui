@@ -17,6 +17,8 @@
   --color-input-border: rgba(255, 255, 255, 0.4);
   --color-input-hover-bg: rgba(0, 0, 0, 0.15);
   --color-placeholder: rgba(255, 255, 255, 0.8);
+  --color-error: #dc030f;
+  --color-error-hover: #a5010b;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,17 +58,50 @@ button {
   font-size: 1rem;
   background-color: var(--color-button-bg);
   border: 1px solid var(--color-button-bg);
-  color: white;
+  color: var(--color-text);
   border-radius: 4px;
   padding: 0 0.5rem;
   height: 2.5rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
 button:hover {
   background-color: var(--color-button-bg-hover);
   border-color: var(--color-button-bg-hover);
+}
+
+button.secondary {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+button.secondary:hover {
+  background-color: #4d4d4d;
+  border-color: #666;
+}
+
+/* Disabled button (ทุกปุ่ม) */
+button:disabled {
+  background-color: #555;
+  border-color: #555;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+  opacity: 0.6;
+  /* pointer-events: none; */
+}
+
+/* Disabled secondary button */
+button.secondary:disabled {
+  background-color: #444;
+  border-color: #444;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 html[lang="en"] button {
@@ -99,7 +134,8 @@ select option {
 
 /* Inputs */
 input[type="email"],
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
@@ -122,4 +158,40 @@ input:focus {
   border-color: var(--color-text);
   background-color: var(--color-input-hover-bg);
   outline: none;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1px solid var(--color-input-border);
+  border-radius: 3px;
+  background-color: var(--color-input-bg);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+input[type="checkbox"]:hover {
+  background-color: var(--color-input-hover-bg);
+  border-color: var(--color-text);
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--color-button-bg);
+  border-color: var(--color-button-bg);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }

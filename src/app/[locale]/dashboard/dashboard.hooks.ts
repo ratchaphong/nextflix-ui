@@ -1,6 +1,3 @@
 "use client";
 
-
-const useDashBoard = () => {
-    
-}
+export function useDashBoard() {}

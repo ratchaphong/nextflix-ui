@@ -1,10 +1,16 @@
 "use client";
 
 import styles from "./Header.module.css";
-import { useHeader } from "./useHeader";
+import { useHeader } from "./Header.hooks";
 
 export default function Header() {
-  const { t, locale, handleLanguageChange, handleSignInClick } = useHeader();
+  const {
+    t,
+    locale,
+    handleLanguageChange,
+    handleSignInClick,
+    hideSignInButton,
+  } = useHeader();
 
   return (
     <header>
@@ -33,14 +39,16 @@ export default function Header() {
               </select>
             </div>
           </div>
-          <div className={styles.nav__item}>
-            <button
-              className={styles.signin__button}
-              onClick={handleSignInClick}
-            >
-              {t("signIn")}
-            </button>
-          </div>
+          {!hideSignInButton && (
+            <div className={styles.nav__item}>
+              <button
+                className={styles.signin__button}
+                onClick={handleSignInClick}
+              >
+                {t("signIn")}
+              </button>
+            </div>
+          )}
         </div>
       </nav>
     </header>

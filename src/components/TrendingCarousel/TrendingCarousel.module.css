@@ -1,33 +1,26 @@
-.carousel__section {
-  padding: 2rem 1rem;
-  background-color: black;
-  color: white;
-  position: relative;
-}
-
-.carousel__title {
+.carousel .carousel__title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.carousel__wrapper {
+.carousel .carousel__wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
 /* Container: scroll + snap */
-.carousel__container {
+.carousel .carousel__wrapper .carousel__container {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding-bottom: 1rem;
+  gap: 1.25rem;
+  padding: 1rem;
   scrollbar-width: none;
 }
 
-.carousel__container::-webkit-scrollbar {
+.carousel .carousel__wrapper .carousel__container::-webkit-scrollbar {
   display: none;
 }
 
@@ -46,71 +39,67 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
 }
 
-.carousel__image {
+.carousel__item .carousel__image {
   width: 100%;
   border-radius: 8px;
   display: block;
 }
 
-/* หมายเลขหน้า */
-.carousel__number {
+.carousel__item .carousel__number {
   position: absolute;
   left: -12px;
   top: 0;
   font-size: 5rem;
   font-weight: 900;
-  color: white;
-  -webkit-text-stroke: 2px black;
+  color: var(--color-bg);
+  -webkit-text-stroke: 2px var(--color-text);
   z-index: 3;
   line-height: 1;
 }
 
-/* ปุ่มเลื่อน */
-.nav__button {
+.carousel .carousel__wrapper .nav__button {
   position: absolute;
   top: 35%;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--color-text);
   border: none;
   font-size: 2rem;
   padding: 1rem;
-  cursor: pointer;
   z-index: 10;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, background 0.3s ease;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
-/* ปรากฏเมื่อ hover ทั้ง wrapper */
-.carousel__wrapper:hover .nav__button {
+.carousel .carousel__wrapper:hover .nav__button {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* ตำแหน่งปุ่ม */
-.nav__button:first-of-type {
+.carousel .carousel__wrapper .nav__button:first-of-type {
   left: 0;
 }
 
-.nav__button:last-of-type {
+.carousel .carousel__wrapper .nav__button:last-of-type {
   right: 0;
 }
 
-/* Responsive: 4 ชิ้น */
+/* Responsive: 4 */
 @media (max-width: 1024px) {
   .carousel__item {
     flex: 0 0 calc(25% - 1rem);
   }
 }
 
-/* 3 ชิ้น */
+/* Responsive: 3 */
 @media (max-width: 768px) {
   .carousel__item {
     flex: 0 0 calc(33.33% - 1rem);
   }
 }
 
-/* 2 ชิ้น */
+/* Responsive: 2  */
 @media (max-width: 480px) {
   .carousel__item {
     flex: 0 0 calc(50% - 1rem);

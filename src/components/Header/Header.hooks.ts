@@ -15,13 +15,16 @@ export function useHeader() {
   };
 
   const handleSignInClick = () => {
-    router.push("/register");
+    router.push("/login");
   };
+
+  const hideSignInButton = pathname === "/login" || pathname === "/register";
 
   return {
     t,
     locale,
     handleLanguageChange,
     handleSignInClick,
+    hideSignInButton,
   };
 }

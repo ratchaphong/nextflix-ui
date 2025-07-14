@@ -36,7 +36,26 @@
       "watch": "ช่องทางการรับชม",
       "media": "ศูนย์สื่อ",
       "contact": "ติดต่อเรา"
-    }
+    },
+    "emailInvalid": "กรุณากรอกอีเมลให้ถูกต้อง",
+    "emailRequired": "กรุณากรอกอีเมล"
+  },
+  "LoginPage": {
+    "title": "เข้าสู่ระบบ",
+    "emailOrPhone": "อีเมลหรือหมายเลขโทรศัพท์มือถือ",
+    "password": "รหัสผ่าน",
+    "loginButton": "เข้าสู่ระบบ",
+    "or": "หรือ",
+    "loginWithCode": "ใช้รหัสสำหรับเข้าสู่ระบบ",
+    "forgotPassword": "หากลืมรหัสผ่าน",
+    "rememberMe": "จดจำข้อมูลของฉัน",
+    "notAMember": "หากยังไม่คุ้นกับ Netflix",
+    "signUpNow": "ลงทะเบียนตอนนี้",
+    "captchaNote": "หน้านี้ได้รับการป้องกันโดย Google reCAPTCHA เพื่อตรวจสอบว่าคุณเป็นผู้ใช้ที่เป็นมนุษย์",
+    "learnMore": "ดูข้อมูลเพิ่มเติม",
+    "emailInvalid": "กรุณากรอกอีเมลให้ถูกต้อง",
+    "emailRequired": "กรุณากรอกอีเมล",
+    "passwordRequired": "กรุณากรอกรหัสผ่าน"
   },
   "AboutPage": {
     "title": "เกี่ยวกับเรา",

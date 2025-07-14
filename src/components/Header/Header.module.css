@@ -36,6 +36,7 @@
   background-color: var(--color-input-bg);
   align-content: center;
   transition: border-color 0.3s ease, transform 0.2s ease;
+  height: 100%;
 }
 
 .dropdown__container:hover {

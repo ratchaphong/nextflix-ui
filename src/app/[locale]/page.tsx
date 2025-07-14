@@ -1,16 +1,17 @@
 "use client";
-
-import { useTranslations } from "next-intl";
-import styles from "@/styles/home.module.css";
-import Header from "@/components/Header";
-// import TrendingCarousel from "@/components/TrendingCarousel";
+import styles from "./home/home.module.css";
+import TrendingCarousel from "@/components/TrendingCarousel";
+import { Form, Formik } from "formik";
+import { validationSchema } from "./home/home.schema";
+import FormikTextInput from "@/components/form/FormikTextInput";
+import { initialValues } from "./home/home.utils";
+import { useHomeForm } from "./home/home.hooks";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
+  const { handleSubmit, t } = useHomeForm();
 
   return (
     <main>
-      <Header />
       <section className={styles.hero}>
         <div className={styles.hero__bg__image__container}>
           <img
@@ -20,32 +21,41 @@ export default function HomePage() {
           />
         </div>
         <div className={styles.hero__bg__overlay}></div>
-
         <div className={styles.hero__card}>
           <h1 className={styles.hero__title}>{t("title")}</h1>
           <p className={styles.hero__subtitle}>{t("subtitle")}</p>
           <p className={styles.hero__description}>{t("description")}</p>
 
-          <div className={styles.email__form__container}>
-            <div className={styles.form__container}>
-              <input
-                id="email"
-                type="email"
-                className={styles.email__input}
-                placeholder=" "
-              />
-              <label htmlFor="email" className={styles.email__label}>
-                {t("emailLabel")}
-              </label>
-            </div>
-            <button className={styles.primary__button}>
-              {t("getStarted")} <i className="fal fa-chevron-right"></i>
-            </button>
-          </div>
+          <Formik
+            enableReinitialize
+            initialValues={initialValues}
+            validationSchema={validationSchema(t)}
+            onSubmit={handleSubmit}
+          >
+            {({ isSubmitting }) => (
+              <Form className={styles.email__form__container}>
+                <FormikTextInput
+                  id="email"
+                  name="email"
+                  type="email"
+                  label={t("emailLabel")}
+                />
+                <button
+                  type="submit"
+                  className={styles.primary__button}
+                  disabled={isSubmitting}
+                >
+                  {t("getStarted")} <i className="fal fa-chevron-right"></i>
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </section>
 
-      {/* <TrendingCarousel /> */}
+      <section className={styles.carousel__section}>
+        <TrendingCarousel />
+      </section>
 
       <section className={styles.benefits__section}>
         <h2 className={styles.benefits__title}>{t("benefitsTitle")}</h2>

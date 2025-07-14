@@ -1,0 +1,92 @@
+.container {
+  position: relative;
+  min-height: 100vh;
+  background: url("https://assets.nflxext.com/ffe/siteui/vlv3/9c5457b8-9ab0-4a04-9fc1-e608d5670f1a/710d74e0-7158-408e-8d9b-23c219dee5df/IN-en-20210719-popsignuptwoweeks-perspective_alpha_website_small.jpg")
+    center center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.formWrapper {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  color: white;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 0.1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.divider {
+  text-align: center;
+  color: #bbb;
+}
+
+.forgotPassword {
+  color: #aaa;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.forgotPassword[aria-disabled="true"] {
+  color: gray;
+  cursor: not-allowed;
+  /* text-decoration: none; */
+  /* pointer-events: none; */
+}
+
+.options {
+  margin-top: -0.5rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.registerText {
+  font-size: 0.9rem;
+  color: #ccc;
+  text-align: center;
+}
+
+.registerText a {
+  color: white;
+  text-decoration: underline;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 1rem;
+  line-height: 1.4;
+  text-align: center;
+}
