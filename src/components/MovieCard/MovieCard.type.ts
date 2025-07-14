@@ -43,10 +43,5 @@ export const movies: Movie[] = [
     poster_path: "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
     preview_url: "https://www.youtube.com/watch?v=HhesaQXLuRY",
   },
-  {
-    id: 7,
-    title: "All of Us Are Dead",
-    poster_path: "/hY9DbdQWfRGwJ4dkqkBdfFBcXKE.jpg",
-    preview_url: "https://www.youtube.com/watch?v=IN5TD4VRcSM",
-  },
+  
 ];
