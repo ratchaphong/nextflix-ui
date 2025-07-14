@@ -2,6 +2,7 @@
 
 import styles from "./Header.module.css";
 import { useHeader } from "./Header.hooks";
+import { Link } from "@/i18n/navigation";
 
 export default function Header() {
   const {
@@ -10,18 +11,23 @@ export default function Header() {
     handleLanguageChange,
     handleSignInClick,
     hideSignInButton,
+    shouldHideHeader,
   } = useHeader();
+
+  if (shouldHideHeader) return null;
 
   return (
     <header>
       <nav className={styles.navbar}>
-        <div className={styles.navbar__brand}>
-          <img
-            src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
-            alt="logo"
-            className={styles.brand__logo}
-          />
-        </div>
+        <Link href={"/"}>
+          <div className={styles.navbar__brand}>
+            <img
+              src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
+              alt="logo"
+              className={styles.brand__logo}
+            />
+          </div>
+        </Link>
 
         <div className={styles.navbar__nav__items}>
           <div className={styles.nav__item}>

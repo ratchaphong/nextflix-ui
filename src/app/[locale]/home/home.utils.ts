@@ -1,5 +1,5 @@
-import { FormValues } from "./home.types";
+import { HomeFormValues } from "./home.types";
 
-export const initialValues: FormValues = {
+export const initialValues: HomeFormValues = {
   email: "",
 };
