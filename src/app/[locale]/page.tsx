@@ -1,7 +1,6 @@
 "use client";
 import styles from "./home/home.module.css";
-import Header from "@/components/Header";
-// import TrendingCarousel from "@/components/TrendingCarousel";
+import TrendingCarousel from "@/components/TrendingCarousel";
 import { Form, Formik } from "formik";
 import { validationSchema } from "./home/home.schema";
 import FormikTextInput from "@/components/form/FormikTextInput";
@@ -13,7 +12,6 @@ export default function HomePage() {
 
   return (
     <main>
-      <Header />
       <section className={styles.hero}>
         <div className={styles.hero__bg__image__container}>
           <img
@@ -29,12 +27,10 @@ export default function HomePage() {
           <p className={styles.hero__description}>{t("description")}</p>
 
           <Formik
+            enableReinitialize
             initialValues={initialValues}
             validationSchema={validationSchema(t)}
-            onSubmit={(values) => {
-              console.log("Submitted:", values);
-              handleSubmit(values);
-            }}
+            onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
               <Form className={styles.email__form__container}>
@@ -57,7 +53,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* <TrendingCarousel /> */}
+      <section className={styles.carousel__section}>
+        <TrendingCarousel />
+      </section>
 
       <section className={styles.benefits__section}>
         <h2 className={styles.benefits__title}>{t("benefitsTitle")}</h2>

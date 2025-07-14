@@ -1,23 +1,25 @@
 "use client";
 
-import { useCallback } from "react";
 import { FormValues } from "./home.types";
 import { useTranslations } from "next-intl";
+import { FormikHelpers } from "formik";
 
 export function useHomeForm() {
   const t = useTranslations("HomePage");
 
-  const handleSubmit = useCallback(async (values: FormValues) => {
+  const handleSubmit = async (
+    values: FormValues,
+    actions: FormikHelpers<FormValues>
+  ) => {
     console.log("📨 Submitting form...", values);
-
     try {
-      // 📝 TODO: แทนที่ด้วย API call หรือ logic ที่ต้องการ
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock delay
-      alert(`Form submitted with email: ${values.email}`);
+      console.log("Submitted:", values);
     } catch (error) {
-      console.error("❌ Submission failed:", error);
+      console.error("Error submitting form:", error);
+    } finally {
+      actions.setSubmitting(false);
     }
-  }, []);
+  };
 
   return {
     handleSubmit,

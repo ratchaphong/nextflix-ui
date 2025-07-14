@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./Header.module.css";
-import { useHeader } from "./useHeader";
+import { useHeader } from "./Header.hooks";
 
 export default function Header() {
   const { t, locale, handleLanguageChange, handleSignInClick } = useHeader();
