@@ -4,7 +4,7 @@ import { AuthService } from "@/services/auth.service";
 import { AuthState } from "@/types/login";
 import { tokenStorage } from "@/lib/tokenStorage";
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+export const useAuthStore = create<AuthState>((set) => ({
   loading: false,
   accessToken: null,
   profile: null,
@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       set({ accessToken });
       tokenStorage.setToken(accessToken);
 
-      const profile = await AuthService.getProfile(accessToken);
+      const profile = await AuthService.getProfile();
       set({ profile });
     } catch (err) {
       const errorMessage =
@@ -37,8 +37,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const { accessToken } = await AuthService.register(payload);
       set({ accessToken });
 
-      // ✅ ดึง profile หลัง register สำเร็จ
-      const profile = await AuthService.getProfile(accessToken);
+      const profile = await AuthService.getProfile();
       set({ profile });
     } catch (err) {
       const errorMessage =
@@ -51,16 +50,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   getProfile: async () => {
-    const { accessToken } = get();
-    if (!accessToken) return;
+    set({ loading: true, profile: null });
 
     try {
-      const profile = await AuthService.getProfile(accessToken);
+      const profile = await AuthService.getProfile();
       set({ profile });
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Failed to load profile";
       set({ error: errorMessage });
+    } finally {
+      set({ loading: false });
     }
   },
 

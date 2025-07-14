@@ -1,6 +1,6 @@
 "use client";
 
-import { FormValues } from "./home.types";
+import { HomeFormValues } from "./home.types";
 import { useTranslations } from "next-intl";
 import { FormikHelpers } from "formik";
 import { useEffect } from "react";
@@ -11,8 +11,8 @@ export function useHomeForm() {
   const { fetchMovies } = useMovieStore();
 
   const handleSubmit = async (
-    values: FormValues,
-    actions: FormikHelpers<FormValues>
+    values: HomeFormValues,
+    actions: FormikHelpers<HomeFormValues>
   ) => {
     console.log("📨 Submitting form...", values);
     try {

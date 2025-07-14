@@ -1,3 +1,3 @@
-export interface FormValues {
+export interface HomeFormValues {
   email: string;
 }

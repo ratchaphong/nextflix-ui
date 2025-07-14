@@ -4,7 +4,8 @@ import {
   RegisterPayload,
   ProfileResponse,
 } from "@/types/login";
-import axios from "axios";
+import api from "@/lib/axios"; // 👈 ใช้ instance ที่สร้างไว้แทน
+import axios from "axios"; // ✅ สำหรับใช้ axios.isAxiosError
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 
@@ -18,7 +19,7 @@ export const AuthService = {
     }
 
     try {
-      const { data } = await axios.post<LoginResponse>("/api/login", payload);
+      const { data } = await api.post<LoginResponse>("/api/login", payload);
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -40,10 +41,7 @@ export const AuthService = {
     }
 
     try {
-      const { data } = await axios.post<LoginResponse>(
-        "/api/register",
-        payload
-      );
+      const { data } = await api.post<LoginResponse>("/api/register", payload);
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -56,7 +54,7 @@ export const AuthService = {
     }
   },
 
-  getProfile: async (token: string): Promise<ProfileResponse> => {
+  getProfile: async (): Promise<ProfileResponse> => {
     if (USE_MOCK) {
       console.log("🔧 Using MOCK getProfile");
       return new Promise((resolve) =>
@@ -73,10 +71,10 @@ export const AuthService = {
     }
 
     try {
-      const { data } = await axios.get<ProfileResponse>("/api/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const { data } = await api.get<ProfileResponse>("/api/profile", {
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
       });
       return data;
     } catch (error: unknown) {

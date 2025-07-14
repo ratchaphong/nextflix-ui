@@ -2,7 +2,7 @@
 import styles from "./home/home.module.css";
 import TrendingCarousel from "@/components/TrendingCarousel";
 import { Form, Formik } from "formik";
-import { validationSchema } from "./home/home.schema";
+import { homeSchema } from "./home/home.schema";
 import FormikTextInput from "@/components/form/FormikTextInput";
 import { initialValues } from "./home/home.utils";
 import { useHomeForm } from "./home/home.hooks";
@@ -29,7 +29,7 @@ export default function HomePage() {
           <Formik
             enableReinitialize
             initialValues={initialValues}
-            validationSchema={validationSchema(t)}
+            validationSchema={homeSchema(t)}
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
