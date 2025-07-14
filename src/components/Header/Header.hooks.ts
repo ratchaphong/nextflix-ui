@@ -5,7 +5,7 @@ import { useRouter, usePathname } from "@/i18n/navigation";
 import { useAuthStore } from "@/stores/auth.store";
 import { useState } from "react";
 
-const HIDDEN_PATHS = ["/selectProfile"];
+const HIDDEN_PATHS = ["/select-profile"];
 
 export function useHeader() {
   const t = useTranslations("Header");

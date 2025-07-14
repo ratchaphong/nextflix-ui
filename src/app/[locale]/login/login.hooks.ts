@@ -23,7 +23,7 @@ export function useLoginPage() {
       });
 
       console.log("✅ Login success");
-      router.push("/selectProfile");
+      router.push("/select-profile");
     } catch (error) {
       console.error("❌ Login failed:", error);
       // actions.setFieldError("password", t("loginFailed"));
@@ -33,8 +33,8 @@ export function useLoginPage() {
   };
 
   return {
-    handleSubmit,
     t,
     error,
+    handleSubmit,
   };
 }

@@ -35,3 +35,7 @@ export interface LoginFormValues {
   password: string;
   rememberMe: boolean;
 }
+
+export interface HomeFormValues {
+  email: string;
+}

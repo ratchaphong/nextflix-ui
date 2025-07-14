@@ -6,7 +6,7 @@ import { tokenStorage } from "@/lib/tokenStorage";
 import { useAuthStore } from "@/stores/auth.store";
 
 const GUEST_ONLY_PATHS = ["/", "/login", "/register"];
-const PROTECTED_PATHS = ["/selectProfile", "/dashboard"];
+const PROTECTED_PATHS = ["/select-profile", "/dashboard"];
 
 export default function TokenChecker({
   children,
@@ -34,7 +34,7 @@ export default function TokenChecker({
 
         if (GUEST_ONLY_PATHS.includes(pathname)) {
           console.log("🔒 Redirecting logged-in user out of guest page...");
-          router.replace("/selectProfile");
+          router.replace("/select-profile");
           return;
         }
 

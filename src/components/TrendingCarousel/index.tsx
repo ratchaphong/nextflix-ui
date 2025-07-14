@@ -5,12 +5,12 @@ import MovieModal from "../MovieModal";
 import { useTrendingCarousel } from "./TrendingCarousel.hooks";
 
 export default function TrendingCarousel() {
-  const { scroll, setSelected, selected, trendingItems, scrollRef } =
+  const { t, selected, trendingItems, scrollRef, setSelected, scroll } =
     useTrendingCarousel();
 
   return (
     <div className={styles.carousel}>
-      <h2 className={styles.carousel__title}>กำลังฮิต</h2>
+      <h2 className={styles.carousel__title}>{t("trendingNow")}</h2>
       <div className={styles.carousel__wrapper}>
         <button className={styles.nav__button} onClick={() => scroll("left")}>
           &#10094;

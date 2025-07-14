@@ -26,19 +26,9 @@
     "faq4A": "Netflix is flexible. There are no annoying contracts and no commitments. You can easily cancel your account online in two clicks.",
     "faq5Q": "Is Netflix good for kids?",
     "faq5A": "Netflix Kids experience gives parents control while kids enjoy family-friendly TV shows and movies in their own space.",
-    "footer": {
-      "call": "Questions? Call 000-800-040-1843",
-      "faq": "FAQ",
-      "privacy": "Privacy",
-      "help": "Help Centre",
-      "jobs": "Jobs",
-      "account": "Account",
-      "watch": "Ways to Watch",
-      "media": "Media Centre",
-      "contact": "Contact Us"
-    },
     "emailInvalid": "Please enter a valid email address",
-    "emailRequired": "Email is required"
+    "emailRequired": "Email is required",
+    "trendingNow": "Trending now"
   },
   "LoginPage": {
     "title": "Sign In",
@@ -57,7 +47,12 @@
     "emailRequired": "Email is required.",
     "passwordRequired": "Password is required."
   },
+  "SelectProfilePage": {
+    "title": "Who's watching?",
+    "manageProfiles": "Manage Profiles"
+  },
   "Header": {
+    "signIn": "Sign In",
     "home": "Home",
     "tvShows": "TV Shows",
     "movies": "Movies",

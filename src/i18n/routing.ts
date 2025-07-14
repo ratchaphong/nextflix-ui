@@ -18,11 +18,11 @@ export const routing = defineRouting({
       en: "/login",
       th: "/login",
     },
-    "/selectProfile": {
-      en: "/selectProfile",
-      th: "/selectProfile",
+    "/select-profile": {
+      en: "/select-profile",
+      th: "/select-profile",
     },
-     "/dashboard": {
+    "/dashboard": {
       en: "/dashboard",
       th: "/dashboard",
     },

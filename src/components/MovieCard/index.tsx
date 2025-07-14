@@ -1,6 +1,6 @@
 import { Movie } from "./MovieCard.type";
 import styles from "./MovieCard.module.css";
-import useMovieCard from "./useMovieCard";
+import useMovieCard from "./MovieCard.hooks";
 
 const getYouTubeEmbedUrl = (url: string) => {
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([^&]+)/);

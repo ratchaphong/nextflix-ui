@@ -2,8 +2,11 @@
 
 import { MovieModalProps } from "../TrendingCarousel/TrendingCarousel.types";
 import styles from "./MovieModal.module.css";
+import useMovieModal from "./MovieModal.hooks";
 
 export default function MovieModal({ movie, onClose }: MovieModalProps) {
+  const { t, handleSignInClick } = useMovieModal();
+
   return (
     <div className={styles.modal__backdrop} onClick={onClose}>
       <div
@@ -32,7 +35,9 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
             ))}
           </div>
           <p className={styles.modal__description}>{movie.description}</p>
-          <button className={styles.modal__button}>เริ่มต้นใช้งาน</button>
+          <button className={styles.modal__button} onClick={handleSignInClick}>
+            {t("getStarted")}
+          </button>
         </div>
       </div>
     </div>

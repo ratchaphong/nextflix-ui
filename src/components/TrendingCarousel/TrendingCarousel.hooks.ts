@@ -2,8 +2,10 @@
 
 import { useRef, useState } from "react";
 import { useMovieStore } from "@/stores/movie.store";
+import { useTranslations } from "next-intl";
 
 export function useTrendingCarousel() {
+  const t = useTranslations("HomePage");
   const { movies } = useMovieStore();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -20,11 +22,5 @@ export function useTrendingCarousel() {
     }
   };
 
-  return {
-    scroll,
-    selected,
-    setSelected,
-    trendingItems: movies,
-    scrollRef,
-  };
+  return { t, selected, trendingItems: movies, scrollRef, setSelected, scroll };
 }

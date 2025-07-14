@@ -1,6 +1,6 @@
 "use client";
 
-import { HomeFormValues } from "./home.types";
+import { HomeFormValues } from "@/types/login";
 import { useTranslations } from "next-intl";
 import { FormikHelpers } from "formik";
 import { useEffect } from "react";
@@ -16,7 +16,7 @@ export function useHomeForm() {
   ) => {
     console.log("📨 Submitting form...", values);
     try {
-      console.log("Submitted:", values);
+      window.alert("ฟีเจอร์นี้ยังไม่พร้อมใช้งานในขณะนี้");
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -29,7 +29,7 @@ export function useHomeForm() {
   }, []);
 
   return {
-    handleSubmit,
     t,
+    handleSubmit,
   };
 }

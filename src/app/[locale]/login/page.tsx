@@ -2,20 +2,20 @@
 
 import { Formik, Form, Field } from "formik";
 import styles from "./login.module.css";
-import FormikTextInput from "@/components/form/FormikTextInput";
+import FormikTextInput from "@/components/FormikTextInput";
 import { useLoginPage } from "./login.hooks";
 import { initialValues } from "./login.utils";
 import { loginSchema } from "./login.schema";
 import { Link } from "@/i18n/navigation";
 
 export default function LoginPage() {
-  const { t, handleSubmit, error } = useLoginPage();
+  const { t, error, handleSubmit } = useLoginPage();
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <div className={styles.overlay} />
-      <div className={styles.formWrapper}>
-        <h1 className={styles.title}>{t("title")}</h1>
+      <div className={styles.form__wrapper}>
+        <h1 className={styles.form__title}>{t("title")}</h1>
         <Formik
           enableReinitialize
           initialValues={initialValues}
@@ -23,7 +23,7 @@ export default function LoginPage() {
           validationSchema={loginSchema(t)}
         >
           {({ isSubmitting }) => (
-            <Form className={styles.form}>
+            <Form className={styles.form__main}>
               {error && <small>{error}</small>}
               <FormikTextInput
                 id="email"
@@ -37,27 +37,23 @@ export default function LoginPage() {
                 type="password"
                 label={t("password")}
               />
-              <button
-                type="submit"
-                className={styles.loginButton}
-                disabled={isSubmitting}
-              >
+              <button type="submit" disabled={isSubmitting}>
                 {t("loginButton")}
               </button>
-              <div className={styles.divider}>{t("or")}</div>
+              <div className={styles.form__divider}>{t("or")}</div>
               <button className="secondary" type="button" disabled>
                 {t("loginWithCode")}
               </button>
               <Link
                 href="/"
                 aria-disabled="true"
-                className={styles.forgotPassword}
+                className={styles.form__forgot}
                 onClick={(e) => e.preventDefault()}
               >
                 {t("forgotPassword")}
               </Link>
-              <div className={styles.options}>
-                <label className={styles.checkbox}>
+              <div className={styles.form__options}>
+                <label className={styles.form__checkbox}>
                   <Field type="checkbox" name="rememberMe" />
                   {t("rememberMe")}
                 </label>
@@ -65,13 +61,7 @@ export default function LoginPage() {
             </Form>
           )}
         </Formik>
-        {/* <div className={styles.registerText}>
-          {t("notAMember")} <a href="#">{t("signUpNow")}</a>
-        </div> */}
-        {/* <small className={styles.note}>
-          {t("captchaNote")} <a href="#">{t("learnMore")}</a>
-        </small> */}
       </div>
-    </div>
+    </main>
   );
 }

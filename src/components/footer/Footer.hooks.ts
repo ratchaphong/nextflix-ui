@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 
-const HIDDEN_PATHS = ["/selectProfile", "/login", "/register"];
+const HIDDEN_PATHS = ["/select-profile", "/login", "/register"];
 
 export function useFooter() {
   const t = useTranslations("Footer");

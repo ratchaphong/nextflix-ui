@@ -28,7 +28,7 @@ export default function Header() {
           isLoggedIn ? cx(styles.navbar, styles.logged__in) : styles.navbar
         }
       >
-        <Link href={isLoggedIn ? "/selectProfile" : "/"}>
+        <Link href={isLoggedIn ? "/select-profile" : "/"}>
           <div className={styles.navbar__brand}>
             <img
               src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
@@ -42,7 +42,7 @@ export default function Header() {
           <div className={styles.navbar__nav__items}>
             <ul className={styles.nav__item__logged}>
               <li>
-                <Link href={"/selectProfile"}>{t("home")}</Link>
+                <Link href={"/select-profile"}>{t("home")}</Link>
               </li>
               <li>
                 <a href="#" aria-disabled>
@@ -83,7 +83,7 @@ export default function Header() {
             {menuOpen && (
               <ul className={styles.mobileMenu}>
                 <li>
-                  <Link href={"/selectProfile"}>{t("home")}</Link>
+                  <Link href={"/select-profile"}>{t("home")}</Link>
                 </li>
                 <li>
                   <a href="#" aria-disabled>

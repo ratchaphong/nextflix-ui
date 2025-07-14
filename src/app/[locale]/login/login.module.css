@@ -8,14 +8,14 @@
   align-items: center;
 }
 
-.overlay {
+.container .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 0;
 }
 
-.formWrapper {
+.container .form__wrapper {
   position: relative;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
@@ -29,56 +29,37 @@
   gap: 1rem;
 }
 
-.title {
+.container .form__wrapper .form__title {
   font-size: 2rem;
   font-weight: bold;
   text-align: left;
   letter-spacing: 0.1rem;
 }
 
-.form {
+.form__main {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
-.divider {
+.form__main .form__divider {
   text-align: center;
   color: #bbb;
 }
 
-.forgotPassword {
+.form__main .form__forgot {
   font-size: 0.9rem;
   text-align: center;
   text-decoration: underline;
 }
 
-.options {
+.form__main .form__options {
   margin-top: -0.5rem;
 }
 
-.checkbox {
+.form__main .form__options .form__checkbox {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-}
-
-.registerText {
-  font-size: 0.9rem;
-  color: #ccc;
-  text-align: center;
-}
-
-.registerText a {
-  color: white;
-  text-decoration: underline;
-}
-
-.note {
-  font-size: 0.75rem;
-  color: #888;
-  margin-top: 1rem;
-  line-height: 1.4;
-  text-align: center;
 }
