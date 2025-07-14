@@ -13,7 +13,7 @@ export const useSelectProfile = () => {
   ];
 
    const handleSelect = () => {
-    router.push("/");
+    router.push("/dashboard");
   };
   return {
     profiles,

@@ -22,6 +22,10 @@ export const routing = defineRouting({
       en: "/selectProfile",
       th: "/selectProfile",
     },
+     "/dashboard": {
+      en: "/dashboard",
+      th: "/dashboard",
+    },
   },
   localeDetection: false,
 });

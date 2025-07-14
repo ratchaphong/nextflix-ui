@@ -15,7 +15,7 @@ const SelectProfile = () => {
             <div key={profile.name} className={style.profileCard}>
               <div
                 className={style.profileImageWrapper}
-                onClick={() => handleSelect}
+                onClick={() => handleSelect()}
               >
                 <Image
                   src={profile.img}
