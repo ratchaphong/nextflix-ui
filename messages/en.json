@@ -40,6 +40,20 @@
     "emailInvalid": "กรุณากรอกอีเมลให้ถูกต้อง",
     "emailRequired": "กรุณากรอกอีเมล"
   },
+  "LoginPage": {
+    "title": "Sign In",
+    "emailOrPhone": "Email or mobile number",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "or": "or",
+    "loginWithCode": "Use a sign-in code",
+    "forgotPassword": "Forgot password?",
+    "rememberMe": "Remember me",
+    "notAMember": "New to Netflix?",
+    "signUpNow": "Sign up now.",
+    "captchaNote": "This page is protected by Google reCAPTCHA to ensure you're not a bot.",
+    "learnMore": "Learn more"
+  },
   "AboutPage": {
     "title": "About Us",
     "description": "This is the about page in English."

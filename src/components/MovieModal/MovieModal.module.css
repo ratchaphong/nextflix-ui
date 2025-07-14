@@ -1,7 +1,7 @@
 .modal__backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,60 +9,88 @@
 }
 
 .modal__content {
-  background: #111;
+  background: transparent;
   color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 600px;
-  min-width: 320px; /* ✅ เพิ่มตรงนี้ */
-  max-height: 90vh; /* ✅ ป้องกันล้นจอ */
-  overflow-y: auto; /* ✅ scroll ถ้าเนื้อหาเยอะ */
-  width: 90%;
+  max-width: 700px;
+  width: 95%;
+  max-height: 90vh;
+  overflow: hidden;
+  border-radius: 0.8rem;
   position: relative;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain; /* ✅ ป้องกัน scroll ทะลุ modal */
 }
 
-.modal__image {
+.modal__content .modal__top {
+  position: relative;
+  overflow: hidden;
+}
+
+.modal__content .modal__top .modal__image {
   width: 100%;
   max-height: 300px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  display: block;
+  border-radius: 12px 12px 0 0;
 }
 
-.modal__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.modal__tags span {
-  background: #333;
-  padding: 0.4rem 0.7rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-}
-
-.close__button {
+.modal__content .modal__top .modal__overlay {
   position: absolute;
-  top: 1rem;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.modal__content .modal__info {
+  background-color: #111;
+  padding: 1.5rem 1.5rem 2rem;
+  text-align: left;
+  overflow-y: auto; /* ✅ scroll เฉพาะส่วนนี้ถ้าเนื้อหาเยอะ */
+}
+
+.modal__content .modal__info .modal__title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.modal__content .modal__info .modal__tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.modal__content .modal__info .modal__tags span {
+  background: #333;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.modal__content .modal__info .modal__description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal__content .close__button {
+  position: absolute;
+  top: 0.5rem;
   right: 1rem;
   background: transparent;
   border: none;
   font-size: 2rem;
   color: white;
   cursor: pointer;
-}
-
-.modal__button {
-  margin-top: 1rem;
-  background: red;
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+  z-index: 10;
+  height: fit-content;
+  width: fit-content;
 }
