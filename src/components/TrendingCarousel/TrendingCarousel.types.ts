@@ -1,14 +1,6 @@
-export interface TrendingCarouselModalProps {
-  id: number;
-  image: string;
-  title: string;
-  year: number;
-  ageRating: string;
-  tags: string[];
-  description: string;
-}
+import { Movie } from "@/services/movie.service";
 
 export interface MovieModalProps {
-  movie: TrendingCarouselModalProps;
+  movie: Movie;
   onClose: () => void;
 }

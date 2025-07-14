@@ -3,9 +3,12 @@
 import { FormValues } from "./home.types";
 import { useTranslations } from "next-intl";
 import { FormikHelpers } from "formik";
+import { useEffect } from "react";
+import { useMovieStore } from "@/stores/movie.store";
 
 export function useHomeForm() {
   const t = useTranslations("HomePage");
+  const { fetchMovies } = useMovieStore();
 
   const handleSubmit = async (
     values: FormValues,
@@ -20,6 +23,10 @@ export function useHomeForm() {
       actions.setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return {
     handleSubmit,

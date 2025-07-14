@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./TrendingCarousel.module.css";
 import MovieModal from "../MovieModal";
 import { useTrendingCarousel } from "./TrendingCarousel.hooks";

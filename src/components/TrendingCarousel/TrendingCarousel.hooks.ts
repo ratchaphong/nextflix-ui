@@ -1,26 +1,13 @@
+"use client";
+
 import { useRef, useState } from "react";
+import { useMovieStore } from "@/stores/movie.store";
 
 export function useTrendingCarousel() {
+  const { movies } = useMovieStore();
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<number | null>(null);
-
-  const trendingItems: {
-    id: number;
-    image: string;
-    title: string;
-    year: number;
-    ageRating: string;
-    tags: string[];
-    description: string;
-  }[] = Array.from({ length: 10 }, (_, i) => ({
-    id: i + 1,
-    title: `รายการที่ ${i + 1}`,
-    image: `https://picsum.photos/300/450?random=${i + 1}`,
-    year: 2025,
-    ageRating: "16+",
-    description: "เนื้อเรื่องจำลอง: การล้างแค้นในโลกใต้ดินขององค์กรลึกลับ...",
-    tags: ["แอคชั่น", "ระทึกขวัญ", "ดราม่า"],
-  }));
 
   const scroll = (direction: "left" | "right") => {
     const container = scrollRef.current;
@@ -33,5 +20,11 @@ export function useTrendingCarousel() {
     }
   };
 
-  return { scroll, setSelected, selected, trendingItems, scrollRef };
+  return {
+    scroll,
+    selected,
+    setSelected,
+    trendingItems: movies,
+    scrollRef,
+  };
 }
