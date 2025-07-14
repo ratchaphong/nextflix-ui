@@ -1,6 +1,15 @@
 "use client";
 import MovieRow from "@/components/MovieRow";
 import Navbar from "./component/navbar/navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faInstagram,
+  faTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import styles from "./dashboard.module.css";
+import Footer from "@/components/footer/footer";
 const DashBoard = () => {
   const categories = [
     { title: "มาแรงตอนนี้", fetchUrl: "/api/trending" },
@@ -16,6 +25,7 @@ const DashBoard = () => {
           <MovieRow key={cat.title} title={cat.title} fetchUrl={cat.fetchUrl} />
         ))}
       </main>
+      <Footer />
     </div>
   );
 };

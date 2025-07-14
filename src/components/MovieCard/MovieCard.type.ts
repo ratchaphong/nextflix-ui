@@ -4,8 +4,6 @@ export interface Movie {
   poster_path: string;
   preview_url: string;
 }
-
-
 export const movies: Movie[] = [
   {
     id: 1,
@@ -43,5 +41,22 @@ export const movies: Movie[] = [
     poster_path: "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
     preview_url: "https://www.youtube.com/watch?v=HhesaQXLuRY",
   },
-  
+  {
+    id: 7,
+    title: "Narcos",
+    poster_path: "/rTmal9fDbwh5F0waol2hq35U4ah.jpg",
+    preview_url: "https://www.youtube.com/watch?v=U7elNhHwgBU",
+  },
+  {
+    id: 8,
+    title: "Narcos",
+    poster_path: "/rTmal9fDbwh5F0waol2hq35U4ah.jpg",
+    preview_url: "https://www.youtube.com/watch?v=U7elNhHwgBU",
+  },
+  {
+    id: 9,
+    title: "Narcos",
+    poster_path: "/rTmal9fDbwh5F0waol2hq35U4ah.jpg",
+    preview_url: "https://www.youtube.com/watch?v=U7elNhHwgBU",
+  }
 ];
