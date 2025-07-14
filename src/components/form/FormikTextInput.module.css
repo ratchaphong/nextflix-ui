@@ -43,6 +43,7 @@
   left: 0;
   color: var(--color-error);
   transition: color 0.3s ease;
+  font-size: 0.6rem;
 }
 
 .input__error:focus ~ .error__text,

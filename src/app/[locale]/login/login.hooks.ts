@@ -2,16 +2,18 @@
 
 import { FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
-import { FormValues } from "./login.types";
 import { useAuthStore } from "@/stores/auth.store";
+import { LoginFormValues } from "@/types/login";
+import { useRouter } from "@/i18n/navigation";
 
 export function useLoginPage() {
   const t = useTranslations("LoginPage");
   const { login, error } = useAuthStore();
+  const router = useRouter();
 
   const handleSubmit = async (
-    values: FormValues,
-    actions: FormikHelpers<FormValues>
+    values: LoginFormValues,
+    actions: FormikHelpers<LoginFormValues>
   ) => {
     console.log("📨 Submitting form...", values);
     try {
@@ -21,6 +23,7 @@ export function useLoginPage() {
       });
 
       console.log("✅ Login success");
+      router.push("/selectProfile");
     } catch (error) {
       console.error("❌ Login failed:", error);
       // actions.setFieldError("password", t("loginFailed"));

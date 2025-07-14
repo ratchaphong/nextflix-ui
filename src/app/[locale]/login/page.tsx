@@ -5,6 +5,7 @@ import styles from "./login.module.css";
 import FormikTextInput from "@/components/form/FormikTextInput";
 import { useLoginPage } from "./login.hooks";
 import { initialValues } from "./login.utils";
+import { loginSchema } from "./login.schema";
 
 export default function LoginPage() {
   const { t, handleSubmit, error } = useLoginPage();
@@ -18,6 +19,7 @@ export default function LoginPage() {
           enableReinitialize
           initialValues={initialValues}
           onSubmit={handleSubmit}
+          validationSchema={loginSchema(t)}
         >
           {({ isSubmitting }) => (
             <Form className={styles.form}>
@@ -62,9 +64,9 @@ export default function LoginPage() {
             </Form>
           )}
         </Formik>
-        <div className={styles.registerText}>
+        {/* <div className={styles.registerText}>
           {t("notAMember")} <a href="#">{t("signUpNow")}</a>
-        </div>
+        </div> */}
         {/* <small className={styles.note}>
           {t("captchaNote")} <a href="#">{t("learnMore")}</a>
         </small> */}

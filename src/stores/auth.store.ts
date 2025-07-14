@@ -1,22 +1,8 @@
 // stores/auth.store.ts
 import { create } from "zustand";
-import {
-  AuthService,
-  LoginPayload,
-  RegisterPayload,
-  ProfileResponse,
-} from "@/services/auth.service";
-
-interface AuthState {
-  loading: boolean;
-  accessToken: string | null;
-  profile: ProfileResponse | null;
-  error: string | null;
-  login: (payload: LoginPayload) => Promise<void>;
-  register: (payload: RegisterPayload) => Promise<void>;
-  getProfile: () => Promise<void>;
-  logout: () => void;
-}
+import { AuthService } from "@/services/auth.service";
+import { AuthState } from "@/types/login";
+import { tokenStorage } from "@/lib/tokenStorage";
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   loading: false,
@@ -30,8 +16,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       const { accessToken } = await AuthService.login(payload);
       set({ accessToken });
+      tokenStorage.setToken(accessToken);
 
-      // ✅ ดึง profile หลัง login สำเร็จ
       const profile = await AuthService.getProfile(accessToken);
       set({ profile });
     } catch (err) {

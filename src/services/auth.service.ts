@@ -1,69 +1,92 @@
-// services/auth.service.ts
+import {
+  LoginPayload,
+  LoginResponse,
+  RegisterPayload,
+  ProfileResponse,
+} from "@/types/login";
+import axios from "axios";
 
-export interface LoginPayload {
-  email: string;
-  password: string;
-}
-
-export interface RegisterPayload {
-  email: string;
-  password: string;
-  name: string;
-}
-
-export interface LoginResponse {
-  accessToken: string;
-}
-
-export interface ProfileResponse {
-  id: string;
-  email: string;
-  name: string;
-}
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 
 export const AuthService = {
   login: async (payload: LoginPayload): Promise<LoginResponse> => {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) {
-      const errorBody = await res.json();
-      throw new Error(errorBody.message || "Login failed");
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK login");
+      return new Promise((resolve) =>
+        setTimeout(() => resolve({ accessToken: "mock_token_123" }), 500)
+      );
     }
 
-    return res.json();
+    try {
+      const { data } = await axios.post<LoginResponse>("/api/login", payload);
+      return data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Login failed unexpectedly.";
+        console.error("❌ Login error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
+    }
   },
 
   register: async (payload: RegisterPayload): Promise<LoginResponse> => {
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) {
-      const errorBody = await res.json();
-      throw new Error(errorBody.message || "Register failed");
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK register");
+      return new Promise((resolve) =>
+        setTimeout(() => resolve({ accessToken: "mock_token_registered" }), 500)
+      );
     }
 
-    return res.json();
+    try {
+      const { data } = await axios.post<LoginResponse>(
+        "/api/register",
+        payload
+      );
+      return data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Register failed unexpectedly.";
+        console.error("❌ Register error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
+    }
   },
 
   getProfile: async (token: string): Promise<ProfileResponse> => {
-    const res = await fetch("/api/profile", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!res.ok) {
-      const errorBody = await res.json();
-      throw new Error(errorBody.message || "Failed to fetch profile");
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK getProfile");
+      return new Promise((resolve) =>
+        setTimeout(
+          () =>
+            resolve({
+              id: "1",
+              email: "mock@example.com",
+              name: "Mock User",
+            }),
+          500
+        )
+      );
     }
 
-    return res.json();
+    try {
+      const { data } = await axios.get<ProfileResponse>("/api/profile", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Failed to fetch profile.";
+        console.error("❌ Profile error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
+    }
   },
 };

@@ -52,7 +52,10 @@
     "notAMember": "หากยังไม่คุ้นกับ Netflix",
     "signUpNow": "ลงทะเบียนตอนนี้",
     "captchaNote": "หน้านี้ได้รับการป้องกันโดย Google reCAPTCHA เพื่อตรวจสอบว่าคุณเป็นผู้ใช้ที่เป็นมนุษย์",
-    "learnMore": "ดูข้อมูลเพิ่มเติม"
+    "learnMore": "ดูข้อมูลเพิ่มเติม",
+    "emailInvalid": "กรุณากรอกอีเมลให้ถูกต้อง",
+    "emailRequired": "กรุณากรอกอีเมล",
+    "passwordRequired": "กรุณากรอกรหัสผ่าน"
   },
   "AboutPage": {
     "title": "เกี่ยวกับเรา",
