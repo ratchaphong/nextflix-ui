@@ -25,11 +25,17 @@ export default function LoginPage() {
         <button className={styles.loginButton}>{t("loginButton")}</button>
 
         <div className={styles.divider}>{t("or")}</div>
-        <button className={styles.secondaryButton}>{t("loginWithCode")}</button>
-        <a href="#" className={styles.forgotPassword}>
+        <button className={"secondary"} disabled>
+          {t("loginWithCode")}
+        </button>
+        <a
+          href="#"
+          aria-disabled="true"
+          className={styles.forgotPassword}
+          onClick={(e) => e.preventDefault()}
+        >
           {t("forgotPassword")}
         </a>
-
         <div className={styles.options}>
           <label className={styles.checkbox}>
             <input type="checkbox" /> {t("rememberMe")}
@@ -40,9 +46,9 @@ export default function LoginPage() {
           {t("notAMember")} <a href="#">{t("signUpNow")}</a>
         </div>
 
-        <small className={styles.note}>
+        {/* <small className={styles.note}>
           {t("captchaNote")} <a href="#">{t("learnMore")}</a>
-        </small>
+        </small> */}
       </div>
     </div>
   );
