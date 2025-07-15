@@ -1,20 +1,21 @@
-.form__container {
+.form__wrapper {
   position: relative;
+  width: 100%;
 }
 
-.email__input {
+.form__input {
 }
 
-.input__error {
+.form__input__error {
   border-color: var(--color-error) !important;
 }
 
-.input__error:focus,
-.input__error:hover {
+.form__input__error:focus,
+.form__input__error:hover {
   border-color: var(--color-error-hover) !important;
 }
 
-.email__label {
+.form__label {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -25,19 +26,19 @@
   font-size: 0.8rem;
 }
 
-.email__input:focus + .email__label {
+.form__input:focus + .form__label {
   top: 0.5rem;
   transform: translateY(-0.35rem);
   font-size: 0.5rem;
 }
 
-.email__input:not(:placeholder-shown).email__input:not(:focus) + .email__label {
+.form__input:not(:placeholder-shown).form__input:not(:focus) + .form__label {
   top: 0.5rem;
   transform: translateY(-0.5rem);
   font-size: 0.5rem;
 }
 
-.error__text {
+.form__error {
   position: absolute;
   top: 2.5rem;
   left: 0;
@@ -46,7 +47,7 @@
   font-size: 0.6rem;
 }
 
-.input__error:focus ~ .error__text,
-.input__error:hover ~ .error__text {
+.form__input__error:focus ~ .form__error,
+.form__input__error:hover ~ .form__error {
   color: var(--color-error-hover);
 }

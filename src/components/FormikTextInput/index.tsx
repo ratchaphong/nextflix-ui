@@ -1,17 +1,9 @@
 "use client";
 
 import { Field, ErrorMessage, useField } from "formik";
-import styles from "./FormikTextInput.module.css"; // หรือใช้ home.module.css ก็ได้
-import { HTMLInputTypeAttribute } from "react";
+import styles from "./FormikTextInput.module.css";
 import cx from "classnames";
-
-interface FormikTextInputProps {
-  id: string;
-  name: string;
-  label: string;
-  type?: HTMLInputTypeAttribute;
-  className?: string;
-}
+import { FormikTextInputProps } from "./FormikTextInput.types";
 
 export default function FormikTextInput({
   id,
@@ -24,22 +16,22 @@ export default function FormikTextInput({
   const hasError = meta.touched && meta.error;
 
   return (
-    <div className={styles.form__container}>
+    <div className={styles.form__wrapper}>
       <Field
         id={id}
         name={name}
         type={type}
         placeholder=" "
         className={cx(
-          className || styles.email__input,
-          hasError && styles.input__error
+          className || styles.form__input,
+          hasError && styles.form__input__error
         )}
       />
-      <label htmlFor={id} className={styles.email__label}>
+      <label htmlFor={id} className={styles.form__label}>
         {label}
       </label>
       <ErrorMessage name={name}>
-        {(msg) => <small className={styles.error__text}>{msg}</small>}
+        {(msg) => <small className={styles.form__error}>{msg}</small>}
       </ErrorMessage>
     </div>
   );
