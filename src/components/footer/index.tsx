@@ -3,7 +3,7 @@
 import { useFooter } from "./Footer.hooks";
 import styles from "./Footer.module.css";
 
-const Footer = () => {
+export default function Footer() {
   const { t, shouldHideFooter, theme, toggleTheme } = useFooter();
 
   if (shouldHideFooter) return null;
@@ -48,6 +48,4 @@ const Footer = () => {
       <p className={styles.copy}>{t("copyright")}</p>
     </footer>
   );
-};
-
-export default Footer;
+}
