@@ -1,14 +1,19 @@
 "use client";
 
-import { HomeFormValues } from "@/types/login";
+import { HomeFormValues, RegisterPayload } from "@/types/login";
 import { useTranslations } from "next-intl";
 import { FormikHelpers } from "formik";
 import { useEffect } from "react";
 import { useMovieStore } from "@/stores/movie.store";
+import { useAuthStore } from "@/stores/auth.store";
+import { useRouter } from "@/i18n/navigation";
+import { secureStorage } from "@/lib/secureStorage";
 
 export function useHomeForm() {
   const t = useTranslations("HomePage");
   const { fetchMovies } = useMovieStore();
+  const { register } = useAuthStore();
+  const router = useRouter();
 
   const handleSubmit = async (
     values: HomeFormValues,
@@ -16,7 +21,15 @@ export function useHomeForm() {
   ) => {
     console.log("📨 Submitting form...", values);
     try {
-      window.alert("ฟีเจอร์นี้ยังไม่พร้อมใช้งานในขณะนี้");
+      // window.alert("ฟีเจอร์นี้ยังไม่พร้อมใช้งานในขณะนี้");
+      const payload: RegisterPayload = {
+        ...values,
+        password: "Nextzy123",
+        name: "Nextzy",
+      };
+      await register(payload);
+      secureStorage.setLogin(payload.email, payload.password);
+      router.push("/login");
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {

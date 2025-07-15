@@ -34,11 +34,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const { accessToken } = await AuthService.register(payload);
-      set({ accessToken });
-
-      const profile = await AuthService.getProfile();
-      set({ profile });
+      await AuthService.register(payload);
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
