@@ -5,8 +5,8 @@ import "@/styles/globals.css";
 import Header from "@/components/Header";
 import TokenChecker from "@/components/TokenChecker";
 import Footer from "@/components/Footer";
-import LoadingOverlay from "@/components/LoadingOverlay/indext";
-import ToastOverlay from "@/components/ToastOverlay/indext";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import ToastOverlay from "@/components/ToastOverlay";
 
 export default async function LocaleLayout({
   children,
