@@ -3,7 +3,7 @@
 import styles from "./Header.module.css";
 import { useHeader } from "./Header.hooks";
 import { Link } from "@/i18n/navigation";
-import { FaBars, FaBell, FaSearch } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import cx from "classnames";
 
 export default function Header() {
@@ -13,9 +13,10 @@ export default function Header() {
     hideSignInButton,
     shouldHideHeader,
     isLoggedIn,
+    menuOpen,
+    selectedProfile,
     handleLanguageChange,
     handleSignInClick,
-    menuOpen,
     setMenuOpen,
   } = useHeader();
 
@@ -38,7 +39,7 @@ export default function Header() {
           </div>
         </Link>
 
-        {isLoggedIn ? (
+        {isLoggedIn && selectedProfile ? (
           <div className={styles.navbar__nav__items}>
             <ul className={styles.nav__item__logged}>
               <li>
@@ -66,12 +67,10 @@ export default function Header() {
               </li>
             </ul>
             <div className={styles.logged}>
-              <FaSearch className="text-white cursor-pointer" />
-              <FaBell className="text-white cursor-pointer" />
               <img
-                src="/image/avatar.jpg"
-                alt="profile"
-                className={styles.profileIcon}
+                src={selectedProfile.image}
+                alt={selectedProfile.name}
+                className={styles.profile__icon}
               />
               <button
                 className={styles.hamburger}
@@ -80,49 +79,45 @@ export default function Header() {
                 <FaBars />
               </button>
             </div>
-            {menuOpen && (
-              <ul className={styles.mobileMenu}>
-                <li>
-                  <Link href={"/select-profile"}>{t("home")}</Link>
-                </li>
-                <li>
-                  <a href="#" aria-disabled>
-                    {t("tvShows")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-disabled>
-                    {t("movies")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-disabled>
-                    {t("new")}
-                  </a>
-                </li>
-                <li>
-                  <a href="#" aria-disabled>
-                    {t("myList")}
-                  </a>
-                </li>
-              </ul>
-            )}
+            <ul className={cx(styles.mobile__menu, menuOpen && styles.show)}>
+              <li>
+                <Link href={"/select-profile"}>{t("home")}</Link>
+              </li>
+              <li>
+                <a href="#" aria-disabled>
+                  {t("tvShows")}
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-disabled>
+                  {t("movies")}
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-disabled>
+                  {t("new")}
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-disabled>
+                  {t("myList")}
+                </a>
+              </li>
+            </ul>
           </div>
         ) : (
           <div className={styles.navbar__nav__items}>
             <div className={styles.nav__item}>
-              <div className={styles.dropdown__container}>
-                <select
-                  name="languages"
-                  id="languagesSelect"
-                  className={styles.language__drop__down}
-                  onChange={handleLanguageChange}
-                  value={locale}
-                >
-                  <option value="en">English</option>
-                  <option value="th">ไทย</option>
-                </select>
-              </div>
+              <select
+                name="languages"
+                id="languagesSelect"
+                className={styles.language__drop__down}
+                onChange={handleLanguageChange}
+                value={locale}
+              >
+                <option value="en">English</option>
+                <option value="th">ไทย</option>
+              </select>
             </div>
             {!hideSignInButton && (
               <div className={styles.nav__item}>

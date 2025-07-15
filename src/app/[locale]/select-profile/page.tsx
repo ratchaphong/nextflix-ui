@@ -7,7 +7,7 @@ import style from "./selectProfile.module.css";
 const SelectProfile = () => {
   const { t, profile, handleSelectProfile, handleSignOut } = useSelectProfile();
 
-  if (!profile) return;
+  if (!profile) return null;
 
   return (
     <main className={style.profile__wrapper}>

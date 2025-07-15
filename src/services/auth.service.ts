@@ -32,17 +32,14 @@ export const AuthService = {
     }
   },
 
-  register: async (payload: RegisterPayload): Promise<LoginResponse> => {
+  register: async (payload: RegisterPayload): Promise<void> => {
     if (USE_MOCK) {
       console.log("🔧 Using MOCK register");
-      return new Promise((resolve) =>
-        setTimeout(() => resolve({ accessToken: "mock_token_registered" }), 500)
-      );
+      return new Promise((resolve) => setTimeout(() => resolve(), 500));
     }
 
     try {
-      const { data } = await api.post<LoginResponse>("/api/register", payload);
-      return data;
+      await api.post<LoginResponse>("/api/register", payload);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const message =
@@ -103,11 +100,7 @@ export const AuthService = {
     }
 
     try {
-      const { data } = await api.get<ProfileResponse>("/api/profile", {
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
-      });
+      const { data } = await api.get<ProfileResponse>("/api/profile", {});
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

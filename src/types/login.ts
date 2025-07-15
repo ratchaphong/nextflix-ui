@@ -25,12 +25,6 @@ export interface LoginResponse {
   accessToken: string;
 }
 
-// export interface ProfileResponse {
-//   id: string;
-//   email: string;
-//   name: string;
-// }
-
 export interface ProfileResponse {
   user: {
     id: string;

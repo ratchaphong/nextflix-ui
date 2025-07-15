@@ -138,16 +138,25 @@ html[lang="en"] button {
 
 /* Select */
 select {
+  border: 1px solid var(--color-input-border);
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-input-bg);
+  align-content: center;
+
   font-family: var(--font-thai);
   font-size: 1rem;
-  background: transparent;
-  border: none;
   color: var(--color-text);
   height: 2.5rem;
+  transition: border-color 0.3s ease, transform 0.2s ease;
 }
 
 html[lang="en"] select {
   font-family: var(--font-en);
+}
+
+select:hover {
+  border-color: var(--color-text);
 }
 
 select:focus {
