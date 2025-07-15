@@ -4,7 +4,7 @@ import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import TokenChecker from "@/components/TokenChecker";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Temp";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import ToastOverlay from "@/components/ToastOverlay";
 
