@@ -74,5 +74,10 @@
     "contactUs": "ติดต่อเรา",
     "serviceCode": "รหัสบริการ",
     "copyright": "© 1997–2025 Netflix, Inc."
+  },
+  "ExpiredTokenModal": {
+    "title": "เซสชันหมดอายุ",
+    "description": "เซสชันเข้าสู่ระบบของคุณหมดอายุแล้ว กรุณาเข้าสู่ระบบอีกครั้ง",
+    "button": "ไปที่หน้าล็อกอิน"
   }
 }

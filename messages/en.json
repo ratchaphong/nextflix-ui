@@ -74,5 +74,10 @@
     "contactUs": "Contact Us",
     "serviceCode": "Service Code",
     "copyright": "© 1997–2025 Netflix, Inc."
+  },
+  "ExpiredTokenModal": {
+    "title": "Session Expired",
+    "description": "Your login session has expired. Please log in again.",
+    "button": "Go to Login"
   }
 }

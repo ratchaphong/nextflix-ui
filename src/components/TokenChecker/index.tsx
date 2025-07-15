@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "@/i18n/navigation";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useAuthStore } from "@/stores/auth.store";
 import LoadingScreen from "../LoadingScreen";
+import ExpiredTokenModal from "../ExpiredTokenModal/indext";
 
 const GUEST_ONLY_PATHS = ["/", "/login", "/register"];
 const PROTECTED_PATHS = ["/select-profile", "/dashboard"];
@@ -15,6 +16,7 @@ export default function TokenChecker({
   children: React.ReactNode;
 }) {
   const [isReady, setIsReady] = useState(false);
+  const [tokenExpired, setTokenExpired] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const { getProfile, profile } = useAuthStore();
@@ -25,8 +27,8 @@ export default function TokenChecker({
 
       if (token && tokenStorage.isTokenExpired()) {
         console.warn("⏳ Token expired. Logging out...");
-        tokenStorage.clearToken();
-        router.replace("/");
+        setTokenExpired(true);
+        setIsReady(true);
         return;
       }
 
@@ -62,10 +64,29 @@ export default function TokenChecker({
       setIsReady(true);
     };
 
+    console.log("⚠️ pathname : ", pathname);
     init();
-  }, [pathname, router, getProfile, profile]);
+  }, [pathname, profile]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const token = tokenStorage.getToken();
+  //     if (token && tokenStorage.isTokenExpired()) {
+  //       console.warn("⏳ Token expired from interval.");
+  //       setTokenExpired(true);
+  //       clearInterval(interval);
+  //     }
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   if (!isReady) return <LoadingScreen />;
 
-  return <>{children}</>;
+  return (
+    <>
+      {tokenExpired && <ExpiredTokenModal />}
+      {children}
+    </>
+  );
 }
