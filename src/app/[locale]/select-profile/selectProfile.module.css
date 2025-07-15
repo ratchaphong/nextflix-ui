@@ -15,7 +15,6 @@
 
 .profile__grid {
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
 }
 
@@ -62,8 +61,15 @@
   border-color: var(--color-text);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+  .profile__wrapper {
+    padding: 3rem 2rem;
+  }
+
   .profile__grid {
-    flex-direction: row;
+    flex-direction: column;
   }
 }
