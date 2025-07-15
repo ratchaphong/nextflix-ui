@@ -11,7 +11,8 @@ export const secureStorage = {
   },
 
   getLogin: (): { email: string; password: string } | null => {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw =
+      typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
     if (!raw) return null;
 
     try {

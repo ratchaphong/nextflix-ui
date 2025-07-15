@@ -20,16 +20,16 @@ export function useLoginPage() {
   ) => {
     console.log("📨 Submitting form...", values);
     try {
-      await login({
-        email: values.email,
-        password: values.password,
-      });
-      console.log("✅ Login success");
       if (values.rememberMe) {
         secureStorage.setLogin(values.email, values.password);
       } else {
         secureStorage.clearLogin();
       }
+      await login({
+        email: values.email,
+        password: values.password,
+      });
+      console.log("✅ Login success");
       router.push("/select-profile");
     } catch (error) {
       console.error("❌ Login failed:", error);

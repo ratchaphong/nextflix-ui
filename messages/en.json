@@ -74,7 +74,9 @@
     "privacy": "Privacy",
     "contactUs": "Contact Us",
     "serviceCode": "Service Code",
-    "copyright": "© 1997–2025 Netflix, Inc."
+    "copyright": "© 1997–2025 Netflix, Inc.",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
   },
   "ExpiredTokenModal": {
     "title": "Session Expired",

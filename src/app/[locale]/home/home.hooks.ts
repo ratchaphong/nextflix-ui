@@ -27,8 +27,8 @@ export function useHomeForm() {
         password: "Nextzy123",
         name: "Nextzy",
       };
-      await register(payload);
       secureStorage.setLogin(payload.email, payload.password);
+      await register(payload);
       router.push("/login");
     } catch (error) {
       console.error("Error submitting form:", error);

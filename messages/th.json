@@ -74,7 +74,9 @@
     "privacy": "ความเป็นส่วนตัว",
     "contactUs": "ติดต่อเรา",
     "serviceCode": "รหัสบริการ",
-    "copyright": "© 1997–2025 Netflix, Inc."
+    "copyright": "© 1997–2025 Netflix, Inc.",
+    "darkMode": "โหมดมืด",
+    "lightMode": "โหมดสว่าง"
   },
   "ExpiredTokenModal": {
     "title": "เซสชันหมดอายุ",
