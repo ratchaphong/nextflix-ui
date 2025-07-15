@@ -2,10 +2,20 @@
 
 import Image from "next/image";
 import styles from "./LoadingScreen.module.css";
+import cx from "classnames";
 
-export default function LoadingScreen() {
+export default function LoadingScreen({
+  fullBlack = false,
+}: {
+  fullBlack?: boolean;
+}) {
   return (
-    <div className={styles.loading__wrapper}>
+    <div
+      className={cx(
+        styles.loading__wrapper,
+        fullBlack && styles.loading__black
+      )}
+    >
       <Image
         src="/favicon.ico"
         alt="Loading..."

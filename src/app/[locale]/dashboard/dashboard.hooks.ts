@@ -1,6 +1,6 @@
 "use client";
 
-export function useDashBoard() {
+export function useDashboard() {
   const categories = [
     { title: "มาแรงตอนนี้", fetchUrl: "/api/trending" },
     { title: "Netflix Originals", fetchUrl: "/api/originals" },

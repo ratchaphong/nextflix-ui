@@ -81,10 +81,9 @@ export default function TokenChecker({
   //   return () => clearInterval(interval);
   // }, []);
 
-  if (!isReady) return <LoadingScreen />;
-
   return (
     <>
+      {!isReady && <LoadingScreen fullBlack />}
       {tokenExpired && <ExpiredTokenModal />}
       {children}
     </>

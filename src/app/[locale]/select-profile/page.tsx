@@ -5,7 +5,7 @@ import Image from "next/image";
 import style from "./selectProfile.module.css";
 
 const SelectProfile = () => {
-  const { t, members, handleSelect } = useSelectProfile();
+  const { t, members, handleSelectUser, handleSignOut } = useSelectProfile();
 
   return (
     <main className={style.profile__wrapper}>
@@ -15,19 +15,19 @@ const SelectProfile = () => {
           <div key={m.name} className={style.profile__card}>
             <div
               className={style.profile__image}
-              onClick={() => handleSelect()}
+              onClick={() => handleSelectUser(m)}
             >
               <Image src={m.img} alt={m.name} width={128} height={128} />
             </div>
-            <div className={style.profile__name}>
+            <p className={style.profile__name}>
               {m.name}
               {m.locked && " 🔒"}
-            </div>
+            </p>
           </div>
         ))}
       </div>
-      <button className={style.profile__manage_button}>
-        {t("manageProfiles")}
+      <button className={style.profile__manage_button} onClick={handleSignOut}>
+        {t("signOut")}
       </button>
     </main>
   );

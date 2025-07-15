@@ -25,6 +25,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
+      showToast(errorMessage, "error");
       set({ error: errorMessage });
       throw new Error(errorMessage);
     } finally {
@@ -66,6 +67,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   logout: () => {
+    tokenStorage.clearToken();
     set({
       accessToken: null,
       profile: null,

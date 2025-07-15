@@ -49,7 +49,8 @@
   },
   "SelectProfilePage": {
     "title": "เลือกผู้ชม",
-    "manageProfiles": "จัดการโปรไฟล์"
+    "manageProfiles": "จัดการโปรไฟล์",
+    "signOut": "ออกจากระบบ"
   },
   "Header": {
     "signIn": "เข้าสู่ระบบ",
