@@ -2,6 +2,7 @@ export interface AuthState {
   loading: boolean;
   accessToken: string | null;
   profile: ProfileResponse | null;
+  success: string | null;
   error: string | null;
   login: (payload: LoginPayload) => Promise<void>;
   register: (payload: RegisterPayload) => Promise<void>;

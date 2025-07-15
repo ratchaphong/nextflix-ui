@@ -1,0 +1,41 @@
+/* components/ToastOverlay.module.css */
+.toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 3s ease-in-out;
+  min-width: 200px;
+  max-width: 300px;
+  word-break: break-word;
+}
+
+.success {
+  background-color: #00a86b; /* Deep Netflix-style green */
+}
+
+.error {
+  background-color: #b81d24; /* Netflix red (เข้ม) */
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+}
