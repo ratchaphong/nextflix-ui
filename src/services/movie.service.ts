@@ -1,16 +1,9 @@
-// services/movie.service.ts
+import { Movie } from "@/types/movie";
+import api from "@/lib/axios";
+import axios from "axios";
 
-export interface Movie {
-  id: string;
-  title: string;
-  image: string;
-  description: string;
-  tags: string[];
-  year: number;
-  ageRating: string;
-}
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 
-// 🔧 mock data แบบในคำถาม
 const mockMovies: Movie[] = Array.from({ length: 10 }, (_, i) => ({
   id: String(i + 1),
   title: `รายการที่ ${i + 1}`,
@@ -23,21 +16,24 @@ const mockMovies: Movie[] = Array.from({ length: 10 }, (_, i) => ({
 
 export const MovieService = {
   getMovies: async (): Promise<Movie[]> => {
-    // ✅ ใช้ mock ถ้าไม่มี API หรืออยู่ใน dev
-    // const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === "true";
-    const USE_MOCK = true;
-
     if (USE_MOCK) {
-      return mockMovies;
+      console.log("🔧 Using MOCK getMovies");
+      return new Promise((resolve) =>
+        setTimeout(() => resolve(mockMovies), 500)
+      );
     }
 
-    const res = await fetch(`/api/movies`);
-
-    if (!res.ok) {
-      const errorBody = await res.json();
-      throw new Error(errorBody.message || "Failed to fetch movies");
+    try {
+      const { data } = await api.get<Movie[]>("/api/movies");
+      return data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Failed to fetch movies.";
+        console.error("❌ getMovies error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred while fetching movies.");
     }
-
-    return res.json();
   },
 };

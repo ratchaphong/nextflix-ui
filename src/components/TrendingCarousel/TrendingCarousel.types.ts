@@ -1,4 +1,4 @@
-import { Movie } from "@/services/movie.service";
+import { Movie } from "@/types/movie";
 
 export interface MovieModalProps {
   movie: Movie;

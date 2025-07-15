@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import Header from "@/components/Header";
 import TokenChecker from "@/components/TokenChecker";
 import Footer from "@/components/Footer";
+import LoadingOverlay from "@/components/LoadingOverlay/indext";
 
 export default async function LocaleLayout({
   children,
@@ -23,6 +24,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider>
           <TokenChecker>
+            <LoadingOverlay />
             <Header />
             {children}
             <Footer />

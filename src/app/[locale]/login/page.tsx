@@ -4,12 +4,11 @@ import { Formik, Form, Field } from "formik";
 import styles from "./login.module.css";
 import FormikTextInput from "@/components/FormikTextInput";
 import { useLoginPage } from "./login.hooks";
-import { initialValues } from "./login.utils";
 import { loginSchema } from "./login.schema";
 import { Link } from "@/i18n/navigation";
 
 export default function LoginPage() {
-  const { t, error, handleSubmit } = useLoginPage();
+  const { t, error, initialValues, handleSubmit } = useLoginPage();
 
   return (
     <main className={styles.container}>
