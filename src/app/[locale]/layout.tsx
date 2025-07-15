@@ -4,9 +4,24 @@ import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import TokenChecker from "@/components/TokenChecker";
-import Footer from "@/components/Temp";
+import Footer from "@/components/Footer";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import ToastOverlay from "@/components/ToastOverlay";
+import { Roboto, Kanit } from "next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-en",
+  display: "swap",
+});
+
+const kanit = Kanit({
+  subsets: ["thai"],
+  weight: ["400", "600", "700"],
+  variable: "--font-thai",
+  display: "swap",
+});
 
 export default async function LocaleLayout({
   children,
@@ -21,7 +36,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${roboto.variable} ${kanit.variable}`}>
       <body>
         <NextIntlClientProvider>
           <TokenChecker>
