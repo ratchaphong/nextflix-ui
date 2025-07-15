@@ -25,10 +25,49 @@ export interface LoginResponse {
   accessToken: string;
 }
 
+// export interface ProfileResponse {
+//   id: string;
+//   email: string;
+//   name: string;
+// }
+
 export interface ProfileResponse {
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    role: "OWNER" | "MEMBER";
+  };
+  package: {
+    id: string;
+    name: string;
+    maxProfiles: number;
+    maxMembers: number;
+    price: number;
+    resolution: string; // e.g., "HD", "UHD"
+  };
+  household: {
+    id: string;
+    name: string;
+    members: HouseholdMember[];
+  };
+  profiles: Profile[];
+}
+
+export interface HouseholdMember {
   id: string;
   email: string;
   name: string;
+  role: "OWNER" | "MEMBER";
+}
+
+export interface Profile {
+  id: string;
+  name: string;
+  image: string;
+  isLocked: boolean;
+  pin?: string; // ✅ ถ้า isLocked = true ต้องมี pin
+  ownerId: string;
 }
 
 export interface LoginFormValues {

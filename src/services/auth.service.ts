@@ -61,9 +61,41 @@ export const AuthService = {
         setTimeout(
           () =>
             resolve({
-              id: "1",
-              email: "mock@example.com",
-              name: "Mock User",
+              user: {
+                id: "user_001",
+                email: "admin@example.com",
+                name: "คุณพ่อ",
+                role: "OWNER",
+              },
+              package: {
+                id: "pkg_family",
+                name: "Family Plan",
+                maxProfiles: 5,
+                maxMembers: 4,
+                price: 399,
+                resolution: "UHD",
+              },
+              household: {
+                id: "household_001",
+                name: "บ้านสุขสันต์",
+                members: [
+                  {
+                    id: "user_001",
+                    email: "admin@example.com",
+                    name: "คุณพ่อ",
+                    role: "OWNER",
+                  },
+                ],
+              },
+              profiles: [
+                {
+                  id: "profile_001",
+                  name: "คุณพ่อ",
+                  image: "/image/avatar.jpg",
+                  isLocked: false,
+                  ownerId: "user_001",
+                },
+              ],
             }),
           500
         )
