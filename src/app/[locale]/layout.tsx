@@ -53,7 +53,7 @@ export default async function LocaleLayout({
 }
 
 export const metadata = {
-  title: "Netflix Clone",
+  title: "Nextflix Web Appliation (B)",
   description: "Watch unlimited movies and TV shows, anytime, anywhere.",
   keywords: ["netflix", "streaming", "movies", "tv shows"],
   // authors: [{ name: "Your Name or Team" }],
