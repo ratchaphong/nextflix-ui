@@ -4,8 +4,8 @@ import {
   RegisterPayload,
   ProfileResponse,
 } from "@/types/login";
-import api from "@/lib/axios"; // 👈 ใช้ instance ที่สร้างไว้แทน
-import axios from "axios"; // ✅ สำหรับใช้ axios.isAxiosError
+import api from "@/lib/axios";
+import axios from "axios";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 

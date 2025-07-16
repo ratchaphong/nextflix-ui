@@ -1,8 +1,10 @@
-import { Movie } from "@/types/movie";
+import { Movie, VideoItem } from "@/types/movie";
 // import api from "@/lib/axios";
 import axios from "axios";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
+const OMDB_API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY;
+// const INVIDIOUS_BASE = "https://invidious.snopyta.org/api/v1";
 
 // const mockMovies: Movie[] = Array.from({ length: 10 }, (_, i) => ({
 //   id: String(i + 1),
@@ -143,7 +145,66 @@ const MOCK_MOVIE_OMDB = {
   Response: "True",
 };
 
-const API_KEY = "b2a53d3";
+const MOCK_RECOMMENDED_VIDEO: VideoItem[] = [
+  {
+    id: "QYDza3BLr1w",
+    title: "三浦大知 (Daichi Miura) / Polytope -Conceptual Film-",
+    thumbnail: "https://img.youtube.com/vi/QYDza3BLr1w/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/QYDza3BLr1w?autoplay=1",
+    description: "New Single「Horizon Dreamer / Polytope」2025.06.25 Release.",
+  },
+  {
+    id: "NRtnUVaRwXM",
+    title: "INVISIBLE",
+    thumbnail: "https://img.youtube.com/vi/NRtnUVaRwXM/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/NRtnUVaRwXM?autoplay=1",
+    description: "INVISIBLE · Duran Duran",
+  },
+  {
+    id: "HegSBovl24I",
+    title:
+      "利比《跳楼机》(官方歌词MV)｜LBI - Jumping Machine (Official Lyric Video)",
+    thumbnail: "https://img.youtube.com/vi/HegSBovl24I/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/HegSBovl24I?autoplay=1",
+    description: "数位收听：https://smexlbi.lnk.to/JumpingMachine",
+  },
+  {
+    id: "OodEsjZ88TQ",
+    title: "Fujii Kaze - Hachikō [Official video]",
+    thumbnail: "https://img.youtube.com/vi/OodEsjZ88TQ/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/OodEsjZ88TQ?autoplay=1",
+    description: '“Hachikō" - The 1st single from his 3rd Album',
+  },
+  {
+    id: "y8VfziFZMGY",
+    title: "Sins of The Father",
+    thumbnail: "https://img.youtube.com/vi/y8VfziFZMGY/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/y8VfziFZMGY?autoplay=1",
+    description:
+      "Sins of The Father · Donna Burke · Ludvig Forssell · Akihiro Honda",
+  },
+  {
+    id: "Y36b8_WFejI",
+    title: "KIRINJI - killer tune kills me feat. YonYon",
+    thumbnail: "https://img.youtube.com/vi/Y36b8_WFejI/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/Y36b8_WFejI?autoplay=1",
+    description: "KIRINJI ニュー・シングル「killer tune kills me feat. YonYon",
+  },
+  {
+    id: "mXHKjFKBC0g",
+    title: "The Man Who Sold the World (2010 Remaster)",
+    thumbnail: "https://img.youtube.com/vi/mXHKjFKBC0g/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/mXHKjFKBC0g?autoplay=1",
+    description: "The Man Who Sold the World (2010 Remaster) · Midge Ure",
+  },
+  {
+    id: "sySlY1XKlhM",
+    title: "Raindrops Keep Falling on my Head",
+    thumbnail: "https://img.youtube.com/vi/sySlY1XKlhM/hqdefault.jpg",
+    video: "https://www.youtube.com/embed/sySlY1XKlhM?autoplay=1",
+    description: "Raindrops Keep Falling on my Head · B.J. Thomas",
+  },
+];
 
 export const MovieService = {
   //   getMovies: async (): Promise<Movie[]> => {
@@ -192,7 +253,7 @@ export const MovieService = {
       const searchQuery = "batman"; // ✅ คำค้นต้องไม่ว่าง
       const url = `https://www.omdbapi.com/?s=${encodeURIComponent(
         searchQuery
-      )}&apikey=${API_KEY}`;
+      )}&apikey=${OMDB_API_KEY}`;
 
       const { data } = await axios.get(url);
 
@@ -249,7 +310,7 @@ export const MovieService = {
         );
       }
 
-      const url = `https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`;
+      const url = `https://www.omdbapi.com/?i=${imdbID}&apikey=${OMDB_API_KEY}`;
       const { data } = await axios.get(url);
 
       if (data.Response === "True") {
@@ -273,6 +334,63 @@ export const MovieService = {
         throw new Error(message);
       }
       throw new Error("An unknown error occurred while fetching movie.");
+    }
+  },
+
+  getRecommendedVideos: async (): Promise<VideoItem[]> => {
+    try {
+      if (USE_MOCK) {
+        const data = MOCK_RECOMMENDED_VIDEO;
+        console.log("🔧 Using MOCK getRecommendedVideos");
+        return new Promise((resolve) =>
+          setTimeout(() => {
+            const transformed: VideoItem[] = data;
+            resolve(transformed);
+          }, 500)
+        );
+      }
+
+      // const { data } = await axios.get(`${INVIDIOUS_BASE}/trending`);
+
+      // const transformed: VideoItem[] = data.map((item: any) => ({
+      //   id: item.videoId,
+      //   title: item.title,
+      //   thumbnail: `https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`,
+      //   video: `https://www.youtube.com/embed/${item.videoId}?autoplay=1`,
+      //   description: item.description || "No description",
+      // }));
+
+      // return transformed;
+      return [];
+    } catch (error) {
+      console.error("❌ getRecommendedVideos error:", error);
+      throw new Error("Failed to fetch recommended videos.");
+    }
+  },
+
+  getVideosByCategory: async (category: string): Promise<VideoItem[]> => {
+    try {
+      console.log(category);
+      // const { data } = await axios.get(`${INVIDIOUS_BASE}/search`, {
+      //   params: {
+      //     q: category,
+      //     type: "video",
+      //   },
+      // });
+
+      // const transformed: VideoItem[] = data.map((item: any) => ({
+      //   id: item.videoId,
+      //   title: item.title,
+      //   thumbnail: `https://img.youtube.com/vi/${item.videoId}/hqdefault.jpg`,
+      //   video: `https://www.youtube.com/embed/${item.videoId}?autoplay=1`,
+      //   description: item.description || "No description",
+      // }));
+
+      // return transformed;
+      return [];
+    } catch (error) {
+      console.error("❌ getVideosByCategory error:", error);
+      throw new Error("Failed to fetch videos by category.");
     }
   },
 };

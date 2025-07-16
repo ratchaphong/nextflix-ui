@@ -82,5 +82,12 @@
     "title": "Session Expired",
     "description": "Your login session has expired. Please log in again.",
     "button": "Go to Login"
+  },
+  "Dashboard": {
+    "recommendedTitle": "Recommended for You",
+    "play": "▶ Play",
+    "moreInfo": "ℹ More Info",
+    "back": "← Back",
+    "info": "Info"
   }
 }

@@ -6,6 +6,8 @@ import { MovieState } from "@/types/movie";
 export const useMovieStore = create<MovieState>((set) => ({
   movies: [],
   movie: null,
+  recommended: [],
+  categoryVideos: [],
   loading: false,
   current: null,
   error: null,
@@ -35,6 +37,40 @@ export const useMovieStore = create<MovieState>((set) => ({
       set({ movie: data });
     } catch (err) {
       console.error("❌ Fetch movie by ID failed:", err);
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchRecommended: async () => {
+    set({ loading: true, error: null });
+
+    try {
+      const data = await MovieService.getRecommendedVideos();
+      set({ recommended: data });
+    } catch (err) {
+      console.error("❌ Fetch recommended videos failed:", err);
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchByCategory: async (category: string) => {
+    set({ loading: true, error: null });
+
+    try {
+      const data = await MovieService.getVideosByCategory(category);
+      set({ categoryVideos: data });
+    } catch (err) {
+      console.error("❌ Fetch category videos failed:", err);
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
       set({ error: errorMessage });

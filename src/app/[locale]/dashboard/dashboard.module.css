@@ -90,54 +90,6 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-.modal__backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal__backdrop .modal__content {
-  background: #111;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 90%;
-  color: white;
-  position: relative;
-  text-align: center;
-  transform-origin: center;
-}
-
-.modal__backdrop .modal__content .closeBtn {
-  background: #e50914;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  margin-top: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.modal__backdrop .modal__content .closeBtn:hover {
-  background: #f6121d;
-}
-
-.modal__backdrop .modal__content.modal__zoom {
-  animation: zoomIn 0.3s ease-out forwards;
-}
-
-.modal__backdrop .modal__content .modal__video {
-  width: 100%;
-  height: 400px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
 .carousel__wrapper {
   position: relative;
   width: 100%;
@@ -213,6 +165,13 @@
 
 .carousel__wrapper .carousel__nav.next {
   right: 0.5rem;
+}
+
+.carousel__wrapper .carousel__title {
+  font-size: 2rem;
+  top: 1rem;
+  left: 4rem;
+  @apply absolute;
 }
 
 .mini__modal {
@@ -296,6 +255,12 @@
     padding: 3rem 2rem;
   }
 
+  .carousel__wrapper .carousel__title {
+    font-size: 1.8rem;
+    top: 0rem;
+    left: 2rem;
+  }
+
   .carousel .card {
     width: 180px;
   }
@@ -356,6 +321,12 @@
     width: 140px;
   }
 
+  .carousel__wrapper .carousel__title {
+    font-size: 1.6rem;
+
+    left: 1rem;
+  }
+
   .mini__modal {
     transform: scale(1.2); /* ลด scale ให้น้อยลงเมื่อจอเล็ก */
   }
@@ -367,16 +338,5 @@
   .mini__modal .mini__content button {
     font-size: 0.75rem;
     padding: 0.2rem 0.5rem;
-  }
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
