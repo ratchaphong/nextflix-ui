@@ -1,17 +1,85 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./dashboard.module.css";
 import cx from "classnames";
-// import { useDashboard } from "./dashboard.hooks";
+import { useDashboard } from "./dashboard.hooks";
+import { useState, useRef } from "react";
 
 const VIDEO_ID = "QYDza3BLr1w"; // 👈 ID จากลิงก์ YouTube
+const MOVIES = [
+  {
+    id: "QYDza3BLr1w",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/QYDza3BLr1w/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/QYDza3BLr1w?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "NRtnUVaRwXM",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/NRtnUVaRwXM/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/NRtnUVaRwXM?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "HegSBovl24I",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/HegSBovl24I/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/HegSBovl24I?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "OodEsjZ88TQ",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/OodEsjZ88TQ/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/OodEsjZ88TQ?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "Y36b8_WFejI",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/Y36b8_WFejI/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/Y36b8_WFejI?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "mXHKjFKBC0g",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/mXHKjFKBC0g/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/mXHKjFKBC0g?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+  {
+    id: "sySlY1XKlhM",
+    title: "SANCTUARY",
+    thumbnail: "https://img.youtube.com/vi/sySlY1XKlhM/hqdefault.jpg",
+    // video: "/videos/sanctuary-preview.mp4",
+    video: "https://www.youtube.com/embed/sySlY1XKlhM?autoplay=1",
+    description: "An ancient sport steeped in tradition...",
+  },
+];
 
 const DashboardPage = () => {
-  // const { categories } = useDashboard();
+  const { showVideo, setShowVideo, showModal, setShowModal } = useDashboard();
+  const [hoveredMovieId, setHoveredMovieId] = useState<string | null>(null);
+  const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
 
-  const [showVideo, setShowVideo] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!carouselRef.current) return;
+    const scrollAmount = 220 + 16; // width + gap
+    carouselRef.current.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <main className={styles.main}>
@@ -58,7 +126,7 @@ const DashboardPage = () => {
                   <p>
                     In the sumo ring, he can achieve it all — but at what cost?
                   </p>
-                 
+
                   <button
                     onClick={() => setShowModal(false)}
                     className={styles.closeBtn}
@@ -87,10 +155,180 @@ const DashboardPage = () => {
           </div>
         )}
       </section>
+      <div className={styles.carouselWrapper}>
+        <button
+          onClick={() => scroll("left")}
+          className={styles.carouselNav + " " + styles.prev}
+        >
+          &#10094;
+        </button>
+        <section className={styles.carousel} ref={carouselRef}>
+          {MOVIES.map((movie) => (
+            <div
+              key={movie.id}
+              className={styles.card}
+              onMouseEnter={() => setHoveredMovieId(movie.id)}
+              onMouseLeave={(e) => {
+                const related = e.relatedTarget as HTMLElement;
+                if (!e.currentTarget.contains(related)) {
+                  setHoveredMovieId(null);
+                }
+              }}
+            >
+              <img
+                src={movie.thumbnail}
+                alt={movie.title}
+                className={styles.cardThumbnail}
+              />
+              {hoveredMovieId === movie.id && (
+                <div className={styles.miniModal}>
+                  <iframe
+                    className={styles.miniVideo}
+                    src={`https://www.youtube.com/embed/${movie.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${movie.id}`}
+                    title="Mini Preview"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                  <div className={styles.miniContent}>
+                    <h4>{movie.title}</h4>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation(); // ป้องกันไม่ให้ปิด hover ทันที
+                        setSelectedMovieId(movie.id);
+                      }}
+                    >
+                      Info
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
 
-      {/* {categories.map((cat) => (
-        <MovieRow key={cat.title} title={cat.title} fetchUrl={cat.fetchUrl} />
-      ))} */}
+          {selectedMovieId && (
+            <div
+              className={styles.modalBackdrop}
+              onClick={() => setSelectedMovieId(null)}
+            >
+              <div
+                className={cx(styles.modalContent, styles.modalZoom)}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <iframe
+                  className={styles.modalVideo}
+                  src={`https://www.youtube.com/embed/${selectedMovieId}?autoplay=1&mute=0`}
+                  title="Full Preview"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+                <h2>{MOVIES.find((m) => m.id === selectedMovieId)?.title}</h2>
+                <p>
+                  {MOVIES.find((m) => m.id === selectedMovieId)?.description}
+                </p>
+                <button
+                  onClick={() => setSelectedMovieId(null)}
+                  className={styles.closeBtn}
+                >
+                  ✕ Close
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+        <button
+          onClick={() => scroll("right")}
+          className={styles.carouselNav + " " + styles.next}
+        >
+          &#10095;
+        </button>
+        {/* <div className={styles.carouselOuter}>
+          <section className={styles.carousel} ref={carouselRef}>
+            {MOVIES.map((movie) => (
+              <div
+                key={movie.id}
+                className={styles.card}
+                onMouseEnter={() => setHoveredMovieId(movie.id)}
+                onMouseLeave={(e) => {
+                  const related = e.relatedTarget as HTMLElement;
+                  if (!e.currentTarget.contains(related)) {
+                    setHoveredMovieId(null);
+                  }
+                }}
+              >
+                <img
+                  src={movie.thumbnail}
+                  alt={movie.title}
+                  className={styles.cardThumbnail}
+                />
+                {hoveredMovieId === movie.id && (
+                  <div className={styles.miniModal}>
+                    <iframe
+                      className={styles.miniVideo}
+                      src={`https://www.youtube.com/embed/${movie.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${movie.id}`}
+                      title="Mini Preview"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                    />
+                    <div className={styles.miniContent}>
+                      <h4>{movie.title}</h4>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation(); // ป้องกันไม่ให้ปิด hover ทันที
+                          setSelectedMovieId(movie.id);
+                        }}
+                      >
+                        Info
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {selectedMovieId && (
+              <div
+                className={styles.modalBackdrop}
+                onClick={() => setSelectedMovieId(null)}
+              >
+                <div
+                  className={cx(styles.modalContent, styles.modalZoom)}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    className={styles.modalVideo}
+                    src={`https://www.youtube.com/embed/${selectedMovieId}?autoplay=1&mute=0`}
+                    title="Full Preview"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                  <h2>{MOVIES.find((m) => m.id === selectedMovieId)?.title}</h2>
+                  <p>
+                    {MOVIES.find((m) => m.id === selectedMovieId)?.description}
+                  </p>
+                  <button
+                    onClick={() => setSelectedMovieId(null)}
+                    className={styles.closeBtn}
+                  >
+                    ✕ Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
+        <button
+          className={cx(styles.carouselNav, styles.prev)}
+          onClick={() => scroll("left")}
+        >
+          ‹
+        </button>
+        <button
+          className={cx(styles.carouselNav, styles.next)}
+          onClick={() => scroll("right")}
+        >
+          ›
+        </button> */}
+      </div>
     </main>
   );
 };
