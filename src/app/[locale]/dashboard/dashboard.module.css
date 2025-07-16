@@ -131,15 +131,142 @@
   animation: zoomIn 0.3s ease-out forwards;
 }
 
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.carousel__wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.carousel {
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+  gap: 2rem;
+  padding: 4rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel .card {
+  width: 220px;
+  flex-shrink: 0;
+  /* scroll-snap-align: start; */
+  position: relative;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.carousel .card:hover {
+  z-index: 99;
+}
+
+.carousel .card .card__thumbnail {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.carousel .card:hover .card__thumbnail {
+  opacity: 0.3;
+}
+
+.carousel__wrapper .carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: var(--color-text);
+  font-size: 2rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+  border-radius: 6px;
+}
+
+.carousel__wrapper .carousel__nav:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.carousel__wrapper .carousel__nav.prev {
+  left: 0.5rem;
+}
+
+.carousel__wrapper .carousel__nav.next {
+  right: 0.5rem;
+}
+
+.miniModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* เริ่มจากขนาดเดียวกับ thumbnail */
+  height: 100%;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 10;
+
+  /* animation */
+  transform: scale(1);
+  opacity: 0;
+  transform-origin: center center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.carousel .card:hover .miniModal {
+  transform: scale(1.5);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.miniModal .miniVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.miniModal .miniContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+.miniModal .miniContent h4 {
+  font-size: 0.9rem;
+  color: color(--color-text);
+  margin: 0;
+  flex: 1;
+  letter-spacing: 0.08rem;
+}
+
+.modalVideo {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 /* 1024px หรือน้อยกว่า (Tablet) */
@@ -163,18 +290,19 @@
     font-size: 0.95rem;
     padding: 0.6rem 1.2rem;
   }
+
+  .carousel {
+    gap: 1rem;
+    padding: 3rem 2rem;
+  }
+
+  .carousel .card {
+    width: 180px;
+  }
 }
 
 /* 768px หรือน้อยกว่า (Mobile) */
 @media (max-width: 768px) {
-  /* .hero {
-    height: 90vh;
-  }
-
-  .hero .background img {
-    height: 90vh;
-  } */
-
   .hero .content {
     bottom: 8%;
     left: 3%;
@@ -218,203 +346,37 @@
     font-size: 0.9rem;
     padding: 0.4rem 1rem;
   }
-}
 
-.carouselWrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.carousel {
-  display: flex;
-  overflow: auto;
-  scroll-behavior: smooth;
-  gap: 1rem;
-  padding: 6rem 4rem;
-  /* เผื่อพื้นที่ปุ่มด้านข้าง */
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.card {
-  flex: 0 0 auto;
-  width: 220px;
-  scroll-snap-align: start;
-  position: relative;
-  transition: transform 0.3s ease;
-  z-index: 1;
-}
-
-.card:hover {
-  z-index: 99;
-}
-
-.cardThumbnail {
-  width: 100%;
-  border-radius: 8px;
-  transition: opacity 0.2s ease;
-}
-
-.card:hover .cardThumbnail {
-  opacity: 0.3;
-}
-
-.carouselNav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-size: 2rem;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  z-index: 100;
-  transition: background 0.3s ease;
-  border-radius: 6px;
-}
-
-.carouselNav:hover {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.carouselNav.prev {
-  left: 0.5rem;
-}
-
-.carouselNav.next {
-  right: 0.5rem;
-}
-
-.cardThumbnail {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-  transition: opacity 0.2s ease;
-}
-
-.card:hover .cardThumbnail {
-  opacity: 0.3;
-}
-
-.miniModal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* เริ่มจากขนาดเดียวกับ thumbnail */
-  height: 100%;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 10;
-
-  /* animation */
-  transform: scale(1);
-  opacity: 0;
-  transform-origin: center center;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  pointer-events: none;
-}
-
-/* ตอน hover ให้ขยายและแสดงผล */
-.card:hover .miniModal {
-  transform: scale(1.5);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.miniVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.modalBackdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modalContent {
-  background: #111;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 800px;
-  width: 90%;
-  position: relative;
-  animation: zoomIn 0.4s ease;
-}
-
-.modalVideo {
-  width: 100%;
-  height: 400px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.miniContent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  box-sizing: border-box;
-}
-
-.miniContent h4 {
-  font-size: 0.9rem;
-  color: white;
-  margin: 0;
-  flex: 1;
-}
-
-.miniContent button {
-  background-color: #e50914;
-  color: white;
-  border: none;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.miniContent button:hover {
-  background-color: #b81d24;
-}
-@media (max-width: 1024px) {
-  .card {
-    width: 180px;
+  .carousel {
+    gap: 0.5rem;
+    padding: 2rem 1rem;
   }
-}
 
-@media (max-width: 768px) {
-  .card {
+  .carousel .card {
     width: 140px;
   }
 
-  .carouselNav {
-    font-size: 1.5rem;
-    padding: 0.3rem 0.6rem;
+  .miniModal {
+    transform: scale(1.2); /* ลด scale ให้น้อยลงเมื่อจอเล็ก */
+  }
+
+  .miniModal .miniContent h4 {
+    font-size: 0.8rem;
+  }
+
+  .miniModal .miniContent button {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
