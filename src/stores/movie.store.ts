@@ -5,6 +5,7 @@ import { MovieState } from "@/types/movie";
 
 export const useMovieStore = create<MovieState>((set) => ({
   movies: [],
+  movie: null,
   loading: false,
   current: null,
   error: null,
@@ -17,6 +18,23 @@ export const useMovieStore = create<MovieState>((set) => ({
       set({ movies: data });
     } catch (err) {
       console.error("❌ Fetch movie failed:", err);
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchMovieById: async (id: string) => {
+    set({ loading: true, movie: null, error: null });
+
+    try {
+      const data = await MovieService.getMovieById(id);
+      set({ movie: data });
+    } catch (err) {
+      console.error("❌ Fetch movie by ID failed:", err);
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
       set({ error: errorMessage });

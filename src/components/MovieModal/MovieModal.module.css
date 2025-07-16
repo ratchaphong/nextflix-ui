@@ -10,10 +10,10 @@
 
 .modal__content {
   background: transparent;
-  color: white;
-  max-width: 700px;
-  width: 95%;
-  max-height: 90vh;
+  color: var(--color-text);
+  width: 100%;
+  max-width: 300px;
+  max-height: 80vh;
   overflow: hidden;
   border-radius: 0.8rem;
   position: relative;
@@ -25,14 +25,21 @@
 .modal__content .modal__top {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  height: 300px;
 }
 
 .modal__content .modal__top .modal__image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
   display: block;
-  border-radius: 12px 12px 0 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+  transform: scale(1);
+}
+
+.modal__content .modal__top:hover .modal__image {
+  transform: scale(1.05);
 }
 
 .modal__content .modal__top .modal__overlay {
@@ -50,15 +57,20 @@
 
 .modal__content .modal__info {
   background-color: #111;
-  padding: 1.5rem 1.5rem 2rem;
+  padding: 1.5rem 2rem;
   text-align: left;
-  overflow-y: auto; /* ✅ scroll เฉพาะส่วนนี้ถ้าเนื้อหาเยอะ */
 }
 
 .modal__content .modal__info .modal__title {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* ✅ จำกัดให้แสดง 2 บรรทัด */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal__content .modal__info .modal__tags {
@@ -77,8 +89,26 @@
 
 .modal__content .modal__info .modal__description {
   font-size: 0.95rem;
-  line-height: 1.6;
   margin-bottom: 1.5rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  pointer-events: none; /* ป้องกัน hover/scroll ตอนซ่อน */
+}
+
+/* เมื่อ hover แสดงคำอธิบาย */
+.modal__content .modal__info:hover .modal__description {
+  max-height: 6rem; /* กำหนดความสูงสูงสุด */
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.modal__content .modal__info:hover .modal__description::-webkit-scrollbar {
+  display: none;
 }
 
 .modal__content .close__button {

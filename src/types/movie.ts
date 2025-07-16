@@ -1,9 +1,11 @@
 export interface MovieState {
   movies: Movie[];
+  movie: Movie | null;
   loading: boolean;
   current: Movie | null;
   error: string | null;
   fetchMovies: () => Promise<void>;
+  fetchMovieById: (id: string) => Promise<void>;
   setCurrent: (movie: Movie) => void;
   clearCurrent: () => void;
 }
