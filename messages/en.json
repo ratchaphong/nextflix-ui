@@ -50,7 +50,9 @@
   "SelectProfilePage": {
     "title": "Who's watching?",
     "manageProfiles": "Manage Profiles",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "back": "Back",
+    "addProfile": "Add Profile"
   },
   "Header": {
     "signIn": "Sign In",

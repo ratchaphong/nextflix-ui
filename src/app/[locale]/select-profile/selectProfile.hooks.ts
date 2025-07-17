@@ -11,12 +11,18 @@ import { useState } from "react";
 export const useSelectProfile = () => {
   const { logout, addProfile, profile } = useAuthStore();
   const [showAddModal, setShowAddModal] = useState(false);
+  const [isManageMode, setIsManageMode] = useState(false);
 
   const router = useRouter();
   const t = useTranslations("SelectProfilePage");
 
   const handleSelectProfile = (p: Profile) => {
-    console.log(p);
+    if (isManageMode) {
+      console.log("🛠️ Edit mode: Open edit modal for", p);
+      // TODO: handle edit profile modal here
+      return;
+    }
+
     router.push({
       pathname: "/dashboard",
       query: {
@@ -51,11 +57,13 @@ export const useSelectProfile = () => {
   return {
     t,
     profile,
+    isManageMode,
     showAddModal,
     handleSelectProfile,
     handleSignOut,
     handleSubmit,
     handleAddProfile,
     setShowAddModal,
+    setIsManageMode,
   };
 };

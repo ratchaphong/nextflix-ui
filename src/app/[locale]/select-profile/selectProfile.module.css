@@ -76,6 +76,10 @@
   transform: scale(1.02);
 }
 
+.profile__add {
+  object-fit: cover;
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
   .profile__grid {

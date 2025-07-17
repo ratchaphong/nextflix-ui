@@ -50,7 +50,9 @@
   "SelectProfilePage": {
     "title": "เลือกผู้ชม",
     "manageProfiles": "จัดการโปรไฟล์",
-    "signOut": "ออกจากระบบ"
+    "signOut": "ออกจากระบบ",
+    "back": "ย้อนกลับ",
+    "addProfile": "เพิ่มโปรไฟล์"
   },
   "Header": {
     "signIn": "เข้าสู่ระบบ",
