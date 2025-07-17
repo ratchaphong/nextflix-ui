@@ -102,5 +102,8 @@
     "continueEdit": "SAVE",
     "cancel": "CANCEL",
     "nameRequired": "Name is required"
+  },
+  "SelectedMovieModal": {
+    "close": "Close"
   }
 }

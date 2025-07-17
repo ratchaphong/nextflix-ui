@@ -1,22 +1,11 @@
 // components/ToastOverlay.tsx
 "use client";
 
-import { useEffect } from "react";
-import { useToastStore } from "@/stores/toast.store";
 import styles from "./ToastOverlay.module.css";
+import useToastOverlay from "./ToastOverlay.hooks";
 
 export default function ToastOverlay() {
-  const { message, type, visible, hideToast } = useToastStore();
-
-  useEffect(() => {
-    if (visible) {
-      const timeout = setTimeout(() => {
-        hideToast();
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [visible, hideToast]);
+  const { visible, message, type } = useToastOverlay();
 
   if (!visible || !message || !type) return null;
 

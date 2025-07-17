@@ -102,5 +102,8 @@
     "continueEdit": "บันทึก",
     "cancel": "ยกเลิก",
     "nameRequired": "กรุณากรอกชื่อ"
+  },
+  "SelectedMovieModal": {
+    "close": "ปิด"
   }
 }

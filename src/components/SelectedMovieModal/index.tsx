@@ -3,14 +3,14 @@
 import { SelectedMovieModalProps } from "./SelectedMovieModal.types";
 import cx from "classnames";
 import styles from "./SelectedMovieModal.module.css";
-import useDisableBodyScroll from "@/lib/useDisableBodyScroll";
+import useSelectedMovieModal from "./SelectedMovieModal.hooks";
 
 export default function SelectedMovieModal({
   selectedMovieId,
   handleCardModalClose,
   movies: r,
 }: SelectedMovieModalProps) {
-  useDisableBodyScroll(true);
+  const { t } = useSelectedMovieModal();
 
   return (
     <div className={styles.modal__backdrop} onClick={handleCardModalClose}>
@@ -28,7 +28,7 @@ export default function SelectedMovieModal({
         <h2>{r.find((m) => m.id === selectedMovieId)?.title}</h2>
         <p>{r.find((m) => m.id === selectedMovieId)?.description}</p>
         <button onClick={handleCardModalClose} className={styles.closeBtn}>
-          ✕ Close
+          {t("close")}
         </button>
       </div>
     </div>
