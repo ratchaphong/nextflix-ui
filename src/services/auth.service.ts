@@ -82,7 +82,7 @@ export const AuthService = {
     }
 
     try {
-      await api.post<void>("/profile", payload);
+      await api.post<void>("/profiles", payload);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const message =
@@ -104,7 +104,7 @@ export const AuthService = {
     }
 
     try {
-      await api.patch<void>(`/profile/${id}`, payload);
+      await api.patch<void>(`/profiles/${id}`, payload);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const message =
