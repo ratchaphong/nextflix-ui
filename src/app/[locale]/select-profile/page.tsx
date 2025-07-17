@@ -16,7 +16,6 @@ const SelectProfile = () => {
     handleSignOut,
     handleSubmit,
     handleAddProfile,
-    setShowAddModal,
     setIsManageMode,
     handleCloseModal,
   } = useSelectProfile();
