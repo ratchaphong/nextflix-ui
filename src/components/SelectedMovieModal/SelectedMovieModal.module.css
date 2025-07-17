@@ -21,18 +21,12 @@
 }
 
 .modal__backdrop .modal__content .closeBtn {
-  background-color: #e50914;
-  color: var(--color-text);
   padding: 0.5rem 1rem;
   border: none;
   margin-top: 1rem;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.modal__backdrop .modal__content .closeBtn:hover {
-  background-color: #f6121d;
 }
 
 .modal__backdrop .modal__content.modal__zoom {

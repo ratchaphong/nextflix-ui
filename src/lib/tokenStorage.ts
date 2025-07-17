@@ -1,6 +1,7 @@
 const ACCESS_TOKEN_KEY = "accessToken";
 const TOKEN_TIMESTAMP_KEY = "accessTokenTimestamp";
 const TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 ชั่วโมง
+const EARLY_EXPIRY_BUFFER_MS = 5 * 60 * 1000; // 5 นาที = 300,000 ms
 
 export const tokenStorage = {
   setToken: (token: string) => {
@@ -22,7 +23,7 @@ export const tokenStorage = {
     if (!timestamp) return true;
 
     const now = Date.now();
-    return now - timestamp > TOKEN_EXPIRY_MS;
+    return now - timestamp > TOKEN_EXPIRY_MS - EARLY_EXPIRY_BUFFER_MS;
   },
 
   clearToken: () => {

@@ -18,6 +18,9 @@ export function useHeader() {
 
   const { profile } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoSrc, setLogoSrc] = useState(
+    "https://www.freepnglogos.com/uploads/netflix-logo-0.png"
+  );
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedLocale = e.target.value;
@@ -32,6 +35,16 @@ export function useHeader() {
   const shouldHideHeader = HIDDEN_PATHS.includes(pathname);
   const isLoggedIn = !!profile;
 
+  const updateLogo = () => {
+    const theme = document.documentElement.getAttribute("data-theme");
+    const isLight = theme === "light";
+    setLogoSrc(
+      isLight
+        ? "https://www.freepnglogos.com/uploads/netflix-logo-0.png"
+        : "https://upload.wikimedia.org/wikipedia/commons/e/e9/Pornhub-style_Wikipedia_logo.png?20190401080407"
+    );
+  };
+
   const selectedProfile = useMemo(() => {
     if (!profileId || !profile) return null;
     return profile.profiles.find((p) => p.id === profileId) || null;
@@ -40,10 +53,10 @@ export function useHeader() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      console.log("⏱️ Resize detected. Width:", width);
+      // console.log("⏱️ Resize detected. Width:", width);
 
       if (width > 768) {
-        console.log("📱 Width > 768px: Closing menu.");
+        // console.log("📱 Width > 768px: Closing menu.");
         setMenuOpen(false);
       }
     };
@@ -57,6 +70,19 @@ export function useHeader() {
     };
   }, []);
 
+  useEffect(() => {
+    updateLogo(); // initial load
+
+    const observer = new MutationObserver(() => updateLogo());
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return {
     t,
     locale,
@@ -66,6 +92,7 @@ export function useHeader() {
     menuOpen,
     profile,
     selectedProfile,
+    logoSrc,
     handleLanguageChange,
     handleSignInClick,
     setMenuOpen,

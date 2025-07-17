@@ -42,10 +42,14 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.profile__name {
+.profile__wrapper .profile__grid .profile__card .profile__image .profile__add {
+  object-fit: cover;
+}
+
+.profile__wrapper .profile__grid .profile__card .profile__name {
   margin-top: 0.75rem;
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: semebold;
   transition: color 0.2s ease;
 }
 
@@ -53,45 +57,45 @@
   color: var(--color-text);
 }
 
-.button__group {
-  display: flex;
+.profile__wrapper .button__group {
   gap: 1rem;
-  justify-content: center;
+  margin-top: 3rem;
+  @apply flex justify-center;
 }
 
-.profile__wrapper .profile__manage_button {
+.profile__wrapper .button__group .profile__manage_button {
   border: 1px solid var(--color-text);
   background: none;
   color: var(--color-text);
-  margin: 3rem 0 1rem;
   padding: 1rem 2rem;
-  letter-spacing: 2px;
-  font-size: 1rem;
-  border-radius: 0.25rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.profile__wrapper .profile__manage_button:hover {
+.profile__wrapper .button__group .profile__manage_button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   transform: scale(1.02);
 }
 
-.profile__add {
-  object-fit: cover;
+.profile__wrapper .button__group .profile__manage_back {
+  padding: 1rem 2rem;
+}
+
+.profile__wrapper .button__group .profile__manage_back:hover {
+  transform: scale(1.02);
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .profile__grid {
+  .profile__wrapper .profile__grid {
     gap: 1.5rem;
   }
 
-  .profile__image {
+  .profile__wrapper .profile__grid .profile__card .profile__image {
     width: 7rem;
     height: 7rem;
   }
 
-  .profile__name {
+  .profile__wrapper .profile__grid .profile__card .profile__name {
     font-size: 1rem;
   }
 }
@@ -102,22 +106,18 @@
     padding: 2rem 1rem;
   }
 
-  .profile__grid {
+  .profile__wrapper .profile__grid {
     @apply flex-col items-center;
   }
 
-  .button__group {
+  .profile__wrapper .button__group {
+    margin-top: 1rem;
     align-items: center;
+    max-width: 200px;
     @apply w-full flex-col;
   }
 
-  .profile__wrapper .profile__manage_button {
-    margin: 0;
-    max-width: 200px;
-    width: 80%;
-  }
-
-  .profile__wrapper .profile__manage_button:first-child {
-    margin-top: 2rem;
+  .profile__wrapper .button__group > button {
+    @apply w-full;
   }
 }

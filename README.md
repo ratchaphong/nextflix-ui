@@ -14,6 +14,8 @@ Clone เว็บไซต์ Netflix โดยใช้ Next.js + React + Type
 - รองรับ JWT token สำหรับเข้าสู่ระบบ
 - มีฟีเจอร์ **"Remember Me"** (เก็บ token ไว้ใน `localStorage` เพื่อให้ผู้ใช้ไม่ต้อง login ใหม่)
 - Token จะหมดอายุอัตโนมัติหลัง [เช่น 1 ชั่วโมง] หากไม่เลือก Remember Me
+- รองรับการสลับธีม (Light / Dark Mode)
+- Dark Mode อิงโทนสีสไตล์ Pornhub
 
 ## 🧰 เทคโนโลยีที่ใช้
 
@@ -79,6 +81,8 @@ A Netflix-style clone built with **Next.js + React + TypeScript**, supporting mu
 - Automatic token expiration after [e.g., 1 hour] if Remember Me is unchecked
 - State management with Zustand
 - Built with `Next.js 15 (App Router)` and `React 19`
+- Theme switching support (Light / Dark Mode)
+- Dark Mode inspired by Pornhub color palette
 
 ## 🧰 Tech Stack
 

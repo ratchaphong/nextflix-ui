@@ -81,7 +81,7 @@
 }
 
 .modal__content .modal__info .modal__tags span {
-  background: #333;
+  background: var(--color-button-bg-2);
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
   font-size: 0.8rem;

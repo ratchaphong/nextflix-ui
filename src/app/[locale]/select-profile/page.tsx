@@ -71,7 +71,7 @@ const SelectProfile = () => {
         ) : (
           <>
             <button
-              className={style.profile__manage_button}
+              className={style.profile__manage_back}
               onClick={() => setIsManageMode(false)}
             >
               {t("back")}

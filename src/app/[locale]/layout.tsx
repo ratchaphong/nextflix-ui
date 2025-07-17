@@ -36,7 +36,11 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} className={`${roboto.variable} ${kanit.variable}`}>
+    <html
+      lang={locale}
+      className={`${roboto.variable} ${kanit.variable}`}
+      data-theme="light"
+    >
       <body>
         <NextIntlClientProvider>
           <TokenChecker>

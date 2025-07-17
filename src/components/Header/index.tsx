@@ -15,6 +15,7 @@ export default function Header() {
     isLoggedIn,
     menuOpen,
     selectedProfile,
+    logoSrc,
     handleLanguageChange,
     handleSignInClick,
     setMenuOpen,
@@ -31,11 +32,7 @@ export default function Header() {
       >
         <Link href={isLoggedIn ? "/select-profile" : "/"}>
           <div className={styles.navbar__brand}>
-            <img
-              src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
-              alt="logo"
-              className={styles.brand__logo}
-            />
+            <img src={logoSrc} alt="logo" className={styles.brand__logo} />
           </div>
         </Link>
 

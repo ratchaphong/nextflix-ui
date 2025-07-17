@@ -1,4 +1,5 @@
 import {
+  MOCK_MOVIE_OMDB,
   MOCK_MOVIES_OMDB,
   // MOCK_MOVIE_OMDB,
   MOCK_RECOMMENDED_VIDEO,
@@ -53,6 +54,25 @@ export const MovieService = {
 
   getMovieById: async (imdbID: string): Promise<Movie> => {
     try {
+      if (USE_MOCK) {
+        const data = MOCK_MOVIE_OMDB;
+        console.log("🔧 Using MOCK getMovieById");
+        return new Promise((resolve) =>
+          setTimeout(() => {
+            const transformed: Movie = {
+              id: data.imdbID,
+              title: data.Title,
+              year: parseInt(data.Year),
+              image: data.Poster,
+              ageRating: "N/A", // OMDb ไม่มี age rating โดยตรง
+              description: "N/A", // ต้องใช้ API แบบ `i=ttxxxx` เพิ่มเติมเพื่อเอารายละเอียด
+              tags: [], // ไม่มี tag โดยตรง
+            };
+            resolve(transformed);
+          }, 500)
+        );
+      }
+
       const { data } = await api.get<Movie>(`/movies/${imdbID}`, {
         timeout: 60_000,
       });
