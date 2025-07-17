@@ -19,7 +19,12 @@ const SelectProfile = () => {
               className={style.profile__image}
               onClick={() => handleSelectProfile(p)}
             >
-              <Image src={p.image} alt={p.name} width={128} height={128} />
+              <Image
+                src={p.image || "/image/avatar.jpg"}
+                alt={p.name}
+                width={128}
+                height={128}
+              />
             </div>
             <p className={style.profile__name}>
               {p.name}

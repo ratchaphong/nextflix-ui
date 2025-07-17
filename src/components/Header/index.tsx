@@ -68,7 +68,7 @@ export default function Header() {
             </ul>
             <div className={styles.logged}>
               <img
-                src={selectedProfile.image}
+                src={selectedProfile.image || "/image/avatar.jpg"}
                 alt={selectedProfile.name}
                 className={styles.profile__icon}
               />

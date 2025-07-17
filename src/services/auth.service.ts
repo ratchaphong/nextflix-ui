@@ -6,6 +6,7 @@ import {
 } from "@/types/login";
 import api from "@/lib/axios";
 import axios from "axios";
+import { MOCK_ACCESS_TOKEN, MOCK_PROFILE } from "@/mock";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 
@@ -14,12 +15,12 @@ export const AuthService = {
     if (USE_MOCK) {
       console.log("🔧 Using MOCK login");
       return new Promise((resolve) =>
-        setTimeout(() => resolve({ accessToken: "mock_token_123" }), 500)
+        setTimeout(() => resolve(MOCK_ACCESS_TOKEN), 500)
       );
     }
 
     try {
-      const { data } = await api.post<LoginResponse>("/api/login", payload);
+      const { data } = await api.post<LoginResponse>("/auth/login", payload);
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -39,7 +40,7 @@ export const AuthService = {
     }
 
     try {
-      await api.post<LoginResponse>("/api/register", payload);
+      await api.post<void>("/auth/register", payload);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const message =
@@ -55,52 +56,12 @@ export const AuthService = {
     if (USE_MOCK) {
       console.log("🔧 Using MOCK getProfile");
       return new Promise((resolve) =>
-        setTimeout(
-          () =>
-            resolve({
-              user: {
-                id: "user_001",
-                email: "admin@example.com",
-                name: "คุณพ่อ",
-                role: "OWNER",
-              },
-              package: {
-                id: "pkg_family",
-                name: "Family Plan",
-                maxProfiles: 5,
-                maxMembers: 4,
-                price: 399,
-                resolution: "UHD",
-              },
-              household: {
-                id: "household_001",
-                name: "บ้านสุขสันต์",
-                members: [
-                  {
-                    id: "user_001",
-                    email: "admin@example.com",
-                    name: "คุณพ่อ",
-                    role: "OWNER",
-                  },
-                ],
-              },
-              profiles: [
-                {
-                  id: "profile_001",
-                  name: "คุณพ่อ",
-                  image: "/image/avatar.jpg",
-                  isLocked: false,
-                  ownerId: "user_001",
-                },
-              ],
-            }),
-          500
-        )
+        setTimeout(() => resolve(MOCK_PROFILE), 500)
       );
     }
 
     try {
-      const { data } = await api.get<ProfileResponse>("/api/profile", {});
+      const { data } = await api.get<ProfileResponse>("/auth/profile", {});
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
