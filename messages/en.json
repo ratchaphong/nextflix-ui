@@ -60,7 +60,10 @@
     "tvShows": "TV Shows",
     "movies": "Movies",
     "new": "New & Popular",
-    "myList": "My List"
+    "myList": "My List",
+    "manageProfile": "Manage profile",
+    "account": "Account",
+    "signOut": "Sign out"
   },
   "Footer": {
     "audioDescription": "Audio Description",

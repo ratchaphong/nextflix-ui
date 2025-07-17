@@ -60,7 +60,10 @@
     "tvShows": "รายการทีวี",
     "movies": "ภาพยนตร์",
     "new": "มาใหม่",
-    "myList": "รายการของฉัน"
+    "myList": "รายการของฉัน",
+    "manageProfile": "จัดการโปรไฟล์",
+    "account": "บัญชี",
+    "signOut": "ออกจากระบบ"
   },
   "Footer": {
     "audioDescription": "คำอธิบายเสียง",

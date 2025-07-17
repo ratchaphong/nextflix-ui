@@ -35,8 +35,9 @@ export default function Footer() {
 
       <div className={styles.theme__toggle}>
         <span>{theme === "dark" ? t("darkMode") : t("lightMode")}</span>
-        <label className={styles.switch}>
+        <label className={styles.switch} htmlFor="theme">
           <input
+            id="theme"
             type="checkbox"
             onChange={toggleTheme}
             checked={theme === "dark"}

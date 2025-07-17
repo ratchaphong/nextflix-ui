@@ -5,6 +5,7 @@ import { useHeader } from "./Header.hooks";
 import { Link } from "@/i18n/navigation";
 import { FaBars } from "react-icons/fa";
 import cx from "classnames";
+import DropdownMenu from "../DropdownMenu";
 
 export default function Header() {
   const {
@@ -64,11 +65,7 @@ export default function Header() {
               </li>
             </ul>
             <div className={styles.logged}>
-              <img
-                src={selectedProfile.image || "/image/avatar.jpg"}
-                alt={selectedProfile.name}
-                className={styles.profile__icon}
-              />
+              <DropdownMenu profile={selectedProfile} t={t} />
               <button
                 className={styles.hamburger}
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -107,10 +104,11 @@ export default function Header() {
             <div className={styles.nav__item}>
               <select
                 name="languages"
-                id="languagesSelect"
+                id="languages"
                 className={styles.language__drop__down}
                 onChange={handleLanguageChange}
                 value={locale}
+                aria-label="Select language"
               >
                 <option value="en">English</option>
                 <option value="th">ไทย</option>
