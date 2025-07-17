@@ -68,8 +68,6 @@ Created by [Ratchaphong](https://github.com/ratchaphong)
 
 A Netflix-style clone built with **Next.js + React + TypeScript**, supporting multi-language, auto-playing trailers, and interactive modal transitions just like the real Netflix interface.
 
----
-
 ## ✅ Features
 
 - Movie display in carousel format
@@ -82,8 +80,6 @@ A Netflix-style clone built with **Next.js + React + TypeScript**, supporting mu
 - State management with Zustand
 - Built with `Next.js 15 (App Router)` and `React 19`
 
----
-
 ## 🧰 Tech Stack
 
 - Next.js 15 (App Router)
@@ -94,8 +90,6 @@ A Netflix-style clone built with **Next.js + React + TypeScript**, supporting mu
 - next-intl (i18n)
 - CSS Modules (`.module.css`)
 - Tailwind CSS (used via `@apply` in modules)
-
----
 
 ## 🚀 Getting Started
 
