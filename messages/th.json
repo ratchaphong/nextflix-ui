@@ -94,9 +94,12 @@
   },
   "AddProfileModal": {
     "title": "เพิ่มโปรไฟล์",
+    "titleEdit": "แก้ไขโปรไฟล์",
     "subtitle": "เพิ่มโปรไฟล์สำหรับผู้ใช้คนอื่นที่รับชม Netflix",
+    "subtitleEdit": "อัปเดตชื่อหรือรูปภาพของโปรไฟล์นี้",
     "name": "ชื่อ",
     "continue": "ถัดไป",
+    "continueEdit": "บันทึก",
     "cancel": "ยกเลิก",
     "nameRequired": "กรุณากรอกชื่อ"
   }

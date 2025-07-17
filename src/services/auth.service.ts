@@ -93,4 +93,26 @@ export const AuthService = {
       throw new Error("An unknown error occurred while adding profile.");
     }
   },
+
+  updateProfile: async (
+    id: string,
+    payload: AddProfilePayload
+  ): Promise<void> => {
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK updateProfile");
+      return new Promise((resolve) => setTimeout(() => resolve(), 500));
+    }
+
+    try {
+      await api.patch<void>(`/profile/${id}`, payload);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Update failed unexpectedly.";
+        console.error("❌ Update error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
+    }
+  },
 };

@@ -11,12 +11,14 @@ const SelectProfile = () => {
     profile,
     isManageMode,
     showAddModal,
+    selectedProfile,
     handleSelectProfile,
     handleSignOut,
     handleSubmit,
     handleAddProfile,
     setShowAddModal,
     setIsManageMode,
+    handleCloseModal,
   } = useSelectProfile();
 
   if (!profile) return null;
@@ -87,8 +89,9 @@ const SelectProfile = () => {
 
       {showAddModal && (
         <AddProfileModal
-          onClose={() => setShowAddModal(false)}
+          onClose={handleCloseModal}
           onSubmit={handleSubmit}
+          data={selectedProfile}
         />
       )}
     </main>

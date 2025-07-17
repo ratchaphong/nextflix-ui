@@ -9,9 +9,10 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export const useSelectProfile = () => {
-  const { logout, addProfile, profile } = useAuthStore();
+  const { logout, addProfile, updateProfile, profile } = useAuthStore();
   const [showAddModal, setShowAddModal] = useState(false);
   const [isManageMode, setIsManageMode] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
 
   const router = useRouter();
   const t = useTranslations("SelectProfilePage");
@@ -19,7 +20,8 @@ export const useSelectProfile = () => {
   const handleSelectProfile = (p: Profile) => {
     if (isManageMode) {
       console.log("🛠️ Edit mode: Open edit modal for", p);
-      // TODO: handle edit profile modal here
+      setSelectedProfile(p);
+      setShowAddModal(true);
       return;
     }
 
@@ -35,6 +37,11 @@ export const useSelectProfile = () => {
     setShowAddModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowAddModal(false);
+    setSelectedProfile(null);
+  };
+
   const handleSignOut = () => {
     logout();
   };
@@ -45,10 +52,14 @@ export const useSelectProfile = () => {
   ) => {
     console.log("📨 Submitting form...", values);
     try {
-      await addProfile(values);
-      setShowAddModal(false);
+      if (selectedProfile) {
+        await updateProfile(selectedProfile.id, values);
+      } else {
+        await addProfile(values);
+      }
+      handleCloseModal();
     } catch (error) {
-      console.error("❌ Add profile failed:", error);
+      console.error("❌ Submitting form failed:", error);
     } finally {
       actions.setSubmitting(false);
     }
@@ -59,11 +70,13 @@ export const useSelectProfile = () => {
     profile,
     isManageMode,
     showAddModal,
+    selectedProfile,
     handleSelectProfile,
     handleSignOut,
     handleSubmit,
     handleAddProfile,
     setShowAddModal,
     setIsManageMode,
+    handleCloseModal,
   };
 };

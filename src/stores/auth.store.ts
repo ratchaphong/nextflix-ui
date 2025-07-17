@@ -61,6 +61,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         err instanceof Error ? err.message : "Failed to load profile";
       showToast(errorMessage, "error");
       set({ error: errorMessage });
+      throw new Error(errorMessage);
     } finally {
       set({ loading: false });
     }
@@ -78,6 +79,25 @@ export const useAuthStore = create<AuthState>((set) => ({
         err instanceof Error ? err.message : "Failed to load profile";
       showToast(errorMessage, "error");
       set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  updateProfile: async (id, payload) => {
+    set({ loading: true });
+
+    try {
+      await AuthService.updateProfile(id, payload);
+      const profile = await AuthService.getProfile();
+      set({ profile });
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to update profile";
+      showToast(errorMessage, "error");
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
     } finally {
       set({ loading: false });
     }

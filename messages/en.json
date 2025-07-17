@@ -94,9 +94,12 @@
   },
   "AddProfileModal": {
     "title": "Add Profile",
+    "titleEdit": "Edit Profile",
     "subtitle": "Add a profile for another person watching Netflix.",
+    "subtitleEdit": "Update this profile’s name or image.",
     "name": "Name",
     "continue": "CONTINUE",
+    "continueEdit": "SAVE",
     "cancel": "CANCEL",
     "nameRequired": "Name is required"
   }

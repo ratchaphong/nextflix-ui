@@ -1,3 +1,4 @@
+import { Profile } from "@/types/login";
 import { FormikHelpers } from "formik";
 
 export interface AddProfileFormValues {
@@ -11,4 +12,9 @@ export interface AddProfileModalProps {
     values: AddProfileFormValues,
     actions: FormikHelpers<AddProfileFormValues>
   ) => void;
+  data: Profile | null;
+}
+
+export interface UseAddProfileModalProps {
+  data: Profile | null;
 }

@@ -1,8 +1,13 @@
 import useDisableBodyScroll from "@/lib/useDisableBodyScroll";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import {
+  AddProfileFormValues,
+  UseAddProfileModalProps,
+} from "./AddProfileModal.types";
+import { initialValues as i } from "./AddProfileModal.utils";
 
-export default function useAddProfileModal() {
+export default function useAddProfileModal({ data }: UseAddProfileModalProps) {
   useDisableBodyScroll(true);
   const t = useTranslations("AddProfileModal");
 
@@ -22,5 +27,12 @@ export default function useAddProfileModal() {
     reader.readAsDataURL(file);
   };
 
-  return { t, fileInputRef, handleImageUpload };
+  const initialValues: AddProfileFormValues = useMemo(() => {
+    if (data) {
+      return { ...i, name: data.name, image: data.image };
+    }
+    return i;
+  }, [data]);
+
+  return { t, initialValues, fileInputRef, handleImageUpload };
 }

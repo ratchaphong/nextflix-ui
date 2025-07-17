@@ -8,6 +8,7 @@ export interface AuthState {
   register: (payload: RegisterPayload) => Promise<void>;
   getProfile: () => Promise<void>;
   addProfile: (payload: AddProfilePayload) => Promise<void>;
+  updateProfile: (id: string, payload: AddProfilePayload) => Promise<void>;
   logout: () => void;
 }
 

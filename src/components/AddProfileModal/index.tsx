@@ -6,18 +6,21 @@ import { AddProfileModalProps } from "./AddProfileModal.types";
 import useAddProfileModal from "./AddProfileModal.hooks";
 import FormikTextInput from "../FormikTextInput";
 import { addProfileSchema } from "./AddProfileModal.schema";
-import { initialValues } from "./AddProfileModal.utils";
 
-const AddProfileModal = ({ onClose, onSubmit }: AddProfileModalProps) => {
-  const { t, fileInputRef, handleImageUpload } = useAddProfileModal();
+const AddProfileModal = ({ onClose, onSubmit, data }: AddProfileModalProps) => {
+  const { t, initialValues, fileInputRef, handleImageUpload } =
+    useAddProfileModal({ data });
 
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <h2 className={styles.title}>{t("title")}</h2>
-        <p className={styles.subtitle}>{t("subtitle")}</p>
+        <h2 className={styles.title}>{t(data ? "titleEdit" : "title")}</h2>
+        <p className={styles.subtitle}>
+          {t(data ? "subtitleEdit" : "subtitle")}
+        </p>
 
         <Formik
+          enableReinitialize
           initialValues={initialValues}
           validationSchema={addProfileSchema(t)}
           onSubmit={onSubmit}
@@ -48,7 +51,7 @@ const AddProfileModal = ({ onClose, onSubmit }: AddProfileModalProps) => {
               </div>
               <div className={styles.button__group}>
                 <button type="submit" disabled={isSubmitting}>
-                  {t("continue")}
+                  {t("continueEdit")}
                 </button>
                 <button type="button" className={"secondary"} onClick={onClose}>
                   {t("cancel")}
