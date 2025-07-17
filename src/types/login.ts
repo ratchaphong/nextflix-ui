@@ -7,6 +7,7 @@ export interface AuthState {
   login: (payload: LoginPayload) => Promise<void>;
   register: (payload: RegisterPayload) => Promise<void>;
   getProfile: () => Promise<void>;
+  addProfile: (payload: AddProfilePayload) => Promise<void>;
   logout: () => void;
 }
 
@@ -72,4 +73,9 @@ export interface LoginFormValues {
 
 export interface HomeFormValues {
   email: string;
+}
+
+export interface AddProfilePayload {
+  name: string;
+  image: string;
 }

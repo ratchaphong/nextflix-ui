@@ -89,5 +89,13 @@
     "moreInfo": "ℹ More Info",
     "back": "← Back",
     "info": "Info"
+  },
+  "AddProfileModal": {
+    "title": "Add Profile",
+    "subtitle": "Add a profile for another person watching Netflix.",
+    "name": "Name",
+    "continue": "CONTINUE",
+    "cancel": "CANCEL",
+    "nameRequired": "Name is required"
   }
 }

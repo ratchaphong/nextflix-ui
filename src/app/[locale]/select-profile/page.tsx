@@ -3,9 +3,19 @@
 import { useSelectProfile } from "./selectProfile.hooks";
 import Image from "next/image";
 import style from "./selectProfile.module.css";
+import AddProfileModal from "@/components/AddProfileModal";
 
 const SelectProfile = () => {
-  const { t, profile, handleSelectProfile, handleSignOut } = useSelectProfile();
+  const {
+    t,
+    profile,
+    showAddModal,
+    handleSelectProfile,
+    handleSignOut,
+    handleSubmit,
+    handleAddProfile,
+    setShowAddModal,
+  } = useSelectProfile();
 
   if (!profile) return null;
 
@@ -33,9 +43,27 @@ const SelectProfile = () => {
           </div>
         ))}
       </div>
-      <button className={style.profile__manage_button} onClick={handleSignOut}>
-        {t("signOut")}
-      </button>
+      <div className={style.button__group}>
+        <button
+          className={style.profile__manage_button}
+          onClick={handleAddProfile}
+        >
+          {t("manageProfiles")}
+        </button>
+        <button
+          className={style.profile__manage_button}
+          onClick={handleSignOut}
+        >
+          {t("signOut")}
+        </button>
+      </div>
+
+      {showAddModal && (
+        <AddProfileModal
+          onClose={() => setShowAddModal(false)}
+          onSubmit={handleSubmit}
+        />
+      )}
     </main>
   );
 };

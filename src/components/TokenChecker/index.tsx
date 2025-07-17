@@ -33,7 +33,7 @@ export default function TokenChecker({
       }
 
       if (token) {
-        console.info("✅ Token is valid:", token);
+        // console.info("✅ Token is valid:", token);
 
         if (GUEST_ONLY_PATHS.includes(pathname)) {
           console.log("🔒 Redirecting logged-in user out of guest page...");

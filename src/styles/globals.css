@@ -16,6 +16,7 @@
   /* Light mode (default) */
   --color-bg: #000000;
   --color-text: #ffffff;
+  --color-sub-text: #aaa;
   --color-button-bg: #dc030f;
   --color-button-bg-hover: #a5010b;
   --color-input-bg: rgba(0, 0, 0, 0.1);
@@ -24,6 +25,7 @@
   --color-placeholder: rgba(255, 255, 255, 0.8);
   --color-error: #dc030f;
   --color-error-hover: #a5010b;
+  --color-modal-bg: #111;
 
   /* Footer tone - light mode */
   --footer-bg: #111111;
@@ -40,6 +42,7 @@
   :root {
     --color-bg: #121212;
     --color-text: #e6e6e6;
+    --color-sub-text: #aaa;
     --color-button-bg: #e50914;
     --color-button-bg-hover: #b20710;
     --color-input-bg: rgba(255, 255, 255, 0.06);
@@ -48,6 +51,7 @@
     --color-placeholder: rgba(255, 255, 255, 0.5);
     --color-error: #ff4c4c;
     --color-error-hover: #cc0000;
+    --color-modal-bg: #111;
 
     /* Footer tone - dark mode */
     --footer-bg: #181818;
@@ -110,7 +114,7 @@ button.secondary {
 
 button.secondary:hover {
   background-color: #4d4d4d;
-  border-color: #666;
+  /* border-color: #666; */
 }
 
 /* Disabled button (ทุกปุ่ม) */

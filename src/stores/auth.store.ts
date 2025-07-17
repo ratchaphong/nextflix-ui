@@ -66,6 +66,23 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
+  addProfile: async (payload) => {
+    set({ loading: true });
+
+    try {
+      await AuthService.addProfile(payload);
+      const profile = await AuthService.getProfile();
+      set({ profile });
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to load profile";
+      showToast(errorMessage, "error");
+      set({ error: errorMessage });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
   logout: () => {
     tokenStorage.clearToken();
     set({

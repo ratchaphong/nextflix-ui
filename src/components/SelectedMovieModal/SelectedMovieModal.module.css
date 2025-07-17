@@ -9,12 +9,12 @@
 }
 
 .modal__backdrop .modal__content {
-  background: #111;
+  background-color: var(--color-modal-bg);
   padding: 2rem;
   border-radius: 12px;
   max-width: 600px;
   width: 90%;
-  color: white;
+  color: var(--color-text);
   position: relative;
   text-align: center;
   transform-origin: center;
@@ -22,7 +22,7 @@
 
 .modal__backdrop .modal__content .closeBtn {
   background-color: #e50914;
-  color: white;
+  color: var(--color-text);
   padding: 0.5rem 1rem;
   border: none;
   margin-top: 1rem;

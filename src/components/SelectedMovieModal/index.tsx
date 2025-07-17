@@ -1,12 +1,17 @@
+"use client";
+
 import { SelectedMovieModalProps } from "./SelectedMovieModal.types";
 import cx from "classnames";
 import styles from "./SelectedMovieModal.module.css";
+import useDisableBodyScroll from "@/lib/useDisableBodyScroll";
 
 export default function SelectedMovieModal({
   selectedMovieId,
   handleCardModalClose,
   movies: r,
 }: SelectedMovieModalProps) {
+  useDisableBodyScroll(true);
+
   return (
     <div className={styles.modal__backdrop} onClick={handleCardModalClose}>
       <div

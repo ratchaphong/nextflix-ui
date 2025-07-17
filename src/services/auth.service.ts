@@ -3,6 +3,7 @@ import {
   LoginResponse,
   RegisterPayload,
   ProfileResponse,
+  AddProfilePayload,
 } from "@/types/login";
 import api from "@/lib/axios";
 import axios from "axios";
@@ -71,6 +72,25 @@ export const AuthService = {
         throw new Error(message);
       }
       throw new Error("An unknown error occurred.");
+    }
+  },
+
+  addProfile: async (payload: AddProfilePayload): Promise<void> => {
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK addProfile");
+      return new Promise((resolve) => setTimeout(() => resolve(), 500));
+    }
+
+    try {
+      await api.post<void>("/profile", payload);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Add profile failed unexpectedly.";
+        console.error("❌ Add profile error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred while adding profile.");
     }
   },
 };

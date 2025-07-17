@@ -1,21 +1,10 @@
 "use client";
 
 import styles from "./ExpiredTokenModal.module.css";
-import { useRouter } from "@/i18n/navigation";
-import { tokenStorage } from "@/lib/tokenStorage";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+import useExpiredTokenModal from "./ExpiredTokenModal.hooks";
 
 export default function ExpiredTokenModal() {
-  const router = useRouter();
-  const t = useTranslations("ExpiredTokenModal");
-  const [acknowledged, setAcknowledged] = useState(false);
-
-  const handleAcknowledge = () => {
-    setAcknowledged(true);
-    tokenStorage.clearToken();
-    router.replace("/");
-  };
+  const { t, acknowledged, handleAcknowledge } = useExpiredTokenModal();
 
   if (acknowledged) return null;
 
