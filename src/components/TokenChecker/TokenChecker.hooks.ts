@@ -1,10 +1,8 @@
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useAuthStore } from "@/stores/auth.store";
+import { GUEST_ONLY_PATHS, PROTECTED_PATHS } from "@/utils";
 import { useEffect, useState } from "react";
-
-const GUEST_ONLY_PATHS = ["/", "/login", "/register"];
-const PROTECTED_PATHS = ["/select-profile", "/dashboard"];
 
 export default function useTokenChecker() {
   const [isReady, setIsReady] = useState(false);

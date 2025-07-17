@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 
-const STORAGE_KEY = "rememberLogin";
+const STORAGE_KEY = process.env.NEXT_PUBLIC_STORAGE_KEY || "rememberLogin";
 const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY || "secret";
 
 export const secureStorage = {

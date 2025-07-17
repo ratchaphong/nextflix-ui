@@ -10,10 +10,6 @@ export const routing = defineRouting({
       en: "/about",
       th: "/about",
     },
-    "/register": {
-      en: "/register",
-      th: "/register",
-    },
     "/login": {
       en: "/login",
       th: "/login",

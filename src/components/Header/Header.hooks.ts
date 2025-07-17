@@ -5,8 +5,7 @@ import { useRouter, usePathname } from "@/i18n/navigation";
 import { useAuthStore } from "@/stores/auth.store";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
-const HIDDEN_PATHS = ["/select-profile"];
+import { HIDDEN_PATHS_HEADER, HIDDEN_SIGN_IN_BUTTON_HEADER } from "@/utils";
 
 export function useHeader() {
   const t = useTranslations("Header");
@@ -31,8 +30,8 @@ export function useHeader() {
     router.push("/login");
   };
 
-  const hideSignInButton = ["/login", "/register"].includes(pathname);
-  const shouldHideHeader = HIDDEN_PATHS.includes(pathname);
+  const hideSignInButton = HIDDEN_SIGN_IN_BUTTON_HEADER.includes(pathname);
+  const shouldHideHeader = HIDDEN_PATHS_HEADER.includes(pathname);
   const isLoggedIn = !!profile;
 
   const updateLogo = () => {
