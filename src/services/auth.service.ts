@@ -115,4 +115,26 @@ export const AuthService = {
       throw new Error("An unknown error occurred.");
     }
   },
+
+  refreshToken: async (): Promise<LoginResponse> => {
+    if (USE_MOCK) {
+      console.log("🔧 Using MOCK refreshToken");
+      return new Promise((resolve) =>
+        setTimeout(() => resolve(MOCK_ACCESS_TOKEN), 500)
+      );
+    }
+
+    try {
+      const { data } = await api.post<LoginResponse>("/auth/refresh-token");
+      return data;
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Refresh token failed unexpectedly.";
+        console.error("❌ Refresh token error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred during token refresh.");
+    }
+  },
 };

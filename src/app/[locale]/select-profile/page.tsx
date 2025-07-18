@@ -24,7 +24,9 @@ const SelectProfile = () => {
 
   return (
     <main className={style.profile__wrapper}>
-      <h1 className={style.profile__title}>{t("title")}</h1>
+      <h1 className={style.profile__title}>
+        {t(isManageMode ? "manageProfiles" : "title")}
+      </h1>
       <div className={style.profile__grid}>
         {profile.profiles.map((p) => (
           <div key={p.name} className={style.profile__card}>

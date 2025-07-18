@@ -10,6 +10,8 @@ export interface AuthState {
   addProfile: (payload: AddProfilePayload) => Promise<void>;
   updateProfile: (id: string, payload: AddProfilePayload) => Promise<void>;
   logout: () => void;
+  refreshToken: () => Promise<void>;
+  setAccessToken: (token: string) => void;
 }
 
 export interface LoginPayload {

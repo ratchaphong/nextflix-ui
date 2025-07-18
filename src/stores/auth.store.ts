@@ -111,4 +111,27 @@ export const useAuthStore = create<AuthState>((set) => ({
       error: null,
     });
   },
+
+  refreshToken: async () => {
+    set({ loading: true });
+
+    try {
+      const { accessToken } = await AuthService.refreshToken();
+      set({ accessToken });
+      tokenStorage.setToken(accessToken);
+      showToast("Session refreshed", "success");
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to refresh token";
+      set({ error: errorMessage });
+      showToast(errorMessage, "error");
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  setAccessToken: (token) => {
+    set({ accessToken: token });
+  },
 }));

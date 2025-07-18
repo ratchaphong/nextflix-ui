@@ -9,7 +9,8 @@ export default function useTokenChecker() {
   const [tokenExpired, setTokenExpired] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const { getProfile, profile } = useAuthStore();
+  const { getProfile, setAccessToken, refreshToken, profile, accessToken } =
+    useAuthStore();
 
   useEffect(() => {
     const init = async () => {
@@ -24,6 +25,7 @@ export default function useTokenChecker() {
 
       if (token) {
         // console.info("✅ Token is valid:", token);
+        setAccessToken(token); // ✅ sync token เข้า store
 
         if (GUEST_ONLY_PATHS.includes(pathname)) {
           console.log("🔒 Redirecting logged-in user out of guest page...");
@@ -58,18 +60,44 @@ export default function useTokenChecker() {
     init();
   }, [pathname, profile]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const token = tokenStorage.getToken();
-  //     if (token && tokenStorage.isTokenExpired()) {
-  //       console.warn("⏳ Token expired from interval.");
-  //       setTokenExpired(true);
-  //       clearInterval(interval);
-  //     }
-  //   }, 1000);
+  useEffect(() => {
+    let refreshing = false;
+    let interval: NodeJS.Timeout;
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    const getToken = async () => {
+      try {
+        refreshing = true;
+        await refreshToken();
+        refreshing = false;
+      } catch (err) {
+        console.error("⚠️ Failed to get refresh token:", err);
+        refreshing = false;
+        setTokenExpired(true);
+      }
+    };
+
+    const startInterval = () => {
+      interval = setInterval(() => {
+        const token = tokenStorage.getToken();
+
+        if (!token) return;
+
+        if (tokenStorage.isTokenExpired()) {
+          console.warn("⏳ Token expired from interval.");
+          setTokenExpired(true);
+          clearInterval(interval);
+        } else if (tokenStorage.isTokenNearExpiry() && !refreshing) {
+          console.info("⚠️ Token is near expiry. Refreshing...");
+          clearInterval(interval);
+          getToken();
+        }
+      }, 1000);
+    };
+
+    startInterval();
+
+    return () => clearInterval(interval);
+  }, [accessToken]);
 
   return { isReady, tokenExpired };
 }
