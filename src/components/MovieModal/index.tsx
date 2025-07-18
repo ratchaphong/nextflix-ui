@@ -1,6 +1,6 @@
 "use client";
 
-import { MovieModalProps } from "../TrendingCarousel/TrendingCarousel.types";
+import { MovieModalProps } from "./MovieModal.types";
 import styles from "./MovieModal.module.css";
 import useMovieModal from "./MovieModal.hooks";
 

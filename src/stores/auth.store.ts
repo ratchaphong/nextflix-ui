@@ -1,9 +1,9 @@
 // stores/auth.store.ts
 import { create } from "zustand";
 import { AuthService } from "@/services/auth.service";
-import { AuthState } from "@/types/login";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useToastStore } from "@/stores/toast.store";
+import { AuthState } from "@/types/login.store";
 
 const showToast = useToastStore.getState().showToast;
 

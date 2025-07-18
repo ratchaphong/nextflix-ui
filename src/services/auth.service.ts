@@ -1,13 +1,13 @@
+import api from "@/lib/axios";
+import axios from "axios";
+import { MOCK_ACCESS_TOKEN, MOCK_PROFILE } from "@/mock";
 import {
   LoginPayload,
   LoginResponse,
   RegisterPayload,
-  ProfileResponse,
   AddProfilePayload,
-} from "@/types/login";
-import api from "@/lib/axios";
-import axios from "axios";
-import { MOCK_ACCESS_TOKEN, MOCK_PROFILE } from "@/mock";
+  ProfileResponse,
+} from "@/types/login.store";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 

@@ -1,10 +1,6 @@
-import { Profile } from "@/types/login";
+import { Profile } from "@/types/global";
+import { AddProfileFormValues } from "@/types/login.form";
 import { FormikHelpers } from "formik";
-
-export interface AddProfileFormValues {
-  name: string;
-  image: string;
-}
 
 export interface AddProfileModalProps {
   onClose: () => void;

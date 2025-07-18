@@ -1,4 +1,4 @@
-import { VideoItem } from "@/types/movie";
+import { VideoItem } from "@/types/global";
 
 export interface SelectedMovieModalProps {
   selectedMovieId: string;

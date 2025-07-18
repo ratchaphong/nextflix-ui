@@ -3,7 +3,7 @@
 import { FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import { useAuthStore } from "@/stores/auth.store";
-import { LoginFormValues } from "@/types/login";
+import { LoginFormValues } from "@/types/login.form";
 import { useRouter } from "@/i18n/navigation";
 import { secureStorage } from "@/lib/secureStorage";
 import { useMemo } from "react";

@@ -1,7 +1,7 @@
 // stores/movie.store.ts
 import { create } from "zustand";
 import { MovieService } from "@/services/movie.service";
-import { MovieState } from "@/types/movie";
+import { MovieState } from "@/types/movie.store";
 
 export const useMovieStore = create<MovieState>((set) => ({
   movies: [],
@@ -9,14 +9,13 @@ export const useMovieStore = create<MovieState>((set) => ({
   recommended: [],
   categoryVideos: [],
   loading: false,
-  current: null,
   error: null,
 
   fetchMovies: async () => {
     set({ loading: true, movies: [], error: null });
 
     try {
-      const data = await MovieService.getMovies();
+      const { data } = await MovieService.fetchMovies();
       set({ movies: data });
     } catch (err) {
       console.error("❌ Fetch movie failed:", err);
@@ -29,12 +28,12 @@ export const useMovieStore = create<MovieState>((set) => ({
     }
   },
 
-  fetchMovieById: async (id: string) => {
+  fetchMovieById: async (payload) => {
     set({ loading: true, movie: null, error: null });
 
     try {
-      const data = await MovieService.getMovieById(id);
-      set({ movie: data });
+      const movie = await MovieService.fetchMovieById(payload);
+      set({ movie });
     } catch (err) {
       console.error("❌ Fetch movie by ID failed:", err);
       const errorMessage =
@@ -50,7 +49,7 @@ export const useMovieStore = create<MovieState>((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const data = await MovieService.getRecommendedVideos();
+      const { data } = await MovieService.fetchRecommended();
       set({ recommended: data });
     } catch (err) {
       console.error("❌ Fetch recommended videos failed:", err);
@@ -63,11 +62,11 @@ export const useMovieStore = create<MovieState>((set) => ({
     }
   },
 
-  fetchByCategory: async (category: string) => {
+  fetchByCategory: async (payload) => {
     set({ loading: true, error: null });
 
     try {
-      const data = await MovieService.getVideosByCategory(category);
+      const { data } = await MovieService.fetchByCategory(payload);
       set({ categoryVideos: data });
     } catch (err) {
       console.error("❌ Fetch category videos failed:", err);
@@ -79,7 +78,4 @@ export const useMovieStore = create<MovieState>((set) => ({
       set({ loading: false });
     }
   },
-
-  setCurrent: (movie) => set({ current: movie }),
-  clearCurrent: () => set({ current: null }),
 }));

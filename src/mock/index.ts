@@ -1,17 +1,15 @@
-import { LoginResponse, ProfileResponse } from "@/types/login";
-import { VideoItem } from "@/types/movie";
+import { VideoItem } from "@/types/global";
+import { LoginResponse, ProfileResponse } from "@/types/login.store";
 
 export const MOCK_ACCESS_TOKEN: LoginResponse = {
   accessToken: "mock_token_123",
 };
 
 export const MOCK_PROFILE: ProfileResponse = {
-  user: {
-    id: "user_001",
-    email: "admin@example.com",
-    name: "คุณพ่อ",
-    role: "OWNER",
-  },
+  id: "user_001",
+  email: "admin@example.com",
+  name: "คุณพ่อ",
+  role: "OWNER",
   package: {
     id: "pkg_family",
     name: "Family Plan",

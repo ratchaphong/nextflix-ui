@@ -1,9 +1,9 @@
 "use client";
 
-import { AddProfileFormValues } from "@/components/AddProfileModal/AddProfileModal.types";
 import { useRouter } from "@/i18n/navigation";
 import { useAuthStore } from "@/stores/auth.store";
-import { Profile } from "@/types/login";
+import { Profile } from "@/types/global";
+import { AddProfileFormValues } from "@/types/login.form";
 import { FormikHelpers } from "formik";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

@@ -1,11 +1,9 @@
 import useDisableBodyScroll from "@/lib/useDisableBodyScroll";
 import { useTranslations } from "next-intl";
 import { useMemo, useRef } from "react";
-import {
-  AddProfileFormValues,
-  UseAddProfileModalProps,
-} from "./AddProfileModal.types";
+import { UseAddProfileModalProps } from "./AddProfileModal.types";
 import { initialValues as i } from "./AddProfileModal.utils";
+import { AddProfileFormValues } from "@/types/login.form";
 
 export default function useAddProfileModal({ data }: UseAddProfileModalProps) {
   useDisableBodyScroll(true);

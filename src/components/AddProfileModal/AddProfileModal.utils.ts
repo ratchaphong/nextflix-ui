@@ -1,3 +1,6 @@
-import { AddProfileFormValues } from "./AddProfileModal.types";
+import { AddProfileFormValues } from "@/types/login.form";
 
-export const initialValues: AddProfileFormValues = { name: "", image: "" };
+export const initialValues: AddProfileFormValues = {
+  name: "",
+  image: "",
+};

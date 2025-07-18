@@ -1,4 +1,4 @@
-import { Profile } from "@/types/login";
+import { Profile } from "@/types/global";
 
 export interface DropdownMenuProps {
   profile: Profile;

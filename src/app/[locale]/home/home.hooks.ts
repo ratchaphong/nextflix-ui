@@ -1,6 +1,5 @@
 "use client";
 
-import { HomeFormValues, RegisterPayload } from "@/types/login";
 import { useTranslations } from "next-intl";
 import { FormikHelpers } from "formik";
 import { useEffect } from "react";
@@ -8,6 +7,8 @@ import { useMovieStore } from "@/stores/movie.store";
 import { useAuthStore } from "@/stores/auth.store";
 import { useRouter } from "@/i18n/navigation";
 import { secureStorage } from "@/lib/secureStorage";
+import { HomeFormValues } from "@/types/login.form";
+import { RegisterPayload } from "@/types/login.store";
 
 export function useHomeForm() {
   const t = useTranslations("HomePage");

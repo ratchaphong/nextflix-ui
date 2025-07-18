@@ -4,20 +4,27 @@ import {
   // MOCK_MOVIE_OMDB,
   MOCK_RECOMMENDED_VIDEO,
 } from "@/mock";
-import { Movie, VideoItem } from "@/types/movie";
+import {
+  FetchByCategoryPayload,
+  FetchMoviesByIdPayload,
+  FetchMovieByIdResponse,
+  FetchMoviesResponse,
+  FetchRecommendedResponse,
+} from "@/types/movie.store";
 import api from "@/lib/axios";
 import axios from "axios";
+import { Movie } from "@/types/global";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 // const OMDB_API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY;
 
 export const MovieService = {
-  getMovies: async (): Promise<Movie[]> => {
+  fetchMovies: async (): Promise<FetchMoviesResponse> => {
     try {
       const searchQuery = "batman";
       if (USE_MOCK) {
         const data = MOCK_MOVIES_OMDB;
-        console.log("🔧 Using MOCK getMovies");
+        console.log("🔧 Using MOCK fetchMovies");
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: Movie[] = data.Search.map((item) => ({
@@ -29,12 +36,12 @@ export const MovieService = {
               description: "N/A", // ต้องใช้ API แบบ `i=ttxxxx` เพิ่มเติมเพื่อเอารายละเอียด
               tags: [], // ไม่มี tag โดยตรง
             }));
-            resolve(transformed);
+            resolve({ data: transformed });
           }, 500)
         );
       }
 
-      const { data } = await api.get<Movie[]>(`/movies/search`, {
+      const { data } = await api.get<FetchMoviesResponse>(`/movies/search`, {
         params: {
           q: searchQuery,
         },
@@ -52,11 +59,13 @@ export const MovieService = {
     }
   },
 
-  getMovieById: async (imdbID: string): Promise<Movie> => {
+  fetchMovieById: async (
+    payload: FetchMoviesByIdPayload
+  ): Promise<FetchMovieByIdResponse> => {
     try {
       if (USE_MOCK) {
         const data = MOCK_MOVIE_OMDB;
-        console.log("🔧 Using MOCK getMovieById");
+        console.log("🔧 Using MOCK fetchMovieById");
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: Movie = {
@@ -73,9 +82,12 @@ export const MovieService = {
         );
       }
 
-      const { data } = await api.get<Movie>(`/movies/${imdbID}`, {
-        timeout: 60_000,
-      });
+      const { data } = await api.get<FetchMovieByIdResponse>(
+        `/movies/${payload.id}`,
+        {
+          timeout: 60_000,
+        }
+      );
 
       return data;
     } catch (error: unknown) {
@@ -89,19 +101,22 @@ export const MovieService = {
     }
   },
 
-  getRecommendedVideos: async (): Promise<VideoItem[]> => {
+  fetchRecommended: async (): Promise<FetchRecommendedResponse> => {
     try {
       if (USE_MOCK) {
         const data = MOCK_RECOMMENDED_VIDEO;
-        console.log("🔧 Using MOCK getRecommendedVideos");
+        console.log("🔧 Using MOCK fetchRecommended");
         return new Promise((resolve) =>
           setTimeout(() => {
-            const transformed: VideoItem[] = data;
+            const transformed: FetchRecommendedResponse = { data };
             resolve(transformed);
           }, 500)
         );
       }
-      const { data } = await api.get<VideoItem[]>(`/movies/recommended`, {});
+      const { data } = await api.get<FetchRecommendedResponse>(
+        `/movies/recommended`,
+        {}
+      );
       return data;
     } catch (error) {
       console.error("❌ getRecommendedVideos error:", error);
@@ -109,10 +124,26 @@ export const MovieService = {
     }
   },
 
-  getVideosByCategory: async (category: string): Promise<VideoItem[]> => {
+  fetchByCategory: async (
+    payload: FetchByCategoryPayload
+  ): Promise<FetchRecommendedResponse> => {
     try {
-      console.log(category);
-      const { data } = await api.get<VideoItem[]>(`/movies/recommended`, {});
+      if (USE_MOCK) {
+        const data = MOCK_RECOMMENDED_VIDEO;
+        console.log("🔧 Using MOCK fetchByCategory");
+        console.log(payload);
+        return new Promise((resolve) =>
+          setTimeout(() => {
+            const transformed: FetchRecommendedResponse = { data };
+            resolve(transformed);
+          }, 500)
+        );
+      }
+
+      const { data } = await api.get<FetchRecommendedResponse>(
+        `/movies/recommended`,
+        {}
+      );
 
       return data;
     } catch (error) {
