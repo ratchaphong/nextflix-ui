@@ -125,7 +125,7 @@ export const AuthService = {
     }
 
     try {
-      const { data } = await api.post<LoginResponse>("/auth/refresh-token");
+      const { data } = await api.post<LoginResponse>("/auth/access-token");
       return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
