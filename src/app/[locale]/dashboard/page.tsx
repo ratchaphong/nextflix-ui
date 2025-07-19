@@ -3,6 +3,7 @@
 import styles from "./dashboard.module.css";
 import { useDashboard } from "./dashboard.hooks";
 import SelectedMovieModal from "@/components/SelectedMovieModal";
+import { VideoCarousel } from "@/components/VideoCarousel";
 
 const DashboardPage = () => {
   const {
@@ -10,12 +11,12 @@ const DashboardPage = () => {
     showVideo,
     selectedMovieId,
     recommended: r,
-    carouselRef,
+    categoryMapByEnum: c,
+    totalMovies,
     handlePlay,
     handleCloseModal,
     handleCardInfoClick,
     handleCardModalClose,
-    scroll,
   } = useDashboard();
 
   if (r.length === 0) return null;
@@ -66,55 +67,30 @@ const DashboardPage = () => {
         )}
       </section>
 
-      <section className={styles.carousel__wrapper}>
-        <h2 className={styles.carousel__title}>{t("recommendedTitle")}</h2>
-        <button
-          onClick={() => scroll("left")}
-          className={styles.carousel__nav + " " + styles.prev}
-        >
-          &#10094;
-        </button>
-        <div className={styles.carousel} ref={carouselRef}>
-          {r.map((movie) => (
-            <div key={movie.id} className={styles.card}>
-              <img
-                src={movie.thumbnail}
-                alt={movie.title}
-                className={styles.card__thumbnail}
-              />
-              <div className={styles.mini__modal}>
-                <iframe
-                  className={styles.mini__video}
-                  src={`${movie.video}&mute=1&controls=0&loop=1`}
-                  title="Mini Preview"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
-                <div className={styles.mini__content}>
-                  <h4>{movie.title}</h4>
-                  <button onClick={(e) => handleCardInfoClick(e, movie.id)}>
-                    {t("info")}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+      <VideoCarousel
+        title={"recommendedTitle"}
+        items={r}
+        onInfoClick={handleCardInfoClick}
+      />
 
-          {selectedMovieId && (
-            <SelectedMovieModal
-              selectedMovieId={selectedMovieId}
-              handleCardModalClose={handleCardModalClose}
-              movies={r}
-            />
-          )}
-        </div>
-        <button
-          onClick={() => scroll("right")}
-          className={styles.carousel__nav + " " + styles.next}
-        >
-          &#10095;
-        </button>
-      </section>
+      {Array.from(c.entries())
+        .filter(([, items]) => items.length > 0)
+        .map(([cat, items]) => (
+          <VideoCarousel
+            key={cat}
+            title={cat}
+            items={items}
+            onInfoClick={handleCardInfoClick}
+          />
+        ))}
+
+      {selectedMovieId && (
+        <SelectedMovieModal
+          selectedMovieId={selectedMovieId}
+          handleCardModalClose={handleCardModalClose}
+          movies={totalMovies}
+        />
+      )}
     </main>
   );
 };

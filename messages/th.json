@@ -89,11 +89,9 @@
     "button": "ไปที่หน้าล็อกอิน"
   },
   "Dashboard": {
-    "recommendedTitle": "แนะนำสำหรับคุณ",
     "play": "▶ เล่น",
     "moreInfo": "ℹ ข้อมูลเพิ่มเติม",
-    "back": "← ย้อนกลับ",
-    "info": "ข้อมูล"
+    "back": "← ย้อนกลับ"
   },
   "AddProfileModal": {
     "title": "เพิ่มโปรไฟล์",
@@ -108,5 +106,30 @@
   },
   "SelectedMovieModal": {
     "close": "ปิด"
+  },
+  "VideoCarousel": {
+    "Action": "แอ็กชัน",
+    "Comedy": "ตลก",
+    "Drama": "ดราม่า",
+    "Thriller": "ระทึกขวัญ",
+    "Horror": "สยองขวัญ",
+    "Fantasy": "แฟนตาซี",
+    "Sci-Fi": "ไซไฟ",
+    "Romance": "โรแมนติก",
+    "Crime": "อาชญากรรม",
+    "Mystery": "ลึกลับ",
+    "Family": "ครอบครัว",
+    "Music": "ดนตรี",
+    "Animation": "แอนิเมชัน",
+    "Documentary": "สารคดี",
+    "Adventure": "ผจญภัย",
+    "Superhero": "ซูเปอร์ฮีโร่",
+    "Zombie": "ซอมบี้",
+    "Spy": "สายลับ",
+    "Biopic": "ชีวประวัติ",
+    "Satire": "เสียดสี",
+    "Noir": "นัวร์",
+    "info": "ข้อมูล",
+    "recommendedTitle": "แนะนำสำหรับคุณ"
   }
 }

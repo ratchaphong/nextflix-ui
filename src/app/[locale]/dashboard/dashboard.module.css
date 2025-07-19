@@ -1,6 +1,5 @@
 .hero {
   margin-top: 10vh;
-  position: relative;
   width: 100%;
   height: 90vh;
   overflow: hidden;
@@ -43,17 +42,17 @@
 .hero .content .buttons button.more {
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
   border: none;
 }
 
 .hero .content .buttons button.play {
-  background: white;
+  background-color: white;
   color: black;
 }
 
 .hero .content .buttons button.more {
-  background: rgba(109, 109, 110, 0.7);
+  background-color: rgba(109, 109, 110, 0.7);
   color: white;
 }
 
@@ -93,131 +92,6 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.carousel__wrapper {
-  @apply relative overflow-hidden w-full bg-transparent;
-}
-
-.carousel {
-  scroll-behavior: smooth;
-  gap: 2rem;
-  padding: 4rem;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  @apply flex overflow-auto;
-}
-
-.carousel::-webkit-scrollbar {
-  @apply hidden;
-}
-
-.carousel {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.carousel .card {
-  width: 220px;
-  flex-shrink: 0;
-  /* scroll-snap-align: start; */
-  transition: transform 0.3s ease;
-  z-index: 1;
-  @apply relative;
-}
-
-.carousel .card:hover {
-  z-index: 99;
-}
-
-.carousel .card .card__thumbnail {
-  border-radius: 8px;
-  transition: opacity 0.2s ease;
-  @apply block w-full;
-}
-
-.carousel .card:hover .card__thumbnail {
-  opacity: 0.3;
-}
-
-.carousel__wrapper .carousel__nav {
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.6);
-  color: var(--color-text);
-  font-size: 2rem;
-  border: none;
-  padding: 0.5rem 1rem;
-  z-index: 100;
-  transition: background-color 0.3s ease;
-  border-radius: 6px;
-  @apply absolute cursor-pointer;
-}
-
-.carousel__wrapper .carousel__nav:hover {
-  background-color: rgba(0, 0, 0, 0.85);
-}
-
-.carousel__wrapper .carousel__nav.prev {
-  left: 0.5rem;
-}
-
-.carousel__wrapper .carousel__nav.next {
-  right: 0.5rem;
-}
-
-.carousel__wrapper .carousel__title {
-  font-size: 2rem;
-  top: 1rem;
-  left: 4rem;
-  @apply absolute;
-}
-
-.mini__modal {
-  top: 0;
-  left: 0;
-  width: 100%; /* เริ่มจากขนาดเดียวกับ thumbnail */
-  height: 100%;
-  background: #000;
-  border-radius: 8px;
-  z-index: 10;
-
-  /* animation */
-  transform: scale(1);
-  transform-origin: center center;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  pointer-events: none;
-  @apply absolute overflow-hidden opacity-0;
-}
-
-.carousel .card:hover .mini__modal {
-  transform: scale(1.5);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.mini__modal .mini__video {
-  object-fit: cover;
-  border-radius: 8px;
-  @apply w-full h-full;
-}
-
-.mini__modal .mini__content {
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.5rem 1rem;
-  gap: 0.5rem;
-  box-sizing: border-box;
-  @apply absolute w-full flex justify-between items-center;
-}
-
-.mini__modal .mini__content h4 {
-  font-size: 0.9rem;
-  color: color(--color-text);
-  margin: 0;
-  flex: 1;
-  letter-spacing: 0.08rem;
-}
-
 /* 1024px หรือน้อยกว่า (Tablet) */
 @media (max-width: 1024px) {
   .hero .content {
@@ -238,21 +112,6 @@
   .hero .content .buttons button.more {
     font-size: 0.95rem;
     padding: 0.6rem 1.2rem;
-  }
-
-  .carousel {
-    gap: 1rem;
-    padding: 3rem 2rem;
-  }
-
-  .carousel__wrapper .carousel__title {
-    font-size: 1.8rem;
-    top: 0rem;
-    left: 2rem;
-  }
-
-  .carousel .card {
-    width: 180px;
   }
 }
 
@@ -289,42 +148,5 @@
     padding: 0.4rem 0.8rem;
     top: 0.75rem;
     left: 0.75rem;
-  }
-
-  .modal__backdrop .modal__content {
-    padding: 1.5rem;
-    font-size: 0.95rem;
-  }
-
-  .modal__backdrop .modal__content .closeBtn {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-  }
-
-  .carousel {
-    gap: 0.5rem;
-    padding: 2rem 1rem;
-  }
-
-  .carousel .card {
-    width: 140px;
-  }
-
-  .carousel__wrapper .carousel__title {
-    font-size: 1.6rem;
-    left: 1rem;
-  }
-
-  .mini__modal {
-    transform: scale(1.2); /* ลด scale ให้น้อยลงเมื่อจอเล็ก */
-  }
-
-  .mini__modal .mini__content h4 {
-    font-size: 0.8rem;
-  }
-
-  .mini__modal .mini__content button {
-    font-size: 0.75rem;
-    padding: 0.2rem 0.5rem;
   }
 }

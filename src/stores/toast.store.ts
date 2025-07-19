@@ -1,5 +1,5 @@
 // stores/toast.store.ts
-import { ToastState } from "@/types/toast";
+import { ToastState } from "@/types/toast.store";
 import { create } from "zustand";
 
 export const useToastStore = create<ToastState>((set) => ({

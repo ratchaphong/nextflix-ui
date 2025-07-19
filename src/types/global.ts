@@ -51,4 +51,6 @@ export interface VideoItem {
   thumbnail: string;
   video: string;
   description: string;
+  category: string[];
+  releaseDate: string;
 }

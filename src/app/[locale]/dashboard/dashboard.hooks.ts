@@ -1,25 +1,17 @@
 "use client";
 
 import { useMovieStore } from "@/stores/movie.store";
+import { VideoItem } from "@/types/global";
+import { VIDEO_CATEGORY } from "@/utils/constants";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function useDashboard() {
-  const { fetchRecommended, recommended } = useMovieStore();
+  const { fetchRecommended, fetchByCategory, recommended, categoryVideos } =
+    useMovieStore();
   const [showVideo, setShowVideo] = useState(false);
   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
   const t = useTranslations("Dashboard");
-
-  const carouselRef = useRef<HTMLDivElement | null>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (!carouselRef.current) return;
-    const scrollAmount = 220 + 16; // width + gap
-    carouselRef.current.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
 
   const handlePlay = () => setShowVideo(true);
 
@@ -34,8 +26,46 @@ export function useDashboard() {
 
   const handleCardModalClose = () => setSelectedMovieId(null);
 
+  const categoryMapByEnum = useMemo(() => {
+    const map = new Map<VIDEO_CATEGORY, VideoItem[]>();
+
+    // สร้าง array ของ enum ค่าไว้ก่อน
+    const categories = Object.values(VIDEO_CATEGORY);
+
+    // map ค่าเริ่มต้นให้ทุก key
+    for (const cat of categories) {
+      map.set(cat, []);
+    }
+
+    const seen = new Set<string>();
+
+    categoryVideos.forEach((video) => {
+      if (seen.has(video.id)) return;
+      seen.add(video.id);
+
+      video.category.forEach((cat) => {
+        if (map.has(cat as VIDEO_CATEGORY)) {
+          map.get(cat as VIDEO_CATEGORY)!.push(video);
+        }
+      });
+    });
+
+    return map;
+  }, [categoryVideos]);
+
   useEffect(() => {
-    fetchRecommended();
+    const init = async () => {
+      await fetchRecommended();
+      await fetchByCategory({
+        category: "",
+        page: 1,
+        perPage: 100,
+        orderBy: "title",
+        order: "asc",
+      });
+    };
+
+    init();
   }, []);
 
   return {
@@ -43,11 +73,11 @@ export function useDashboard() {
     showVideo,
     selectedMovieId,
     recommended,
-    carouselRef,
+    categoryMapByEnum,
     handlePlay,
     handleCloseModal,
     handleCardInfoClick,
     handleCardModalClose,
-    scroll,
+    totalMovies: [...recommended, ...categoryVideos],
   };
 }

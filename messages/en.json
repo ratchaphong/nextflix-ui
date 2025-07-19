@@ -89,11 +89,9 @@
     "button": "Go to Login"
   },
   "Dashboard": {
-    "recommendedTitle": "Recommended for You",
     "play": "▶ Play",
     "moreInfo": "ℹ More Info",
-    "back": "← Back",
-    "info": "Info"
+    "back": "← Back"
   },
   "AddProfileModal": {
     "title": "Add Profile",
@@ -108,5 +106,30 @@
   },
   "SelectedMovieModal": {
     "close": "Close"
+  },
+  "VideoCarousel": {
+    "Action": "Action",
+    "Comedy": "Comedy",
+    "Drama": "Drama",
+    "Thriller": "Thriller",
+    "Horror": "Horror",
+    "Fantasy": "Fantasy",
+    "Sci-Fi": "Sci-Fi",
+    "Romance": "Romance",
+    "Crime": "Crime",
+    "Mystery": "Mystery",
+    "Family": "Family",
+    "Music": "Music",
+    "Animation": "Animation",
+    "Documentary": "Documentary",
+    "Adventure": "Adventure",
+    "Superhero": "Superhero",
+    "Zombie": "Zombie",
+    "Spy": "Spy",
+    "Biopic": "Biopic",
+    "Satire": "Satire",
+    "Noir": "Noir",
+    "info": "Info",
+    "recommendedTitle": "Recommended for You"
   }
 }

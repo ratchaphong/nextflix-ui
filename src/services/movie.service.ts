@@ -3,6 +3,7 @@ import {
   MOCK_MOVIES_OMDB,
   // MOCK_MOVIE_OMDB,
   MOCK_RECOMMENDED_VIDEO,
+  MOCK_VIDEO_BY_CATEGORY,
 } from "@/mock";
 import {
   FetchByCategoryPayload,
@@ -129,7 +130,7 @@ export const MovieService = {
   ): Promise<FetchRecommendedResponse> => {
     try {
       if (USE_MOCK) {
-        const data = MOCK_RECOMMENDED_VIDEO;
+        const data = MOCK_VIDEO_BY_CATEGORY;
         console.log("🔧 Using MOCK fetchByCategory");
         console.log(payload);
         return new Promise((resolve) =>
