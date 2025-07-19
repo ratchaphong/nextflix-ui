@@ -27,12 +27,16 @@ export interface FetchByCategoryPayload {
 
 export type FetchMovieByIdResponse = Movie;
 
-export interface FetchMoviesResponse {
-  data: Movie[];
-}
+// export interface FetchMoviesResponse extends Array<Movie> {}
+export type FetchMoviesResponse = Movie[];
 
-export interface FetchRecommendedResponse {
-  data: VideoItem[];
-}
+// export interface FetchRecommendedResponse extends Array<VideoItem> {}
+export type FetchRecommendedResponse = VideoItem[];
 
-export type FetchByCategoryResponse = FetchRecommendedResponse;
+export interface FetchByCategoryResponse {
+  data: FetchRecommendedResponse;
+  page: number;
+  perPage: number;
+  total: number;
+  totalPage: number;
+}

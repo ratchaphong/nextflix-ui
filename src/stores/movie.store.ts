@@ -15,7 +15,7 @@ export const useMovieStore = create<MovieState>((set) => ({
     set({ loading: true, movies: [], error: null });
 
     try {
-      const { data } = await MovieService.fetchMovies();
+      const data = await MovieService.fetchMovies();
       set({ movies: data });
     } catch (err) {
       console.error("❌ Fetch movie failed:", err);
@@ -49,7 +49,7 @@ export const useMovieStore = create<MovieState>((set) => ({
     set({ loading: true, error: null });
 
     try {
-      const { data } = await MovieService.fetchRecommended();
+      const data = await MovieService.fetchRecommended();
       set({ recommended: data });
     } catch (err) {
       console.error("❌ Fetch recommended videos failed:", err);

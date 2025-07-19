@@ -11,6 +11,7 @@ import {
   FetchMovieByIdResponse,
   FetchMoviesResponse,
   FetchRecommendedResponse,
+  FetchByCategoryResponse,
 } from "@/types/movie.store";
 import api from "@/lib/axios";
 import axios from "axios";
@@ -37,7 +38,7 @@ export const MovieService = {
               description: "N/A", // ต้องใช้ API แบบ `i=ttxxxx` เพิ่มเติมเพื่อเอารายละเอียด
               tags: [], // ไม่มี tag โดยตรง
             }));
-            resolve({ data: transformed });
+            resolve(transformed);
           }, 500)
         );
       }
@@ -109,7 +110,7 @@ export const MovieService = {
         console.log("🔧 Using MOCK fetchRecommended");
         return new Promise((resolve) =>
           setTimeout(() => {
-            const transformed: FetchRecommendedResponse = { data };
+            const transformed: FetchRecommendedResponse = data;
             resolve(transformed);
           }, 500)
         );
@@ -127,7 +128,7 @@ export const MovieService = {
 
   fetchByCategory: async (
     payload: FetchByCategoryPayload
-  ): Promise<FetchRecommendedResponse> => {
+  ): Promise<FetchByCategoryResponse> => {
     try {
       if (USE_MOCK) {
         const data = MOCK_VIDEO_BY_CATEGORY;
@@ -135,15 +136,23 @@ export const MovieService = {
         console.log(payload);
         return new Promise((resolve) =>
           setTimeout(() => {
-            const transformed: FetchRecommendedResponse = { data };
+            const transformed: FetchByCategoryResponse = {
+              data: data,
+              page: 1,
+              perPage: 100,
+              total: data.length,
+              totalPage: 1,
+            };
             resolve(transformed);
           }, 500)
         );
       }
 
-      const { data } = await api.get<FetchRecommendedResponse>(
-        `/movies/recommended`,
-        {}
+      const { data } = await api.get<FetchByCategoryResponse>(
+        `/movies/category`,
+        {
+          params: payload,
+        }
       );
 
       return data;
