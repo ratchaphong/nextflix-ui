@@ -58,6 +58,7 @@ export function useDashboard() {
       await fetchRecommended();
       await fetchByCategory({
         category: "",
+        title: "",
         page: 1,
         perPage: 100,
         orderBy: "title",

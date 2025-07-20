@@ -37,23 +37,22 @@ export default function Header() {
           </div>
         </Link>
 
-        {isLoggedIn && selectedProfile ? (
-          <div className={styles.navbar__nav__items}>
-            <ul className={styles.nav__item__logged}>
-              <li>
-                <Link href={"/select-profile"}>{t("home")}</Link>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("tvShows")}
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("movies")}
-                </a>
-              </li>
-              <li>
+        {isLoggedIn ? (
+          selectedProfile ? (
+            <div className={styles.navbar__nav__items}>
+              <ul className={styles.nav__item__logged}>
+                <li>
+                  <Link href={"/select-profile"}>{t("home")}</Link>
+                </li>
+                <li>
+                  <a href="#" aria-disabled>
+                    {t("tvShows")}
+                  </a>
+                </li>
+                <li>
+                  <Link href={"/movie-search"}>{t("movies")}</Link>
+                </li>
+                {/* <li>
                 <a href="#" aria-disabled>
                   {t("new")}
                 </a>
@@ -62,43 +61,42 @@ export default function Header() {
                 <a href="#" aria-disabled>
                   {t("myList")}
                 </a>
+              </li> */}
+              </ul>
+              <div className={styles.logged}>
+                <DropdownMenu profile={selectedProfile} t={t} />
+                <button
+                  className={styles.hamburger}
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <FaBars />
+                </button>
+              </div>
+              <ul className={cx(styles.mobile__menu, menuOpen && styles.show)}>
+                <li>
+                  <Link href={"/select-profile"}>{t("home")}</Link>
+                </li>
+                <li>
+                  <a href="#" aria-disabled>
+                    {t("tvShows")}
+                  </a>
+                </li>
+                <li>
+                  <Link href={"/movie-search"}>{t("movies")}</Link>
+                </li>
+                {/* <li>
+                <a href="#" aria-disabled>
+                  {t("new")}
+                </a>
               </li>
-            </ul>
-            <div className={styles.logged}>
-              <DropdownMenu profile={selectedProfile} t={t} />
-              <button
-                className={styles.hamburger}
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <FaBars />
-              </button>
+              <li>
+                <a href="#" aria-disabled>
+                  {t("myList")}
+                </a>
+              </li> */}
+              </ul>
             </div>
-            <ul className={cx(styles.mobile__menu, menuOpen && styles.show)}>
-              <li>
-                <Link href={"/select-profile"}>{t("home")}</Link>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("tvShows")}
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("movies")}
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("new")}
-                </a>
-              </li>
-              <li>
-                <a href="#" aria-disabled>
-                  {t("myList")}
-                </a>
-              </li>
-            </ul>
-          </div>
+          ) : null
         ) : (
           <div className={styles.navbar__nav__items}>
             <div className={styles.nav__item}>

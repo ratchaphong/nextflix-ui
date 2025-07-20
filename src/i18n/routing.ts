@@ -18,6 +18,10 @@ export const routing = defineRouting({
       en: "/select-profile",
       th: "/select-profile",
     },
+    "/movie-search": {
+      en: "/movie-search",
+      th: "/movie-search",
+    },
     "/dashboard": {
       en: "/dashboard",
       th: "/dashboard",

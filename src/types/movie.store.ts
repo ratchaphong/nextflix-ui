@@ -19,6 +19,7 @@ export interface FetchMoviesByIdPayload {
 
 export interface FetchByCategoryPayload {
   category: string;
+  title: string;
   page: number;
   perPage: number;
   orderBy: "title" | "releaseDate";

@@ -6,7 +6,12 @@ export const HIDDEN_SIGN_IN_BUTTON_HEADER = ["/login"];
 
 export const GUEST_ONLY_PATHS = ["/", "/login"];
 
-export const PROTECTED_PATHS = ["/select-profile", "/dashboard"];
+export const PROTECTED_PATHS = [
+  "/select-profile",
+  "/dashboard",
+  "/movie-search",
+  "/movies",
+];
 
 export const ACCESS_TOKEN_KEY = "accessToken";
 

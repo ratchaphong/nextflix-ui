@@ -2,6 +2,9 @@
 import { create } from "zustand";
 import { MovieService } from "@/services/movie.service";
 import { MovieState } from "@/types/movie.store";
+import { useToastStore } from "./toast.store";
+
+const showToast = useToastStore.getState().showToast;
 
 export const useMovieStore = create<MovieState>((set) => ({
   movies: [],
@@ -21,6 +24,7 @@ export const useMovieStore = create<MovieState>((set) => ({
       console.error("❌ Fetch movie failed:", err);
       const errorMessage =
         err instanceof Error ? err.message : "Unknown error occurred";
+      showToast(errorMessage, "error");
       set({ error: errorMessage });
       throw new Error(errorMessage);
     } finally {
