@@ -63,7 +63,8 @@
     "myList": "รายการของฉัน",
     "manageProfile": "จัดการโปรไฟล์",
     "account": "บัญชี",
-    "signOut": "ออกจากระบบ"
+    "signOut": "ออกจากระบบ",
+    "changeLanguage": "เปลี่ยนภาษา"
   },
   "Footer": {
     "audioDescription": "คำอธิบายเสียง",

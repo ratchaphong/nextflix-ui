@@ -63,7 +63,8 @@
     "myList": "My List",
     "manageProfile": "Manage profile",
     "account": "Account",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "changeLanguage": "Change Language"
   },
   "Footer": {
     "audioDescription": "Audio Description",
