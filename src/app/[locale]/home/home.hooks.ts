@@ -9,6 +9,7 @@ import { useRouter } from "@/i18n/navigation";
 import { secureStorage } from "@/lib/secureStorage";
 import { HomeFormValues } from "@/types/login.form";
 import { RegisterPayload } from "@/types/login.store";
+import { logger } from "@/lib/logger";
 
 export default function useHomeForm() {
   const t = useTranslations("HomePage");
@@ -20,7 +21,7 @@ export default function useHomeForm() {
     values: HomeFormValues,
     actions: FormikHelpers<HomeFormValues>
   ) => {
-    console.log("📨 Submitting form...", values);
+    logger.log("📨 Submitting form...", values);
     try {
       // window.alert("ฟีเจอร์นี้ยังไม่พร้อมใช้งานในขณะนี้");
       const payload: RegisterPayload = {
@@ -32,7 +33,7 @@ export default function useHomeForm() {
       await register(payload);
       router.push("/login");
     } catch (error) {
-      console.error("Error submitting form:", error);
+      logger.error("Error submitting form:", error);
     } finally {
       actions.setSubmitting(false);
     }

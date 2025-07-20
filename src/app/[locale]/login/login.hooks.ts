@@ -8,6 +8,7 @@ import { useRouter } from "@/i18n/navigation";
 import { secureStorage } from "@/lib/secureStorage";
 import { useMemo } from "react";
 import { initialValues } from "./login.utils";
+import { logger } from "@/lib/logger";
 
 export default function useLoginPage() {
   const t = useTranslations("LoginPage");
@@ -18,7 +19,7 @@ export default function useLoginPage() {
     values: LoginFormValues,
     actions: FormikHelpers<LoginFormValues>
   ) => {
-    console.log("📨 Submitting form...", values);
+    logger.log("📨 Submitting form...", values);
     try {
       if (values.rememberMe) {
         secureStorage.setLogin(values.email, values.password);
@@ -29,10 +30,10 @@ export default function useLoginPage() {
         email: values.email,
         password: values.password,
       });
-      console.log("✅ Login success");
+      logger.log("✅ Login success");
       router.push("/select-profile");
     } catch (error) {
-      console.error("❌ Login failed:", error);
+      logger.error("❌ Login failed:", error);
     } finally {
       actions.setSubmitting(false);
     }

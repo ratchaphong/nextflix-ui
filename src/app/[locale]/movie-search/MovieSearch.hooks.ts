@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useMovieStore } from "@/stores/movie.store";
 import { useFormikContext } from "formik";
+import { logger } from "@/lib/logger";
 
 export default function useMovieSearch() {
   const { values } = useFormikContext<{ keyword: string }>();
@@ -30,7 +31,7 @@ export default function useMovieSearch() {
           title: delayedKeyword,
         });
       } catch (err) {
-        console.error("Failed to fetch:", err);
+        logger.error("Failed to fetch:", err);
       }
     };
 

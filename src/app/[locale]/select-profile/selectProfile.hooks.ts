@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "@/i18n/navigation";
+import { logger } from "@/lib/logger";
 import { useAuthStore } from "@/stores/auth.store";
 import { Profile } from "@/types/global";
 import { AddProfileFormValues } from "@/types/login.form";
@@ -20,7 +21,7 @@ export const useSelectProfile = () => {
 
   const handleSelectProfile = (p: Profile) => {
     if (isManageMode) {
-      console.log("🛠️ Edit mode: Open edit modal for", p);
+      logger.log("🛠️ Edit mode: Open edit modal for", p);
       setSelectedProfile(p);
       setShowAddModal(true);
       return;
@@ -53,7 +54,7 @@ export const useSelectProfile = () => {
     values: AddProfileFormValues,
     actions: FormikHelpers<AddProfileFormValues>
   ) => {
-    console.log("📨 Submitting form...", values);
+    logger.log("📨 Submitting form...", values);
     try {
       if (selectedProfile) {
         await updateProfile(selectedProfile.id, values);
@@ -62,7 +63,7 @@ export const useSelectProfile = () => {
       }
       handleCloseModal();
     } catch (error) {
-      console.error("❌ Submitting form failed:", error);
+      logger.error("❌ Submitting form failed:", error);
     } finally {
       actions.setSubmitting(false);
     }

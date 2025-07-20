@@ -1,5 +1,6 @@
 import axios from "axios"; // <-- ใช้เพื่อสร้าง instance
 import { tokenStorage } from "./tokenStorage";
+import { logger } from "./logger";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || "",
@@ -26,14 +27,14 @@ axiosInstance.interceptors.response.use(
       const status = error.response?.status;
       const data = error.response?.data;
 
-      console.error("❌ Axios error:", {
+      logger.error("❌ Axios error:", {
         status,
         message: data?.message,
         url: error.config?.url,
         method: error.config?.method,
       });
     } else {
-      console.error("❌ Unknown error:", error);
+      logger.error("❌ Unknown error:", error);
     }
 
     // ✅ Don't alter the error object, just pass it on

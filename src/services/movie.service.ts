@@ -16,6 +16,7 @@ import {
 import api from "@/lib/axios";
 import axios from "axios";
 import { Movie } from "@/types/global";
+import { logger } from "@/lib/logger";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 // const OMDB_API_KEY = process.env.NEXT_PUBLIC_OMDB_API_KEY;
@@ -26,7 +27,7 @@ export const MovieService = {
       const searchQuery = "batman";
       if (USE_MOCK) {
         const data = MOCK_MOVIES_OMDB;
-        console.log("🔧 Using MOCK fetchMovies");
+        logger.log("🔧 Using MOCK fetchMovies");
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: Movie[] = data.Search.map((item) => ({
@@ -54,7 +55,7 @@ export const MovieService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Failed to fetch movies.";
-        console.error("❌ getMovies error:", message);
+        logger.error("❌ getMovies error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred while fetching movies.");
@@ -67,7 +68,7 @@ export const MovieService = {
     try {
       if (USE_MOCK) {
         const data = MOCK_MOVIE_OMDB;
-        console.log("🔧 Using MOCK fetchMovieById");
+        logger.log("🔧 Using MOCK fetchMovieById");
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: Movie = {
@@ -96,7 +97,7 @@ export const MovieService = {
       if (axios.isAxiosError(error)) {
         const message =
           error?.response?.data?.message || "Failed to fetch movie.";
-        console.error("❌ getMovieById error:", message);
+        logger.error("❌ getMovieById error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred while fetching movie.");
@@ -107,7 +108,7 @@ export const MovieService = {
     try {
       if (USE_MOCK) {
         const data = MOCK_RECOMMENDED_VIDEO;
-        console.log("🔧 Using MOCK fetchRecommended");
+        logger.log("🔧 Using MOCK fetchRecommended");
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: FetchRecommendedResponse = data;
@@ -121,7 +122,7 @@ export const MovieService = {
       );
       return data;
     } catch (error) {
-      console.error("❌ getRecommendedVideos error:", error);
+      logger.error("❌ getRecommendedVideos error:", error);
       throw new Error("Failed to fetch recommended videos.");
     }
   },
@@ -132,8 +133,8 @@ export const MovieService = {
     try {
       if (USE_MOCK) {
         const data = MOCK_VIDEO_BY_CATEGORY;
-        console.log("🔧 Using MOCK fetchByCategory");
-        console.log(payload);
+        logger.log("🔧 Using MOCK fetchByCategory");
+        logger.log(payload);
         return new Promise((resolve) =>
           setTimeout(() => {
             const transformed: FetchByCategoryResponse = {
@@ -157,7 +158,7 @@ export const MovieService = {
 
       return data;
     } catch (error) {
-      console.error("❌ getVideosByCategory error:", error);
+      logger.error("❌ getVideosByCategory error:", error);
       throw new Error("Failed to fetch videos by category.");
     }
   },
@@ -166,7 +167,7 @@ export const MovieService = {
   //   try {
   //     if (USE_MOCK) {
   //       const data = MOCK_MOVIES_OMDB;
-  //       console.log("🔧 Using MOCK getMovies");
+  //       logger.log("🔧 Using MOCK getMovies");
   //       return new Promise((resolve) =>
   //         setTimeout(() => {
   //           const transformed: Movie[] = data.Search.map((item) => ({
@@ -215,7 +216,7 @@ export const MovieService = {
   //     if (axios.isAxiosError(error)) {
   //       const message =
   //         error.response?.data?.message || "Failed to fetch movies.";
-  //       console.error("❌ getMovies error:", message);
+  //       logger.error("❌ getMovies error:", message);
   //       throw new Error(message);
   //     }
   //     throw new Error("An unknown error occurred while fetching movies.");
@@ -226,7 +227,7 @@ export const MovieService = {
   //   try {
   //     if (USE_MOCK) {
   //       const data = MOCK_MOVIE_OMDB;
-  //       console.log("🔧 Using MOCK getMovieById");
+  //       logger.log("🔧 Using MOCK getMovieById");
   //       return new Promise((resolve) =>
   //         setTimeout(() => {
   //           const transformed: Movie = {
@@ -263,7 +264,7 @@ export const MovieService = {
   //     if (axios.isAxiosError(error)) {
   //       const message =
   //         error.response?.data?.message || "Failed to fetch movie.";
-  //       console.error("❌ getMovieById error:", message);
+  //       logger.error("❌ getMovieById error:", message);
   //       throw new Error(message);
   //     }
   //     throw new Error("An unknown error occurred while fetching movie.");

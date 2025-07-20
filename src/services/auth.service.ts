@@ -8,13 +8,14 @@ import {
   AddProfilePayload,
   ProfileResponse,
 } from "@/types/login.store";
+import { logger } from "@/lib/logger";
 
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_API === "true";
 
 export const AuthService = {
   login: async (payload: LoginPayload): Promise<LoginResponse> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK login");
+      logger.log("🔧 Using MOCK login");
       return new Promise((resolve) =>
         setTimeout(() => resolve(MOCK_ACCESS_TOKEN), 500)
       );
@@ -27,7 +28,7 @@ export const AuthService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Login failed unexpectedly.";
-        console.error("❌ Login error:", message);
+        logger.error("❌ Login error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred.");
@@ -36,7 +37,7 @@ export const AuthService = {
 
   register: async (payload: RegisterPayload): Promise<void> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK register");
+      logger.log("🔧 Using MOCK register");
       return new Promise((resolve) => setTimeout(() => resolve(), 500));
     }
 
@@ -46,7 +47,7 @@ export const AuthService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Register failed unexpectedly.";
-        console.error("❌ Register error:", message);
+        logger.error("❌ Register error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred.");
@@ -55,7 +56,7 @@ export const AuthService = {
 
   getProfile: async (): Promise<ProfileResponse> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK getProfile");
+      logger.log("🔧 Using MOCK getProfile");
       return new Promise((resolve) =>
         setTimeout(() => resolve(MOCK_PROFILE), 500)
       );
@@ -65,11 +66,11 @@ export const AuthService = {
       const { data } = await api.get<ProfileResponse>("/auth/profile", {});
       return data;
     } catch (error: unknown) {
-      // console.log(error, axios.isAxiosError(error));
+      // logger.log(error, axios.isAxiosError(error));
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Failed to fetch profile.";
-        console.error("❌ Profile error:", message);
+        logger.error("❌ Profile error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred.");
@@ -78,7 +79,7 @@ export const AuthService = {
 
   addProfile: async (payload: AddProfilePayload): Promise<void> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK addProfile");
+      logger.log("🔧 Using MOCK addProfile");
       return new Promise((resolve) => setTimeout(() => resolve(), 500));
     }
 
@@ -88,7 +89,7 @@ export const AuthService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Add profile failed unexpectedly.";
-        console.error("❌ Add profile error:", message);
+        logger.error("❌ Add profile error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred while adding profile.");
@@ -100,7 +101,7 @@ export const AuthService = {
     payload: AddProfilePayload
   ): Promise<void> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK updateProfile");
+      logger.log("🔧 Using MOCK updateProfile");
       return new Promise((resolve) => setTimeout(() => resolve(), 500));
     }
 
@@ -110,7 +111,7 @@ export const AuthService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Update failed unexpectedly.";
-        console.error("❌ Update error:", message);
+        logger.error("❌ Update error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred.");
@@ -119,7 +120,7 @@ export const AuthService = {
 
   refreshToken: async (): Promise<LoginResponse> => {
     if (USE_MOCK) {
-      console.log("🔧 Using MOCK refreshToken");
+      logger.log("🔧 Using MOCK refreshToken");
       return new Promise((resolve) =>
         setTimeout(() => resolve(MOCK_ACCESS_TOKEN), 500)
       );
@@ -132,7 +133,7 @@ export const AuthService = {
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Refresh token failed unexpectedly.";
-        console.error("❌ Refresh token error:", message);
+        logger.error("❌ Refresh token error:", message);
         throw new Error(message);
       }
       throw new Error("An unknown error occurred during token refresh.");

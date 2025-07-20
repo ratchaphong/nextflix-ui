@@ -6,6 +6,7 @@ import { useAuthStore } from "@/stores/auth.store";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { HIDDEN_PATHS_HEADER, HIDDEN_SIGN_IN_BUTTON_HEADER } from "@/utils";
+import { logger } from "@/lib/logger";
 
 export default function useHeader() {
   const t = useTranslations("Header");
@@ -46,7 +47,7 @@ export default function useHeader() {
   };
 
   const selectedProfile = useMemo(() => {
-    console.log(effectiveProfileId);
+    logger.log(effectiveProfileId);
     if (!effectiveProfileId || !profile) return null;
     return profile.profiles.find((p) => p.id === effectiveProfileId) || null;
   }, [effectiveProfileId, profile]);
@@ -54,10 +55,10 @@ export default function useHeader() {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      // console.log("⏱️ Resize detected. Width:", width);
+      logger.log("⏱️ Resize detected. Width:", width);
 
       if (width > 768) {
-        // console.log("📱 Width > 768px: Closing menu.");
+        // logger.log("📱 Width > 768px: Closing menu.");
         setMenuOpen(false);
       }
     };

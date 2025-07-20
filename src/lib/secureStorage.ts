@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js";
+import { logger } from "./logger";
 
 const STORAGE_KEY = process.env.NEXT_PUBLIC_STORAGE_KEY || "rememberLogin";
 const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY || "secret";
@@ -21,7 +22,7 @@ export const secureStorage = {
       const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
       return { email, password: decryptedPassword };
     } catch (e) {
-      console.warn("🔐 Failed to decrypt secureStorage:", e);
+      logger.warn("🔐 Failed to decrypt secureStorage:", e);
       return null;
     }
   },

@@ -1,4 +1,5 @@
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { logger } from "@/lib/logger";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useAuthStore } from "@/stores/auth.store";
 import { GUEST_ONLY_PATHS, PROTECTED_PATHS } from "@/utils";
@@ -25,19 +26,19 @@ export default function useTokenChecker() {
       const profileId = tokenStorage.getProfileId();
 
       if (token && tokenStorage.isTokenExpired()) {
-        console.warn("⏳ Token expired. Logging out...");
+        logger.warn("⏳ Token expired. Logging out...");
         setTokenExpired(true);
         setIsReady(true);
         return;
       }
 
       if (token) {
-        // console.info("✅ Token is valid:", token);
+        // logger.info("✅ Token is valid:", token);
         setAccessToken(token); // ✅ sync token เข้า store
         if (profileId) setProfileId(profileId);
 
         if (GUEST_ONLY_PATHS.includes(pathname)) {
-          console.log("🔒 Redirecting logged-in user out of guest page...");
+          logger.log("🔒 Redirecting logged-in user out of guest page...");
           router.replace("/select-profile");
           return;
         }
@@ -47,14 +48,14 @@ export default function useTokenChecker() {
           try {
             await getProfile();
           } catch (err) {
-            console.error("⚠️ Failed to get profile:", err);
+            logger.error("⚠️ Failed to get profile:", err);
           }
         }
       } else {
-        console.info("ℹ️ No token found.");
+        logger.info("ℹ️ No token found.");
 
         if (PROTECTED_PATHS.includes(pathname)) {
-          console.log(
+          logger.log(
             "🚫 Guest attempting to access protected page. Redirecting..."
           );
           router.replace("/login");
@@ -65,7 +66,7 @@ export default function useTokenChecker() {
       setIsReady(true);
     };
 
-    console.log("⚠️ pathname : ", pathname);
+    logger.log("⚠️ pathname : ", pathname);
     init();
   }, [pathname, profile]);
 
@@ -79,7 +80,7 @@ export default function useTokenChecker() {
         await refreshToken();
         refreshing = false;
       } catch (err) {
-        console.error("⚠️ Failed to get refresh token:", err);
+        logger.error("⚠️ Failed to get refresh token:", err);
         refreshing = false;
         setTokenExpired(true);
       }
@@ -92,11 +93,11 @@ export default function useTokenChecker() {
         if (!token) return;
 
         if (tokenStorage.isTokenExpired()) {
-          console.warn("⏳ Token expired from interval.");
+          logger.warn("⏳ Token expired from interval.");
           setTokenExpired(true);
           clearInterval(interval);
         } else if (tokenStorage.isTokenNearExpiry() && !refreshing) {
-          console.info("⚠️ Token is near expiry. Refreshing...");
+          logger.info("⚠️ Token is near expiry. Refreshing...");
           clearInterval(interval);
           getToken();
         }
