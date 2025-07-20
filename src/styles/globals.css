@@ -1,12 +1,9 @@
 /* Font Imports */
 /* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@400;600;700&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap"); */
 
-/* @layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css" layer(utilities); */
+@import "tailwindcss";
 
 /* Color Variables */
 :root {
@@ -103,9 +100,8 @@
 
 /* Reset and Base Styles */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+  @apply m-0 p-0;
 }
 
 body {
@@ -122,17 +118,13 @@ html[lang="en"] body {
 /* Button */
 button {
   font-family: var(--font-thai);
-  font-size: 1rem;
   background-color: var(--color-button-bg);
-  border: 1px solid var(--color-button-bg);
+  border-color: var(--color-button-bg);
   color: var(--color-button-text);
-  border-radius: 4px;
-  padding: 0 0.5rem;
   min-height: 2.5rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
   letter-spacing: 1px;
-  white-space: nowrap;
+  @apply cursor-pointer text-base whitespace-nowrap py-0 px-2 rounded-sm border;
 }
 
 button:hover {
@@ -157,9 +149,8 @@ button:disabled {
   background-color: #555;
   border-color: #555;
   color: rgba(255, 255, 255, 0.6);
-  cursor: not-allowed;
-  opacity: 0.6;
   /* pointer-events: none; */
+  @apply cursor-not-allowed opacity-60;
 }
 
 /* Disabled secondary button */
@@ -167,8 +158,7 @@ button.secondary:disabled {
   background-color: #444;
   border-color: #444;
   color: rgba(255, 255, 255, 0.5);
-  cursor: not-allowed;
-  opacity: 0.5;
+  @apply opacity-50;
 }
 
 html[lang="en"] button {
@@ -177,17 +167,14 @@ html[lang="en"] button {
 
 /* Select */
 select {
-  border: 1px solid var(--color-input-border);
-  padding: 0 0.5rem;
-  border-radius: 0.25rem;
+  border-color: var(--color-input-border);
   background-color: var(--color-input-bg);
   align-content: center;
-
   font-family: var(--font-thai);
-  font-size: 1rem;
   color: var(--color-text);
   height: 2.5rem;
   transition: border-color 0.3s ease, transform 0.2s ease;
+  @apply text-base py-0 px-2 rounded-sm border;
 }
 
 html[lang="en"] select {
@@ -204,24 +191,21 @@ select:focus {
 
 select option {
   background-color: var(--color-bg);
-  font-size: 1rem;
   color: var(--color-text);
+  @apply text-base;
 }
 
 /* Inputs */
 input[type="email"],
 input[type="text"],
 input[type="password"] {
-  width: 100%;
   height: 2.5rem;
-  padding: 0 1rem;
   background-color: var(--color-input-bg);
-  border: 1px solid var(--color-input-border);
-  border-radius: 4px;
+  border-color: var(--color-input-border);
   color: var(--color-text);
-  font-size: 1rem;
   font-family: inherit;
   transition: border-color 0.3s ease, background-color 0.3s ease;
+  @apply text-base w-full py-0 px-4 rounded-sm border;
 }
 
 input::placeholder {
@@ -246,12 +230,10 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   width: 1.1rem;
   height: 1.1rem;
-  border: 1px solid var(--color-input-border);
-  border-radius: 3px;
+  border-color: var(--color-input-border);
   background-color: var(--color-input-bg);
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
-  position: relative;
+  @apply cursor-pointer relative rounded-sm border;
 }
 
 input[type="checkbox"]:hover {
@@ -268,7 +250,7 @@ input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
   left: 4px;
-  top: 0px;
+  top: 0;
   width: 5px;
   height: 10px;
   border: solid var(--color-checkbox);
