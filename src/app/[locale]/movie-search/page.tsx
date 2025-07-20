@@ -2,7 +2,7 @@
 
 import { Formik, Form } from "formik";
 import styles from "./MovieSearch.module.css";
-import { useMovieSearch } from "./MovieSearch.hooks";
+import useMovieSearch from "./MovieSearch.hooks";
 import FormikTextInput from "@/components/FormikTextInput";
 import { VideoItem } from "@/types/global";
 import { useTranslations } from "next-intl";

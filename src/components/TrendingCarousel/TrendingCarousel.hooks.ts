@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useMovieStore } from "@/stores/movie.store";
 import { useTranslations } from "next-intl";
 
-export function useTrendingCarousel() {
+export default function useTrendingCarousel() {
   const t = useTranslations("HomePage");
   const { movies } = useMovieStore();
 

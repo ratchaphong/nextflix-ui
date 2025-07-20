@@ -4,8 +4,10 @@ import { AuthService } from "@/services/auth.service";
 import { tokenStorage } from "@/lib/tokenStorage";
 import { useToastStore } from "@/stores/toast.store";
 import { AuthState } from "@/types/login.store";
+import { useApiErrorModalStore } from "./apiErrorModal.store";
 
 const showToast = useToastStore.getState().showToast;
+const showApiErrorModal = useApiErrorModalStore.getState().show;
 
 export const useAuthStore = create<AuthState>((set) => ({
   loading: false,
@@ -60,6 +62,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : "Failed to load profile";
+      showApiErrorModal();
       showToast(errorMessage, "error");
       set({ error: errorMessage });
       throw new Error(errorMessage);
@@ -109,6 +112,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({
       accessToken: null,
       profile: null,
+      profileId: null,
       error: null,
     });
   },

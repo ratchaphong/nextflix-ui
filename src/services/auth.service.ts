@@ -65,6 +65,7 @@ export const AuthService = {
       const { data } = await api.get<ProfileResponse>("/auth/profile", {});
       return data;
     } catch (error: unknown) {
+      // console.log(error, axios.isAxiosError(error));
       if (axios.isAxiosError(error)) {
         const message =
           error.response?.data?.message || "Failed to fetch profile.";

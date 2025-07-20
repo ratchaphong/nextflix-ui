@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import { homeSchema } from "./home/home.schema";
 import FormikTextInput from "@/components/FormikTextInput";
 import { initialValues } from "./home/home.utils";
-import { useHomeForm } from "./home/home.hooks";
+import useHomeForm from "./home/home.hooks";
 
 export default function HomePage() {
   const { t, handleSubmit } = useHomeForm();

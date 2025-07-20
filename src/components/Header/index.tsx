@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./Header.module.css";
-import { useHeader } from "./Header.hooks";
+import useHeader from "./Header.hooks";
 import { Link } from "@/i18n/navigation";
 import { FaBars } from "react-icons/fa";
 import cx from "classnames";

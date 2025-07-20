@@ -1,0 +1,20 @@
+.modal__backdrop {
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  @apply fixed flex justify-center items-center text-center;
+}
+
+.modal__content {
+  background: var(--color-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  color: var(--color-text);
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal__content button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+}

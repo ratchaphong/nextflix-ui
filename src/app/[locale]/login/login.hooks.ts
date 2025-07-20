@@ -9,7 +9,7 @@ import { secureStorage } from "@/lib/secureStorage";
 import { useMemo } from "react";
 import { initialValues } from "./login.utils";
 
-export function useLoginPage() {
+export default function useLoginPage() {
   const t = useTranslations("LoginPage");
   const { login, error } = useAuthStore();
   const router = useRouter();

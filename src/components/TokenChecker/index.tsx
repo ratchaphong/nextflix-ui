@@ -1,8 +1,9 @@
 "use client";
 
 import LoadingScreen from "../LoadingScreen";
-import ExpiredTokenModal from "../ExpiredTokenModal/indext";
+import ExpiredTokenModal from "../ExpiredTokenModal";
 import useTokenChecker from "./TokenChecker.hooks";
+import ApiErrorModal from "../ApiErrorModal";
 
 export default function TokenChecker({
   children,
@@ -14,7 +15,7 @@ export default function TokenChecker({
   return (
     <>
       {!isReady && <LoadingScreen fullBlack />}
-      {tokenExpired && <ExpiredTokenModal />}
+      {tokenExpired ? <ExpiredTokenModal /> : <ApiErrorModal />}
       {children}
     </>
   );

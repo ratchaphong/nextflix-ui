@@ -6,7 +6,7 @@ import { VIDEO_CATEGORY } from "@/utils/constants";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 
-export function useDashboard() {
+export default function useDashboard() {
   const { fetchRecommended, fetchByCategory, recommended, categoryVideos } =
     useMovieStore();
   const [showVideo, setShowVideo] = useState(false);

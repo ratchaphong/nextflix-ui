@@ -136,5 +136,10 @@
   "MovieSearch": {
     "notFound": "No movies found.",
     "searchLabel": "Search movies..."
+  },
+  "ApiErrorModal": {
+    "title": "Something went wrong",
+    "description": "We couldn't connect to the server. Please try again later.",
+    "button": "Back to login"
   }
 }

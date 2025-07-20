@@ -10,7 +10,7 @@ import { secureStorage } from "@/lib/secureStorage";
 import { HomeFormValues } from "@/types/login.form";
 import { RegisterPayload } from "@/types/login.store";
 
-export function useHomeForm() {
+export default function useHomeForm() {
   const t = useTranslations("HomePage");
   const { fetchMovies } = useMovieStore();
   const { register } = useAuthStore();

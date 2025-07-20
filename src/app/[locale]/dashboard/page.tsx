@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./dashboard.module.css";
-import { useDashboard } from "./dashboard.hooks";
+import useDashboard from "./dashboard.hooks";
 import SelectedMovieModal from "@/components/SelectedMovieModal";
-import { VideoCarousel } from "@/components/VideoCarousel";
+import VideoCarousel from "@/components/VideoCarousel";
 
 const DashboardPage = () => {
   const {

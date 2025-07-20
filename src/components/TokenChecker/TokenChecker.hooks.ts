@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function useTokenChecker() {
   const [isReady, setIsReady] = useState(false);
   const [tokenExpired, setTokenExpired] = useState(false);
+
   const router = useRouter();
   const pathname = usePathname();
   const {

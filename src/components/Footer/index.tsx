@@ -1,6 +1,6 @@
 "use client";
 
-import { useFooter } from "./Footer.hooks";
+import useFooter from "./Footer.hooks";
 import styles from "./Footer.module.css";
 
 export default function Footer() {

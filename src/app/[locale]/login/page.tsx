@@ -3,7 +3,7 @@
 import { Formik, Form, Field } from "formik";
 import styles from "./login.module.css";
 import FormikTextInput from "@/components/FormikTextInput";
-import { useLoginPage } from "./login.hooks";
+import useLoginPage from "./login.hooks";
 import { loginSchema } from "./login.schema";
 import { Link } from "@/i18n/navigation";
 

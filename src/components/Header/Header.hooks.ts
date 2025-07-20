@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { HIDDEN_PATHS_HEADER, HIDDEN_SIGN_IN_BUTTON_HEADER } from "@/utils";
 
-export function useHeader() {
+export default function useHeader() {
   const t = useTranslations("Header");
   const router = useRouter();
   const pathname = usePathname();

@@ -5,7 +5,7 @@ import { usePathname } from "@/i18n/navigation";
 import { useTheme } from "@/lib/useTheme";
 import { HIDDEN_PATHS_FOOTER } from "@/utils";
 
-export function useFooter() {
+export default function useFooter() {
   const t = useTranslations("Footer");
   const pathname = usePathname();
   const locale = useLocale();

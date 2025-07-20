@@ -2,7 +2,7 @@
 
 import styles from "./TrendingCarousel.module.css";
 import MovieModal from "../MovieModal";
-import { useTrendingCarousel } from "./TrendingCarousel.hooks";
+import useTrendingCarousel from "./TrendingCarousel.hooks";
 
 export default function TrendingCarousel() {
   const { t, selected, trendingItems, scrollRef, setSelected, scroll } =

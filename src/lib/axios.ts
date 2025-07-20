@@ -17,4 +17,28 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      const data = error.response?.data;
+
+      console.error("❌ Axios error:", {
+        status,
+        message: data?.message,
+        url: error.config?.url,
+        method: error.config?.method,
+      });
+    } else {
+      console.error("❌ Unknown error:", error);
+    }
+
+    // ✅ Don't alter the error object, just pass it on
+    return Promise.reject(error);
+  }
+);
+
 export default axiosInstance;

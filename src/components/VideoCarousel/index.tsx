@@ -2,7 +2,7 @@ import useVideoCarousel from "./VideoCarousel.hooks";
 import styles from "./VideoCarousel.module.css";
 import { VideoCarouselProps } from "./VideoCarousel.types";
 
-export function VideoCarousel({
+export default function VideoCarousel({
   title,
   items,
   onInfoClick,

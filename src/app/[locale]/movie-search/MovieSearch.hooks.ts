@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useMovieStore } from "@/stores/movie.store";
 import { useFormikContext } from "formik";
 
-export function useMovieSearch() {
+export default function useMovieSearch() {
   const { values } = useFormikContext<{ keyword: string }>();
   const { fetchByCategory, categoryVideos } = useMovieStore();
   const timer = useRef<NodeJS.Timeout | null>(null);
