@@ -13,9 +13,9 @@ export function useHeader() {
   const pathname = usePathname();
   const locale = useLocale();
   const searchParams = useSearchParams();
-  const profileId = searchParams.get("profileId");
+  const queryProfileId = searchParams.get("profileId");
 
-  const { profile } = useAuthStore();
+  const { profile, profileId: storedProfileId } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoSrc, setLogoSrc] = useState(
     "https://www.freepnglogos.com/uploads/netflix-logo-0.png"
@@ -33,6 +33,7 @@ export function useHeader() {
   const hideSignInButton = HIDDEN_SIGN_IN_BUTTON_HEADER.includes(pathname);
   const shouldHideHeader = HIDDEN_PATHS_HEADER.includes(pathname);
   const isLoggedIn = !!profile;
+  const effectiveProfileId = queryProfileId || storedProfileId;
 
   const updateLogo = () => {
     const theme = document.documentElement.getAttribute("data-theme");
@@ -45,9 +46,10 @@ export function useHeader() {
   };
 
   const selectedProfile = useMemo(() => {
-    if (!profileId || !profile) return null;
-    return profile.profiles.find((p) => p.id === profileId) || null;
-  }, [profileId, profile]);
+    console.log(effectiveProfileId);
+    if (!effectiveProfileId || !profile) return null;
+    return profile.profiles.find((p) => p.id === effectiveProfileId) || null;
+  }, [effectiveProfileId, profile]);
 
   useEffect(() => {
     const handleResize = () => {

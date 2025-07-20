@@ -13,6 +13,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   profile: null,
   success: null,
   error: null,
+  profileId: null,
 
   login: async (payload) => {
     set({ loading: true, error: null });
@@ -133,5 +134,10 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   setAccessToken: (token) => {
     set({ accessToken: token });
+  },
+
+  setProfileId: (id: string) => {
+    tokenStorage.setProfileId(id);
+    set({ profileId: id });
   },
 }));

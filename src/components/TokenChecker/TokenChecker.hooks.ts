@@ -9,12 +9,19 @@ export default function useTokenChecker() {
   const [tokenExpired, setTokenExpired] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const { getProfile, setAccessToken, refreshToken, profile, accessToken } =
-    useAuthStore();
+  const {
+    getProfile,
+    setAccessToken,
+    refreshToken,
+    setProfileId,
+    profile,
+    accessToken,
+  } = useAuthStore();
 
   useEffect(() => {
     const init = async () => {
       const token = tokenStorage.getToken();
+      const profileId = tokenStorage.getProfileId();
 
       if (token && tokenStorage.isTokenExpired()) {
         console.warn("⏳ Token expired. Logging out...");
@@ -26,6 +33,7 @@ export default function useTokenChecker() {
       if (token) {
         // console.info("✅ Token is valid:", token);
         setAccessToken(token); // ✅ sync token เข้า store
+        if (profileId) setProfileId(profileId);
 
         if (GUEST_ONLY_PATHS.includes(pathname)) {
           console.log("🔒 Redirecting logged-in user out of guest page...");

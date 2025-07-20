@@ -4,6 +4,7 @@ import {
   TOKEN_EXPIRY_MS,
   EARLY_EXPIRY_BUFFER_MS,
   NEAR_EARLY_EXPIRY_BUFFER_MS,
+  PROFILE_ID_KEY,
 } from "@/utils";
 
 export const tokenStorage = {
@@ -43,5 +44,17 @@ export const tokenStorage = {
   clearToken: () => {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     localStorage.removeItem(TOKEN_TIMESTAMP_KEY);
+  },
+
+  setProfileId: (profileId: string) => {
+    localStorage.setItem(PROFILE_ID_KEY, profileId);
+  },
+
+  getProfileId: (): string | null => {
+    return localStorage.getItem(PROFILE_ID_KEY);
+  },
+
+  clearProfileId: () => {
+    localStorage.removeItem(PROFILE_ID_KEY);
   },
 };

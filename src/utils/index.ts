@@ -22,3 +22,5 @@ export const TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 ชั่วโมง
 export const EARLY_EXPIRY_BUFFER_MS = 5 * 60 * 1000; // 5 นาที = 300,000 ms
 
 export const NEAR_EARLY_EXPIRY_BUFFER_MS = 3 * 60 * 1000; // 3 นาที
+
+export const PROFILE_ID_KEY = "profileId";

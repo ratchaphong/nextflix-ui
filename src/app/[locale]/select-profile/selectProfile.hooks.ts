@@ -9,7 +9,8 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export const useSelectProfile = () => {
-  const { logout, addProfile, updateProfile, profile } = useAuthStore();
+  const { logout, addProfile, updateProfile, setProfileId, profile } =
+    useAuthStore();
   const [showAddModal, setShowAddModal] = useState(false);
   const [isManageMode, setIsManageMode] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
@@ -24,6 +25,8 @@ export const useSelectProfile = () => {
       setShowAddModal(true);
       return;
     }
+
+    setProfileId(p.id);
 
     router.push({
       pathname: "/dashboard",

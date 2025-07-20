@@ -6,6 +6,8 @@ export interface AuthState {
   profile: User | null;
   success: string | null;
   error: string | null;
+  profileId: string | null;
+
   login: (payload: LoginPayload) => Promise<void>;
   register: (payload: RegisterPayload) => Promise<void>;
   getProfile: () => Promise<void>;
@@ -14,6 +16,7 @@ export interface AuthState {
   logout: () => void;
   refreshToken: () => Promise<void>;
   setAccessToken: (token: string) => void;
+  setProfileId: (profileId: string) => void;
 }
 
 export interface LoginPayload {
