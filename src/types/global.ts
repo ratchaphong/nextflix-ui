@@ -25,7 +25,7 @@ export interface HouseholdMember {
   id: string;
   email: string;
   name: string;
-  role: "OWNER" | "MEMBER";
+  role: USER_ROLES;
 }
 
 export interface Profile {

@@ -27,7 +27,7 @@ export const MOCK_PROFILE: ProfileResponse = {
         id: "user_001",
         email: "admin@example.com",
         name: "คุณพ่อ",
-        role: "OWNER",
+        role: USER_ROLES.OWNER,
       },
     ],
   },
