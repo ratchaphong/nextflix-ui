@@ -39,6 +39,7 @@ const SelectProfile = () => {
                 alt={p.name}
                 width={128}
                 height={128}
+                className={style.profile__add}
               />
             </div>
             <p className={style.profile__name}>
@@ -47,20 +48,21 @@ const SelectProfile = () => {
             </p>
           </div>
         ))}
-        {isManageMode && profile.package.maxProfiles < 4 && (
-          <div className={style.profile__card}>
-            <div className={style.profile__image} onClick={handleAddProfile}>
-              <Image
-                src={"/image/add.jpg"}
-                alt={t("addProfile")}
-                width={128}
-                height={128}
-                className={style.profile__add}
-              />
+        {isManageMode &&
+          profile.profiles.length < profile.package.maxProfiles && (
+            <div className={style.profile__card}>
+              <div className={style.profile__image} onClick={handleAddProfile}>
+                <Image
+                  src={"/image/add.jpg"}
+                  alt={t("addProfile")}
+                  width={128}
+                  height={128}
+                  className={style.profile__add}
+                />
+              </div>
+              <p className={style.profile__name}>{t("addProfile")}</p>
             </div>
-            <p className={style.profile__name}>{t("addProfile")}</p>
-          </div>
-        )}
+          )}
       </div>
       <div className={style.button__group}>
         {!isManageMode ? (

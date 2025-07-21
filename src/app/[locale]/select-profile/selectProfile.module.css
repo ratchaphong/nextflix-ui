@@ -44,6 +44,7 @@
 
 .profile__wrapper .profile__grid .profile__card .profile__image .profile__add {
   object-fit: cover;
+  @apply w-full h-full;
 }
 
 .profile__wrapper .profile__grid .profile__card .profile__name {
