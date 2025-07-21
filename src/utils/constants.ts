@@ -21,3 +21,8 @@ export enum VIDEO_CATEGORY {
   SATIRE = "Satire",
   NOIR = "Noir",
 }
+
+export enum USER_ROLES {
+  OWNER = "OWNER",
+  MEMBER = "MEMBER",
+}

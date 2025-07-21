@@ -1,8 +1,10 @@
+import { USER_ROLES } from "@/utils/constants";
+
 export interface User {
   id: string;
   email: string;
   name: string;
-  role: "OWNER" | "MEMBER";
+  role: USER_ROLES;
   package: {
     id: string;
     name: string;

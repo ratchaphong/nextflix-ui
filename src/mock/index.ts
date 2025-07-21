@@ -1,5 +1,6 @@
 import { VideoItem } from "@/types/global";
 import { LoginResponse, ProfileResponse } from "@/types/login.store";
+import { USER_ROLES } from "@/utils/constants";
 
 export const MOCK_ACCESS_TOKEN: LoginResponse = {
   accessToken: "mock_token_123",
@@ -9,7 +10,7 @@ export const MOCK_PROFILE: ProfileResponse = {
   id: "user_001",
   email: "admin@example.com",
   name: "คุณพ่อ",
-  role: "OWNER",
+  role: USER_ROLES.OWNER,
   package: {
     id: "pkg_family",
     name: "Family Plan",
