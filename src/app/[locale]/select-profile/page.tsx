@@ -47,7 +47,7 @@ const SelectProfile = () => {
             </p>
           </div>
         ))}
-        {isManageMode && profile.profiles.length < 4 && (
+        {isManageMode && profile.package.maxProfiles < 4 && (
           <div className={style.profile__card}>
             <div className={style.profile__image} onClick={handleAddProfile}>
               <Image
