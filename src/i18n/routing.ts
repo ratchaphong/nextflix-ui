@@ -26,6 +26,10 @@ export const routing = defineRouting({
       en: "/dashboard",
       th: "/dashboard",
     },
+    "/register": {
+      en: "/register",
+      th: "/register",
+    },
   },
   localeDetection: false,
 });

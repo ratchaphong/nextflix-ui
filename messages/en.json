@@ -141,5 +141,15 @@
     "title": "Something went wrong",
     "description": "We couldn't connect to the server. Please try again later.",
     "button": "Back to login"
+  },
+  "Register": {
+    "choosePlan": "Choose your plan",
+    "nextButton": "Next",
+    "packageRequired": "Please select a package",
+    "price": "The monthly price of the package in Thai Baht (฿).",
+    "resolution": "Maximum video resolution supported by the package.",
+    "profiles": "Number of profiles you can create under this package.",
+    "members": "Maximum number of members allowed to watch simultaneously.",
+    "selectButton": "Choose package"
   }
 }

@@ -1,0 +1,17 @@
+.container {
+  margin-top: 10vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  gap: 1rem;
+  padding: 2rem;
+  @apply w-full flex flex-col items-center justify-start;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.form {
+  max-width: 960px;
+  @apply w-full;
+}

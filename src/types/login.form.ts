@@ -12,3 +12,7 @@ export interface AddProfileFormValues {
   name: string;
   image: string;
 }
+
+export interface RegisterFormValues {
+  packageId: string;
+}

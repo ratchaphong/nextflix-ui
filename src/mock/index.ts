@@ -1,4 +1,4 @@
-import { VideoItem } from "@/types/global";
+import { Package, VideoItem } from "@/types/global";
 import { LoginResponse, ProfileResponse } from "@/types/login.store";
 import { USER_ROLES } from "@/utils/constants";
 
@@ -716,5 +716,32 @@ export const MOCK_VIDEO_BY_CATEGORY: VideoItem[] = [
     description: "Another teaser highlighting European travels & romance.",
     category: ["Romance", "Drama"],
     releaseDate: "2025-08-20",
+  },
+];
+
+export const PACKAGES: Package[] = [
+  {
+    id: "basic-id",
+    name: "Basic",
+    maxProfiles: 1,
+    maxMembers: 1,
+    price: 0,
+    resolution: "480p",
+  },
+  {
+    id: "standard-id",
+    name: "Standard",
+    maxProfiles: 2,
+    maxMembers: 2,
+    price: 99,
+    resolution: "720p",
+  },
+  {
+    id: "premium-id",
+    name: "Premium",
+    maxProfiles: 4,
+    maxMembers: 4,
+    price: 199,
+    resolution: "1080p",
   },
 ];

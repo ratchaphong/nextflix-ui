@@ -1,12 +1,15 @@
 import api from "@/lib/axios";
 import axios from "axios";
-import { MOCK_ACCESS_TOKEN, MOCK_PROFILE } from "@/mock";
+import { MOCK_ACCESS_TOKEN, MOCK_PROFILE, PACKAGES } from "@/mock";
 import {
   LoginPayload,
   LoginResponse,
   RegisterPayload,
   AddProfilePayload,
   ProfileResponse,
+  CheckEmailPayload,
+  CheckEmailResponse,
+  FetchAllPackagesResponse,
 } from "@/types/login.store";
 import { logger } from "@/lib/logger";
 
@@ -137,6 +140,57 @@ export const AuthService = {
         throw new Error(message);
       }
       throw new Error("An unknown error occurred during token refresh.");
+    }
+  },
+
+  checkEmail: async (
+    payload: CheckEmailPayload
+  ): Promise<CheckEmailResponse> => {
+    if (USE_MOCK) {
+      logger.log("🔧 Using MOCK checkEmail");
+      return new Promise((resolve) =>
+        setTimeout(() => resolve({ isAvailable: true }), 500)
+      );
+    }
+
+    try {
+      const { data } = await api.get<CheckEmailResponse>("/auth/check-email", {
+        params: payload,
+      });
+      return data;
+    } catch (error: unknown) {
+      // logger.log(error, axios.isAxiosError(error));
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Failed to fetch profile.";
+        logger.error("❌ Profile error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
+    }
+  },
+
+  fetchAllPackages: async (): Promise<FetchAllPackagesResponse> => {
+    if (USE_MOCK) {
+      logger.log("🔧 Using MOCK fetchAllPackages");
+      return new Promise((resolve) => setTimeout(() => resolve(PACKAGES), 500));
+    }
+
+    try {
+      const { data } = await api.get<FetchAllPackagesResponse>(
+        "/subscriptions",
+        {}
+      );
+      return data;
+    } catch (error: unknown) {
+      // logger.log(error, axios.isAxiosError(error));
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response?.data?.message || "Failed to fetch all packages.";
+        logger.error("❌ Fetch pakages error:", message);
+        throw new Error(message);
+      }
+      throw new Error("An unknown error occurred.");
     }
   },
 };

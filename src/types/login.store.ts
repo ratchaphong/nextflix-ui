@@ -1,4 +1,4 @@
-import { User } from "./global";
+import { Package, User } from "./global";
 
 export interface AuthState {
   loading: boolean;
@@ -7,6 +7,7 @@ export interface AuthState {
   success: string | null;
   error: string | null;
   profileId: string | null;
+  packages: Package[];
 
   login: (payload: LoginPayload) => Promise<void>;
   register: (payload: RegisterPayload) => Promise<void>;
@@ -17,6 +18,8 @@ export interface AuthState {
   refreshToken: () => Promise<void>;
   setAccessToken: (token: string) => void;
   setProfileId: (profileId: string) => void;
+  checkEmail: (payload: CheckEmailPayload) => Promise<boolean>;
+  fetchAllPackages: () => Promise<void>;
 }
 
 export interface LoginPayload {
@@ -35,8 +38,18 @@ export interface AddProfilePayload {
   image: string;
 }
 
+export interface CheckEmailPayload {
+  email: string;
+}
+
 export interface LoginResponse {
   accessToken: string;
 }
 
 export type ProfileResponse = User;
+
+export interface CheckEmailResponse {
+  isAvailable: boolean;
+}
+
+export type FetchAllPackagesResponse = Package[];

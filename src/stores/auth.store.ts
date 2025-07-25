@@ -16,6 +16,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   success: null,
   error: null,
   profileId: null,
+  packages: [],
 
   login: async (payload) => {
     set({ loading: true, error: null });
@@ -143,5 +144,39 @@ export const useAuthStore = create<AuthState>((set) => ({
   setProfileId: (id: string) => {
     tokenStorage.setProfileId(id);
     set({ profileId: id });
+  },
+
+  checkEmail: async (payload) => {
+    set({ loading: true });
+
+    try {
+      const { isAvailable } = await AuthService.checkEmail(payload);
+      return isAvailable;
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to check email";
+      showToast(errorMessage, "error");
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchAllPackages: async () => {
+    set({ loading: true, packages: [] });
+
+    try {
+      const data = await AuthService.fetchAllPackages();
+      set({ packages: data });
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Failed to check email";
+      showToast(errorMessage, "error");
+      set({ error: errorMessage });
+      throw new Error(errorMessage);
+    } finally {
+      set({ loading: false });
+    }
   },
 }));

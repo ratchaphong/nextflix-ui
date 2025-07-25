@@ -5,14 +5,7 @@ export interface User {
   email: string;
   name: string;
   role: USER_ROLES;
-  package: {
-    id: string;
-    name: string;
-    maxProfiles: number;
-    maxMembers: number;
-    price: number;
-    resolution: string;
-  };
+  package: Package;
   household: {
     id: string;
     name: string;
@@ -35,6 +28,15 @@ export interface Profile {
   isLocked: boolean;
   pin?: string;
   ownerId: string;
+}
+
+export interface Package {
+  id: string;
+  name: string;
+  maxProfiles: number;
+  maxMembers: number;
+  price: number;
+  resolution: string;
 }
 
 export interface Movie {

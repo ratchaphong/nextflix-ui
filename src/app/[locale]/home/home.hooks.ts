@@ -6,15 +6,14 @@ import { useEffect } from "react";
 import { useMovieStore } from "@/stores/movie.store";
 import { useAuthStore } from "@/stores/auth.store";
 import { useRouter } from "@/i18n/navigation";
-import { secureStorage } from "@/lib/secureStorage";
 import { HomeFormValues } from "@/types/login.form";
-import { RegisterPayload } from "@/types/login.store";
+import { CheckEmailPayload } from "@/types/login.store";
 import { logger } from "@/lib/logger";
 
 export default function useHomeForm() {
   const t = useTranslations("HomePage");
   const { fetchMovies } = useMovieStore();
-  const { register } = useAuthStore();
+  const { checkEmail } = useAuthStore();
   const router = useRouter();
 
   const handleSubmit = async (
@@ -23,15 +22,16 @@ export default function useHomeForm() {
   ) => {
     logger.log("📨 Submitting form...", values);
     try {
-      // window.alert("ฟีเจอร์นี้ยังไม่พร้อมใช้งานในขณะนี้");
-      const payload: RegisterPayload = {
-        ...values,
-        password: "Nextzy123",
-        name: "Nextzy",
-      };
-      secureStorage.setLogin(payload.email, payload.password);
-      await register(payload);
-      router.push("/login");
+      const payload: CheckEmailPayload = values;
+      const isAvailable = await checkEmail(payload);
+      if (isAvailable) {
+        router.push({
+          pathname: "/register",
+          query: {
+            email: values.email,
+          },
+        });
+      }
     } catch (error) {
       logger.error("Error submitting form:", error);
     } finally {
